@@ -1,0 +1,210 @@
+﻿@model DashBoardViewModel
+@using CF_Budgeter.Models
+@using CF_Budgeter.Controllers
+
+@{
+    ViewBag.Title = "Choose the household to display.";
+}
+<div class="form-group">
+    <div class="col-md-10">
+        @using (Html.BeginForm("Index", "Home", FormMethod.Post))
+        {
+            @Html.AntiForgeryToken()
+            @Html.HiddenFor(x => x.Budgets)
+            @*@Html.DropDownListFor(x => x.SelectedHousehold, (SelectList) ViewBag.SelectedHousehold, new {@class = "form-control", @onchange = "this.form.submit()"})*@
+            @Html.DropDownList("SelectedHousehold", null, "--Select Household--", htmlAttributes: new {@class = "form-control", @onchange = "this.form.submit()"})
+        }
+    </div>
+</div>
+
+<div class="container-fluid half-padding">
+    <div class="pages pages_dashboard">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="panel panel-success">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">Household Members Of Household: @*@Model.Name*@</h3>
+                    </div>
+                <div class="panel-body">
+                        @*<p>There are @Model.Members.Count() users in this household.</p>*@
+                    <div id="datalist-filter__detail" class="collapse">
+                            <div class="container-fluid datalist-filter__detail">
+                                <div class="row">
+                                    <div class="col-md-4">
+                                        <div class="form-group">
+                                            <div class="input-group">
+                                                <div class="input-group-addon"><i class="fa fa-map-marker"></i></div>
+                                                <input type="text" placeholder="Location" class="form-control datalist-filter__location">
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <div class="input-group selectize__group">
+                                                <div class="input-group-addon"><i class="fa fa-envelope-o"></i></div>
+                                                <select placeholder="Email" class="datalist-filter__email"></select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4 input-daterange">
+                                        <div class="form-group">
+                                            <div class="input-group">
+                                                <div class="input-group-addon"><i class="fa fa-calendar-minus-o"></i></div>
+                                                <input type="text" value="" class="form-control datalist-filter__from">
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <div class="input-group">
+                                                <div class="input-group-addon"><i class="fa fa-calendar-plus-o"></i></div>
+                                                <input type="text" value="" class="form-control datalist-filter__to">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="form-group">
+                                            <input id="datalist-filter__salary" type="text" name="" value="" class="slider">
+                                        </div>
+                                        <div class="form-group">
+                                            <div class="checkbox checkbox-danger">
+                                                <input id="datalist-filter__actives" type="checkbox">
+                                                <label for="datalist-filter__actives">Actives only</label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        </form>
+
+                    <div class="panel-heading">
+                        <h3 class="panel-title">Overview</h3>
+                    </div>
+                    <div class="panel-body">
+                        <div class="ov-widget">
+                            <div class="ov-widget__list">
+                                <div class="col-md-2 ov-widget__item ov-widget__item_inc">
+                                    <div class="ov-widget__value">$@*@Html.DisplayFor(model => model.Balance)*@</div>
+                                    <div class="ov-widget__info">
+                                        <div class="ov-widget__title">Balance</div>
+                                    </div>
+                                </div>
+                                <div class="col-md-2 ov-widget__item ov-widget__item_dec">
+                                    <div class="ov-widget__value">$@*@Html.DisplayFor(model => model.AvailableToSpend)*@</div>
+                                    <div class="ov-widget__info">
+                                        <div class="ov-widget__title">Amount Spent</div>
+                                    </div>
+                                </div>
+                                <div class="col-md-2 ov-widget__item ov-widget__item_warn">
+                                    <div class="ov-widget__value">$@*@Html.DisplayFor(budget => budget.TotalBudgetAmount)*@</div>
+                                    <div class="ov-widget__info">
+                                        <div class="ov-widget__title">Budget</div>
+                                    </div>
+                                </div>
+                                <div class="col-md-2 ov-widget__item ov-widget__item_tack">
+                                    <div class="ov-widget__value">@*@Html.DisplayFor(model => model.TransactionCount)*@</div>
+                                    <div class="ov-widget__info">
+                                        <div class="ov-widget__title">Transactions</div>
+                                    </div>
+                                </div>
+                                <div class="ov-widget__bar">
+                                    <span>Progress To Your Budget Spending Limit</span>
+                                    <div class="progress">
+                                        <div role="progressbar" aria-valuenow="85" aria-valuemin="0" aria-valuemax="100" style="width: @*@Model.ProgressBar*@" class="progress-bar progress-bar-info"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="panel panel-danger">
+                        <div class="panel-heading">
+                            <h3 class="panel-title">Account Statistics</h3>
+                        </div>
+                        <div class="panel-body">
+                            <div class="ld-widget">
+                                <div class="col-md-12">
+                                    <div id="container1"></div>
+                                    @*<div class="ld-widget-main">
+                                        <div class="ld-widget-main__title">Account Activity</div>
+                                        <div class="ld-widget-main__chart"></div>*@
+                                </div>
+                               
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+<table id="datatable">
+    <thead>
+        <tr>
+            <th>@*@Model.createTransactionViewModel.*@</th>
+            <th>Jane</th>
+            <th>John</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <th>Apples</th>
+            <td>3</td>
+            <td>4</td>
+        </tr>
+        <tr>
+            <th>Pears</th>
+            <td>2</td>
+            <td>0</td>
+        </tr>
+        <tr>
+            <th>Plums</th>
+            <td>5</td>
+            <td>11</td>
+        </tr>
+        <tr>
+            <th>Bananas</th>
+            <td>1</td>
+            <td>1</td>
+        </tr>
+        <tr>
+            <th>Oranges</th>
+            <td>2</td>
+            <td>4</td>
+        </tr>
+    </tbody>
+</table>
+@section Scripts{
+    <script src="https://code.highcharts.com/highcharts.js"></script>
+    <script src="https://code.highcharts.com/modules/data.js"></script>
+    <script src="https://code.highcharts.com/modules/exporting.js"></script>
+    <script>
+        $(function() {
+            $('#container1').highcharts({
+                data: {
+                    table: 'datatable'
+                },
+                chart: {
+                    type: 'column'
+                },
+                title: {
+                    //text: 'Data extracted from a HTML table in the page'
+
+                },
+                yAxis: {
+                    allowDecimals: false,
+                    title: {
+                        text: 'Units'
+                    }
+                },
+                tooltip: {
+                    formatter: function() {
+                        return '<b>' + this.series.name + '</b><br/>' +
+                            this.point.y + ' ' + this.point.name.toLowerCase();
+                    }
+                }
+            });
+        });
+    </script>
+}

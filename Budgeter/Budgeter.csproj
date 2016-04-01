@@ -1,0 +1,1822 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.Default.props" Condition="Exists('$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.Default.props')" />
+  <Import Project="..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.0\build\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props" Condition="Exists('..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.0\build\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" />
+  <Import Project="..\packages\Microsoft.Net.Compilers.1.0.0\build\Microsoft.Net.Compilers.props" Condition="Exists('..\packages\Microsoft.Net.Compilers.1.0.0\build\Microsoft.Net.Compilers.props')" />
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>
+    </ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{C50EE5C0-EDE0-4E46-B6DE-23397B11DE2E}</ProjectGuid>
+    <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Budgeter</RootNamespace>
+    <AssemblyName>Budgeter</AssemblyName>
+    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
+    <MvcBuildViews>false</MvcBuildViews>
+    <UseIISExpress>true</UseIISExpress>
+    <IISExpressSSLPort />
+    <IISExpressAnonymousAuthentication />
+    <IISExpressWindowsAuthentication />
+    <IISExpressUseClassicPipelineMode />
+    <UseGlobalApplicationHostFile />
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
+    <TypeScriptToolsVersion>1.7</TypeScriptToolsVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Microsoft.AI.Agent.Intercept, Version=1.2.0.1011, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.ApplicationInsights.Agent.Intercept.1.2.0\lib\net45\Microsoft.AI.Agent.Intercept.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.AI.DependencyCollector, Version=1.2.3.246, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.ApplicationInsights.DependencyCollector.1.2.3\lib\net45\Microsoft.AI.DependencyCollector.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.AI.PerfCounterCollector, Version=1.2.3.246, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.ApplicationInsights.PerfCounterCollector.1.2.3\lib\net45\Microsoft.AI.PerfCounterCollector.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.AI.ServerTelemetryChannel, Version=1.2.3.246, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.ApplicationInsights.WindowsServer.TelemetryChannel.1.2.3\lib\net45\Microsoft.AI.ServerTelemetryChannel.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.AI.Web, Version=1.2.3.246, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.ApplicationInsights.Web.1.2.3\lib\net45\Microsoft.AI.Web.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.AI.WindowsServer, Version=1.2.3.246, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.ApplicationInsights.WindowsServer.1.2.3\lib\net45\Microsoft.AI.WindowsServer.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.ApplicationInsights, Version=1.2.3.490, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.ApplicationInsights.1.2.3\lib\net45\Microsoft.ApplicationInsights.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.CodeDom.Providers.DotNetCompilerPlatform, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.0\lib\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Web.DynamicData" />
+    <Reference Include="System.Web.Entity" />
+    <Reference Include="System.Web.ApplicationServices" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Web.Abstractions" />
+    <Reference Include="System.Web.Routing" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.EnterpriseServices" />
+    <Reference Include="Microsoft.Web.Infrastructure, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.Web.Infrastructure.1.0.0.0\lib\net40\Microsoft.Web.Infrastructure.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Net.Http">
+    </Reference>
+    <Reference Include="System.Net.Http.WebRequest">
+    </Reference>
+    <Reference Include="System.Web.Helpers, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.3\lib\net45\System.Web.Helpers.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Mvc, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.Mvc.5.2.3\lib\net45\System.Web.Mvc.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Optimization">
+      <HintPath>..\packages\Microsoft.AspNet.Web.Optimization.1.1.3\lib\net40\System.Web.Optimization.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Razor, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.Razor.3.2.3\lib\net45\System.Web.Razor.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.3\lib\net45\System.Web.WebPages.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Deployment, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.3\lib\net45\System.Web.WebPages.Deployment.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Razor, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.3\lib\net45\System.Web.WebPages.Razor.dll</HintPath>
+    </Reference>
+    <Reference Include="WebGrease">
+      <Private>True</Private>
+      <HintPath>..\packages\WebGrease.1.5.2\lib\WebGrease.dll</HintPath>
+    </Reference>
+    <Reference Include="Antlr3.Runtime">
+      <Private>True</Private>
+      <HintPath>..\packages\Antlr.3.4.1.9004\lib\Antlr3.Runtime.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="Newtonsoft.Json">
+      <HintPath>..\packages\Newtonsoft.Json.6.0.4\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AspNet.Identity.Core">
+      <HintPath>..\packages\Microsoft.AspNet.Identity.Core.2.2.1\lib\net45\Microsoft.AspNet.Identity.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AspNet.Identity.Owin">
+      <HintPath>..\packages\Microsoft.AspNet.Identity.Owin.2.2.1\lib\net45\Microsoft.AspNet.Identity.Owin.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AspNet.Identity.EntityFramework">
+      <HintPath>..\packages\Microsoft.AspNet.Identity.EntityFramework.2.2.1\lib\net45\Microsoft.AspNet.Identity.EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="Owin">
+      <HintPath>..\packages\Owin.1.0\lib\net40\Owin.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin">
+      <HintPath>..\packages\Microsoft.Owin.3.0.1\lib\net45\Microsoft.Owin.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Host.SystemWeb">
+      <HintPath>..\packages\Microsoft.Owin.Host.SystemWeb.3.0.1\lib\net45\Microsoft.Owin.Host.SystemWeb.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security">
+      <HintPath>..\packages\Microsoft.Owin.Security.3.0.1\lib\net45\Microsoft.Owin.Security.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security.Facebook">
+      <HintPath>..\packages\Microsoft.Owin.Security.Facebook.3.0.1\lib\net45\Microsoft.Owin.Security.Facebook.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security.Cookies">
+      <HintPath>..\packages\Microsoft.Owin.Security.Cookies.3.0.1\lib\net45\Microsoft.Owin.Security.Cookies.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security.OAuth">
+      <HintPath>..\packages\Microsoft.Owin.Security.OAuth.3.0.1\lib\net45\Microsoft.Owin.Security.OAuth.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security.Google">
+      <HintPath>..\packages\Microsoft.Owin.Security.Google.3.0.1\lib\net45\Microsoft.Owin.Security.Google.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security.Twitter">
+      <HintPath>..\packages\Microsoft.Owin.Security.Twitter.3.0.1\lib\net45\Microsoft.Owin.Security.Twitter.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security.MicrosoftAccount">
+      <HintPath>..\packages\Microsoft.Owin.Security.MicrosoftAccount.3.0.1\lib\net45\Microsoft.Owin.Security.MicrosoftAccount.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="App_Start\BundleConfig.cs" />
+    <Compile Include="App_Start\FilterConfig.cs" />
+    <Compile Include="App_Start\IdentityConfig.cs" />
+    <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="App_Start\Startup.Auth.cs" />
+    <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\AccountsController.cs" />
+    <Compile Include="Controllers\BudgetItemsController.cs" />
+    <Compile Include="Controllers\BudgetsController.cs" />
+    <Compile Include="Controllers\CategoriesController.cs" />
+    <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\HouseholdsController.cs" />
+    <Compile Include="Controllers\InvitationsController.cs" />
+    <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="Controllers\TransactionsController.cs" />
+    <Compile Include="Controllers\TransactionTypesController.cs" />
+    <Compile Include="Global.asax.cs">
+      <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201602151645212_initial.cs" />
+    <Compile Include="Migrations\201602151645212_initial.Designer.cs">
+      <DependentUpon>201602151645212_initial.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
+    <Compile Include="Models\Account.cs" />
+    <Compile Include="Models\AccountDetailsViewModel.cs" />
+    <Compile Include="Models\AccountViewModels.cs" />
+    <Compile Include="Models\Budget.cs" />
+    <Compile Include="Models\BudgetItem.cs" />
+    <Compile Include="Models\Category.cs" />
+    <Compile Include="Models\CreateTransactionViewModel.cs" />
+    <Compile Include="Models\DashBoardViewModel.cs" />
+    <Compile Include="Models\Household.cs" />
+    <Compile Include="Models\HouseholdDetailsViewModel.cs" />
+    <Compile Include="Models\IdentityModels.cs" />
+    <Compile Include="Models\Invitations.cs" />
+    <Compile Include="Models\InviteUsersViewModel.cs" />
+    <Compile Include="Models\ManageViewModels.cs" />
+    <Compile Include="Models\SendGridCredentials.cs" />
+    <Compile Include="Models\Transaction.cs" />
+    <Compile Include="Models\TransactionType.cs" />
+    <Compile Include="obj\Debug\TemporaryGeneratedFile_036C0B5B-1481-4323-8D20-8F5ADCB23D92.cs" />
+    <Compile Include="obj\Debug\TemporaryGeneratedFile_5937a670-0e60-4077-877b-f7221da3dda1.cs" />
+    <Compile Include="obj\Debug\TemporaryGeneratedFile_E7A71F73-0F8D-4B9B-B56E-8E70B10BC5D3.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Startup.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="bin\Antlr3.Runtime.dll" />
+    <Content Include="bin\EntityFramework.dll" />
+    <Content Include="bin\EntityFramework.SqlServer.dll" />
+    <Content Include="bin\Microsoft.AI.Agent.Intercept.dll" />
+    <Content Include="bin\Microsoft.AI.DependencyCollector.dll" />
+    <Content Include="bin\Microsoft.AI.PerfCounterCollector.dll" />
+    <Content Include="bin\Microsoft.AI.ServerTelemetryChannel.dll" />
+    <Content Include="bin\Microsoft.AI.Web.dll" />
+    <Content Include="bin\Microsoft.AI.WindowsServer.dll" />
+    <Content Include="bin\Microsoft.ApplicationInsights.dll" />
+    <Content Include="bin\Microsoft.AspNet.Identity.Core.dll" />
+    <Content Include="bin\Microsoft.AspNet.Identity.EntityFramework.dll" />
+    <Content Include="bin\Microsoft.AspNet.Identity.Owin.dll" />
+    <Content Include="bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll" />
+    <Content Include="bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml" />
+    <Content Include="bin\Microsoft.Owin.dll" />
+    <Content Include="bin\Microsoft.Owin.Host.SystemWeb.dll" />
+    <Content Include="bin\Microsoft.Owin.Security.Cookies.dll" />
+    <Content Include="bin\Microsoft.Owin.Security.dll" />
+    <Content Include="bin\Microsoft.Owin.Security.Facebook.dll" />
+    <Content Include="bin\Microsoft.Owin.Security.Google.dll" />
+    <Content Include="bin\Microsoft.Owin.Security.MicrosoftAccount.dll" />
+    <Content Include="bin\Microsoft.Owin.Security.OAuth.dll" />
+    <Content Include="bin\Microsoft.Owin.Security.Twitter.dll" />
+    <Content Include="bin\Microsoft.Web.Infrastructure.dll" />
+    <Content Include="bin\Newtonsoft.Json.dll" />
+    <Content Include="bin\Owin.dll" />
+    <Content Include="bin\System.Web.Helpers.dll" />
+    <Content Include="bin\System.Web.Mvc.dll" />
+    <Content Include="bin\System.Web.Optimization.dll" />
+    <Content Include="bin\System.Web.Razor.dll" />
+    <Content Include="bin\System.Web.WebPages.Deployment.dll" />
+    <Content Include="bin\System.Web.WebPages.dll" />
+    <Content Include="bin\System.Web.WebPages.Razor.dll" />
+    <Content Include="bin\WebGrease.dll" />
+    <Content Include="Content\bootstrap.css" />
+    <Content Include="Content\bootstrap.min.css" />
+    <Content Include="dist\blank.html" />
+    <Content Include="dist\bootstrap-social-gh-pages\.gitignore" />
+    <Content Include="dist\bootstrap-social-gh-pages\assets\css\bootstrap.css" />
+    <Content Include="dist\bootstrap-social-gh-pages\assets\css\docs.css" />
+    <Content Include="dist\bootstrap-social-gh-pages\assets\css\font-awesome.css" />
+    <Content Include="dist\bootstrap-social-gh-pages\assets\fonts\fontawesome-webfont.svg" />
+    <Content Include="dist\bootstrap-social-gh-pages\assets\img\bootstrap-social.png" />
+    <Content Include="dist\bootstrap-social-gh-pages\assets\js\docs.js" />
+    <Content Include="dist\bootstrap-social-gh-pages\assets\js\jquery.js" />
+    <Content Include="dist\bootstrap-social-gh-pages\bootstrap-social.css" />
+    <Content Include="dist\bootstrap-social-gh-pages\index.html" />
+    <Content Include="dist\buttons.html" />
+    <Content Include="dist\charts.html" />
+    <Content Include="dist\compose.html" />
+    <Content Include="dist\controls.html" />
+    <Content Include="dist\css\demo.css" />
+    <Content Include="dist\css\demo.min.css" />
+    <Content Include="dist\css\right.css" />
+    <Content Include="dist\css\right.min.css" />
+    <Content Include="dist\general.html" />
+    <Content Include="dist\households.html" />
+    <Content Include="dist\img\AccessDeniedYoda.jpg" />
+    <Content Include="dist\img\apple-touch-favicon.png" />
+    <Content Include="dist\img\background\lilac.jpg" />
+    <Content Include="dist\img\favicon.png" />
+    <Content Include="dist\img\money.png" />
+    <Content Include="dist\img\nocover.png" />
+    <Content Include="dist\img\nophoto.png" />
+    <Content Include="dist\img\paint.svg" />
+    <Content Include="dist\img\right.png" />
+    <Content Include="dist\img\right.svg" />
+    <Content Include="dist\img\right1.png" />
+    <Content Include="dist\img\rightlogo.png" />
+    <Content Include="dist\inbox.html" />
+    <Content Include="dist\index.html" />
+    <Content Include="dist\js\demo.js" />
+    <Content Include="dist\js\main.js" />
+    <Content Include="dist\js\right.min.js" />
+    <Content Include="dist\js\template\charts.js" />
+    <Content Include="dist\js\template\controls.js" />
+    <Content Include="dist\js\template\index - Copy.js" />
+    <Content Include="dist\js\template\index.js" />
+    <Content Include="dist\js\template\mails.js" />
+    <Content Include="dist\js\template\MyCharts.js" />
+    <Content Include="dist\js\template\orders.js" />
+    <Content Include="dist\js\template\products.js" />
+    <Content Include="dist\js\template\table_data.js" />
+    <Content Include="dist\js\template\table_sortable.js" />
+    <Content Include="dist\js\template\texteditor.js" />
+    <Content Include="dist\js\template\users.js" />
+    <Content Include="dist\js\template\validation.js" />
+    <Content Include="dist\libs\awesome-bootstrap-checkbox\awesome-bootstrap-checkbox.css" />
+    <Content Include="dist\libs\bootstrap-datepicker\dist\css\bootstrap-datepicker.css" />
+    <Content Include="dist\libs\bootstrap-datepicker\dist\css\bootstrap-datepicker.min.css" />
+    <Content Include="dist\libs\bootstrap-datepicker\dist\css\bootstrap-datepicker.standalone.css" />
+    <Content Include="dist\libs\bootstrap-datepicker\dist\css\bootstrap-datepicker.standalone.min.css" />
+    <Content Include="dist\libs\bootstrap-datepicker\dist\css\bootstrap-datepicker3.css" />
+    <Content Include="dist\libs\bootstrap-datepicker\dist\css\bootstrap-datepicker3.min.css" />
+    <Content Include="dist\libs\bootstrap-datepicker\dist\css\bootstrap-datepicker3.standalone.css" />
+    <Content Include="dist\libs\bootstrap-datepicker\dist\css\bootstrap-datepicker3.standalone.min.css" />
+    <Content Include="dist\libs\bootstrap-datepicker\dist\js\bootstrap-datepicker.js" />
+    <Content Include="dist\libs\bootstrap-datepicker\dist\js\bootstrap-datepicker.min.js" />
+    <Content Include="dist\libs\bootstrap-select\dist\css\bootstrap-select.css" />
+    <Content Include="dist\libs\bootstrap-select\dist\css\bootstrap-select.min.css" />
+    <Content Include="dist\libs\bootstrap-select\dist\js\bootstrap-select.js" />
+    <Content Include="dist\libs\bootstrap-select\dist\js\bootstrap-select.min.js" />
+    <Content Include="dist\libs\bootstrap-switch\dist\css\bootstrap2\bootstrap-switch.css" />
+    <Content Include="dist\libs\bootstrap-switch\dist\css\bootstrap2\bootstrap-switch.min.css" />
+    <Content Include="dist\libs\bootstrap-switch\dist\css\bootstrap3\bootstrap-switch.css" />
+    <Content Include="dist\libs\bootstrap-switch\dist\css\bootstrap3\bootstrap-switch.min.css" />
+    <Content Include="dist\libs\bootstrap-switch\dist\js\bootstrap-switch.js" />
+    <Content Include="dist\libs\bootstrap-switch\dist\js\bootstrap-switch.min.js" />
+    <Content Include="dist\libs\bootstrap-tabdrop\bootstrap-tabdrop.min.js" />
+    <Content Include="dist\libs\bootstrap-timepicker\css\bootstrap-timepicker.css" />
+    <Content Include="dist\libs\bootstrap-timepicker\css\bootstrap-timepicker.min.css" />
+    <Content Include="dist\libs\bootstrap-timepicker\js\bootstrap-timepicker.js" />
+    <Content Include="dist\libs\bootstrap-timepicker\js\bootstrap-timepicker.min.js" />
+    <Content Include="dist\libs\bootstrap-validator\dist\validator.js" />
+    <Content Include="dist\libs\bootstrap-validator\dist\validator.min.js" />
+    <Content Include="dist\libs\bootstrap\css\bootstrap.css" />
+    <Content Include="dist\libs\bootstrap\css\bootstrap.min.css" />
+    <Content Include="dist\libs\bootstrap\fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="dist\libs\bootstrap\js\bootstrap.js" />
+    <Content Include="dist\libs\bootstrap\js\bootstrap.min.js" />
+    <Content Include="dist\libs\chart.js\Chart.min.js" />
+    <Content Include="dist\libs\codemirror\addon\comment\comment.js" />
+    <Content Include="dist\libs\codemirror\addon\comment\continuecomment.js" />
+    <Content Include="dist\libs\codemirror\addon\dialog\dialog.css" />
+    <Content Include="dist\libs\codemirror\addon\dialog\dialog.js" />
+    <Content Include="dist\libs\codemirror\addon\display\autorefresh.js" />
+    <Content Include="dist\libs\codemirror\addon\display\fullscreen.css" />
+    <Content Include="dist\libs\codemirror\addon\display\fullscreen.js" />
+    <Content Include="dist\libs\codemirror\addon\display\panel.js" />
+    <Content Include="dist\libs\codemirror\addon\display\placeholder.js" />
+    <Content Include="dist\libs\codemirror\addon\display\rulers.js" />
+    <Content Include="dist\libs\codemirror\addon\edit\closebrackets.js" />
+    <Content Include="dist\libs\codemirror\addon\edit\closetag.js" />
+    <Content Include="dist\libs\codemirror\addon\edit\continuelist.js" />
+    <Content Include="dist\libs\codemirror\addon\edit\matchbrackets.js" />
+    <Content Include="dist\libs\codemirror\addon\edit\matchtags.js" />
+    <Content Include="dist\libs\codemirror\addon\edit\trailingspace.js" />
+    <Content Include="dist\libs\codemirror\addon\fold\brace-fold.js" />
+    <Content Include="dist\libs\codemirror\addon\fold\comment-fold.js" />
+    <Content Include="dist\libs\codemirror\addon\fold\foldcode.js" />
+    <Content Include="dist\libs\codemirror\addon\fold\foldgutter.css" />
+    <Content Include="dist\libs\codemirror\addon\fold\foldgutter.js" />
+    <Content Include="dist\libs\codemirror\addon\fold\indent-fold.js" />
+    <Content Include="dist\libs\codemirror\addon\fold\markdown-fold.js" />
+    <Content Include="dist\libs\codemirror\addon\fold\xml-fold.js" />
+    <Content Include="dist\libs\codemirror\addon\hint\anyword-hint.js" />
+    <Content Include="dist\libs\codemirror\addon\hint\css-hint.js" />
+    <Content Include="dist\libs\codemirror\addon\hint\html-hint.js" />
+    <Content Include="dist\libs\codemirror\addon\hint\javascript-hint.js" />
+    <Content Include="dist\libs\codemirror\addon\hint\show-hint.css" />
+    <Content Include="dist\libs\codemirror\addon\hint\show-hint.js" />
+    <Content Include="dist\libs\codemirror\addon\hint\sql-hint.js" />
+    <Content Include="dist\libs\codemirror\addon\hint\xml-hint.js" />
+    <Content Include="dist\libs\codemirror\addon\lint\coffeescript-lint.js" />
+    <Content Include="dist\libs\codemirror\addon\lint\css-lint.js" />
+    <Content Include="dist\libs\codemirror\addon\lint\html-lint.js" />
+    <Content Include="dist\libs\codemirror\addon\lint\javascript-lint.js" />
+    <Content Include="dist\libs\codemirror\addon\lint\json-lint.js" />
+    <Content Include="dist\libs\codemirror\addon\lint\lint.css" />
+    <Content Include="dist\libs\codemirror\addon\lint\lint.js" />
+    <Content Include="dist\libs\codemirror\addon\lint\yaml-lint.js" />
+    <Content Include="dist\libs\codemirror\addon\merge\merge.css" />
+    <Content Include="dist\libs\codemirror\addon\merge\merge.js" />
+    <Content Include="dist\libs\codemirror\addon\mode\loadmode.js" />
+    <Content Include="dist\libs\codemirror\addon\mode\multiplex.js" />
+    <Content Include="dist\libs\codemirror\addon\mode\multiplex_test.js" />
+    <Content Include="dist\libs\codemirror\addon\mode\overlay.js" />
+    <Content Include="dist\libs\codemirror\addon\mode\simple.js" />
+    <Content Include="dist\libs\codemirror\addon\runmode\colorize.js" />
+    <Content Include="dist\libs\codemirror\addon\runmode\runmode-standalone.js" />
+    <Content Include="dist\libs\codemirror\addon\runmode\runmode.js" />
+    <Content Include="dist\libs\codemirror\addon\runmode\runmode.node.js" />
+    <Content Include="dist\libs\codemirror\addon\scroll\annotatescrollbar.js" />
+    <Content Include="dist\libs\codemirror\addon\scroll\scrollpastend.js" />
+    <Content Include="dist\libs\codemirror\addon\scroll\simplescrollbars.css" />
+    <Content Include="dist\libs\codemirror\addon\scroll\simplescrollbars.js" />
+    <Content Include="dist\libs\codemirror\addon\search\match-highlighter.js" />
+    <Content Include="dist\libs\codemirror\addon\search\matchesonscrollbar.css" />
+    <Content Include="dist\libs\codemirror\addon\search\matchesonscrollbar.js" />
+    <Content Include="dist\libs\codemirror\addon\search\search.js" />
+    <Content Include="dist\libs\codemirror\addon\search\searchcursor.js" />
+    <Content Include="dist\libs\codemirror\addon\selection\active-line.js" />
+    <Content Include="dist\libs\codemirror\addon\selection\mark-selection.js" />
+    <Content Include="dist\libs\codemirror\addon\selection\selection-pointer.js" />
+    <Content Include="dist\libs\codemirror\addon\tern\tern.css" />
+    <Content Include="dist\libs\codemirror\addon\tern\tern.js" />
+    <Content Include="dist\libs\codemirror\addon\tern\worker.js" />
+    <Content Include="dist\libs\codemirror\addon\wrap\hardwrap.js" />
+    <Content Include="dist\libs\codemirror\keymap\emacs.js" />
+    <Content Include="dist\libs\codemirror\keymap\sublime.js" />
+    <Content Include="dist\libs\codemirror\keymap\vim.js" />
+    <Content Include="dist\libs\codemirror\lib\codemirror.css" />
+    <Content Include="dist\libs\codemirror\lib\codemirror.js" />
+    <Content Include="dist\libs\codemirror\mode\apl\apl.js" />
+    <Content Include="dist\libs\codemirror\mode\asciiarmor\asciiarmor.js" />
+    <Content Include="dist\libs\codemirror\mode\asn.1\asn.1.js" />
+    <Content Include="dist\libs\codemirror\mode\asterisk\asterisk.js" />
+    <Content Include="dist\libs\codemirror\mode\brainfuck\brainfuck.js" />
+    <Content Include="dist\libs\codemirror\mode\clike\clike.js" />
+    <Content Include="dist\libs\codemirror\mode\clojure\clojure.js" />
+    <Content Include="dist\libs\codemirror\mode\cmake\cmake.js" />
+    <Content Include="dist\libs\codemirror\mode\cobol\cobol.js" />
+    <Content Include="dist\libs\codemirror\mode\coffeescript\coffeescript.js" />
+    <Content Include="dist\libs\codemirror\mode\commonlisp\commonlisp.js" />
+    <Content Include="dist\libs\codemirror\mode\css\css.js" />
+    <Content Include="dist\libs\codemirror\mode\cypher\cypher.js" />
+    <Content Include="dist\libs\codemirror\mode\dart\dart.js" />
+    <Content Include="dist\libs\codemirror\mode\diff\diff.js" />
+    <Content Include="dist\libs\codemirror\mode\django\django.js" />
+    <Content Include="dist\libs\codemirror\mode\dockerfile\dockerfile.js" />
+    <Content Include="dist\libs\codemirror\mode\dtd\dtd.js" />
+    <Content Include="dist\libs\codemirror\mode\dylan\dylan.js" />
+    <Content Include="dist\libs\codemirror\mode\d\d.js" />
+    <Content Include="dist\libs\codemirror\mode\ebnf\ebnf.js" />
+    <Content Include="dist\libs\codemirror\mode\ecl\ecl.js" />
+    <Content Include="dist\libs\codemirror\mode\eiffel\eiffel.js" />
+    <Content Include="dist\libs\codemirror\mode\elm\elm.js" />
+    <Content Include="dist\libs\codemirror\mode\erlang\erlang.js" />
+    <Content Include="dist\libs\codemirror\mode\factor\factor.js" />
+    <Content Include="dist\libs\codemirror\mode\forth\forth.js" />
+    <Content Include="dist\libs\codemirror\mode\fortran\fortran.js" />
+    <Content Include="dist\libs\codemirror\mode\gas\gas.js" />
+    <Content Include="dist\libs\codemirror\mode\gfm\gfm.js" />
+    <Content Include="dist\libs\codemirror\mode\gherkin\gherkin.js" />
+    <Content Include="dist\libs\codemirror\mode\go\go.js" />
+    <Content Include="dist\libs\codemirror\mode\groovy\groovy.js" />
+    <Content Include="dist\libs\codemirror\mode\haml\haml.js" />
+    <Content Include="dist\libs\codemirror\mode\handlebars\handlebars.js" />
+    <Content Include="dist\libs\codemirror\mode\haskell\haskell.js" />
+    <Content Include="dist\libs\codemirror\mode\haxe\haxe.js" />
+    <Content Include="dist\libs\codemirror\mode\htmlembedded\htmlembedded.js" />
+    <Content Include="dist\libs\codemirror\mode\htmlmixed\htmlmixed.js" />
+    <Content Include="dist\libs\codemirror\mode\http\http.js" />
+    <Content Include="dist\libs\codemirror\mode\idl\idl.js" />
+    <Content Include="dist\libs\codemirror\mode\jade\jade.js" />
+    <Content Include="dist\libs\codemirror\mode\javascript\javascript.js" />
+    <Content Include="dist\libs\codemirror\mode\jinja2\jinja2.js" />
+    <Content Include="dist\libs\codemirror\mode\julia\julia.js" />
+    <Content Include="dist\libs\codemirror\mode\livescript\livescript.js" />
+    <Content Include="dist\libs\codemirror\mode\lua\lua.js" />
+    <Content Include="dist\libs\codemirror\mode\markdown\markdown.js" />
+    <Content Include="dist\libs\codemirror\mode\mathematica\mathematica.js" />
+    <Content Include="dist\libs\codemirror\mode\meta.js" />
+    <Content Include="dist\libs\codemirror\mode\mirc\mirc.js" />
+    <Content Include="dist\libs\codemirror\mode\mllike\mllike.js" />
+    <Content Include="dist\libs\codemirror\mode\modelica\modelica.js" />
+    <Content Include="dist\libs\codemirror\mode\mscgen\mscgen.js" />
+    <Content Include="dist\libs\codemirror\mode\mumps\mumps.js" />
+    <Content Include="dist\libs\codemirror\mode\nginx\nginx.js" />
+    <Content Include="dist\libs\codemirror\mode\nsis\nsis.js" />
+    <Content Include="dist\libs\codemirror\mode\ntriples\ntriples.js" />
+    <Content Include="dist\libs\codemirror\mode\octave\octave.js" />
+    <Content Include="dist\libs\codemirror\mode\oz\oz.js" />
+    <Content Include="dist\libs\codemirror\mode\pascal\pascal.js" />
+    <Content Include="dist\libs\codemirror\mode\pegjs\pegjs.js" />
+    <Content Include="dist\libs\codemirror\mode\perl\perl.js" />
+    <Content Include="dist\libs\codemirror\mode\php\php.js" />
+    <Content Include="dist\libs\codemirror\mode\pig\pig.js" />
+    <Content Include="dist\libs\codemirror\mode\properties\properties.js" />
+    <Content Include="dist\libs\codemirror\mode\puppet\puppet.js" />
+    <Content Include="dist\libs\codemirror\mode\python\python.js" />
+    <Content Include="dist\libs\codemirror\mode\q\q.js" />
+    <Content Include="dist\libs\codemirror\mode\rpm\rpm.js" />
+    <Content Include="dist\libs\codemirror\mode\rst\rst.js" />
+    <Content Include="dist\libs\codemirror\mode\ruby\ruby.js" />
+    <Content Include="dist\libs\codemirror\mode\rust\rust.js" />
+    <Content Include="dist\libs\codemirror\mode\r\r.js" />
+    <Content Include="dist\libs\codemirror\mode\sass\sass.js" />
+    <Content Include="dist\libs\codemirror\mode\scheme\scheme.js" />
+    <Content Include="dist\libs\codemirror\mode\shell\shell.js" />
+    <Content Include="dist\libs\codemirror\mode\sieve\sieve.js" />
+    <Content Include="dist\libs\codemirror\mode\slim\slim.js" />
+    <Content Include="dist\libs\codemirror\mode\smalltalk\smalltalk.js" />
+    <Content Include="dist\libs\codemirror\mode\smarty\smarty.js" />
+    <Content Include="dist\libs\codemirror\mode\solr\solr.js" />
+    <Content Include="dist\libs\codemirror\mode\soy\soy.js" />
+    <Content Include="dist\libs\codemirror\mode\sparql\sparql.js" />
+    <Content Include="dist\libs\codemirror\mode\spreadsheet\spreadsheet.js" />
+    <Content Include="dist\libs\codemirror\mode\sql\sql.js" />
+    <Content Include="dist\libs\codemirror\mode\stex\stex.js" />
+    <Content Include="dist\libs\codemirror\mode\stylus\stylus.js" />
+    <Content Include="dist\libs\codemirror\mode\swift\swift.js" />
+    <Content Include="dist\libs\codemirror\mode\tcl\tcl.js" />
+    <Content Include="dist\libs\codemirror\mode\textile\textile.js" />
+    <Content Include="dist\libs\codemirror\mode\tiddlywiki\tiddlywiki.css" />
+    <Content Include="dist\libs\codemirror\mode\tiddlywiki\tiddlywiki.js" />
+    <Content Include="dist\libs\codemirror\mode\tiki\tiki.css" />
+    <Content Include="dist\libs\codemirror\mode\tiki\tiki.js" />
+    <Content Include="dist\libs\codemirror\mode\toml\toml.js" />
+    <Content Include="dist\libs\codemirror\mode\tornado\tornado.js" />
+    <Content Include="dist\libs\codemirror\mode\troff\troff.js" />
+    <Content Include="dist\libs\codemirror\mode\ttcn-cfg\ttcn-cfg.js" />
+    <Content Include="dist\libs\codemirror\mode\ttcn\ttcn.js" />
+    <Content Include="dist\libs\codemirror\mode\turtle\turtle.js" />
+    <Content Include="dist\libs\codemirror\mode\twig\twig.js" />
+    <Content Include="dist\libs\codemirror\mode\vbscript\vbscript.js" />
+    <Content Include="dist\libs\codemirror\mode\vb\vb.js" />
+    <Content Include="dist\libs\codemirror\mode\velocity\velocity.js" />
+    <Content Include="dist\libs\codemirror\mode\verilog\verilog.js" />
+    <Content Include="dist\libs\codemirror\mode\vhdl\vhdl.js" />
+    <Content Include="dist\libs\codemirror\mode\vue\vue.js" />
+    <Content Include="dist\libs\codemirror\mode\xml\xml.js" />
+    <Content Include="dist\libs\codemirror\mode\xquery\xquery.js" />
+    <Content Include="dist\libs\codemirror\mode\yaml\yaml.js" />
+    <Content Include="dist\libs\codemirror\mode\z80\z80.js" />
+    <Content Include="dist\libs\codemirror\theme\3024-day.css" />
+    <Content Include="dist\libs\codemirror\theme\3024-night.css" />
+    <Content Include="dist\libs\codemirror\theme\abcdef.css" />
+    <Content Include="dist\libs\codemirror\theme\ambiance-mobile.css" />
+    <Content Include="dist\libs\codemirror\theme\ambiance.css" />
+    <Content Include="dist\libs\codemirror\theme\base16-dark.css" />
+    <Content Include="dist\libs\codemirror\theme\base16-light.css" />
+    <Content Include="dist\libs\codemirror\theme\bespin.css" />
+    <Content Include="dist\libs\codemirror\theme\blackboard.css" />
+    <Content Include="dist\libs\codemirror\theme\cobalt.css" />
+    <Content Include="dist\libs\codemirror\theme\colorforth.css" />
+    <Content Include="dist\libs\codemirror\theme\dracula.css" />
+    <Content Include="dist\libs\codemirror\theme\eclipse.css" />
+    <Content Include="dist\libs\codemirror\theme\elegant.css" />
+    <Content Include="dist\libs\codemirror\theme\erlang-dark.css" />
+    <Content Include="dist\libs\codemirror\theme\hopscotch.css" />
+    <Content Include="dist\libs\codemirror\theme\icecoder.css" />
+    <Content Include="dist\libs\codemirror\theme\isotope.css" />
+    <Content Include="dist\libs\codemirror\theme\lesser-dark.css" />
+    <Content Include="dist\libs\codemirror\theme\liquibyte.css" />
+    <Content Include="dist\libs\codemirror\theme\material.css" />
+    <Content Include="dist\libs\codemirror\theme\mbo.css" />
+    <Content Include="dist\libs\codemirror\theme\mdn-like.css" />
+    <Content Include="dist\libs\codemirror\theme\midnight.css" />
+    <Content Include="dist\libs\codemirror\theme\monokai.css" />
+    <Content Include="dist\libs\codemirror\theme\neat.css" />
+    <Content Include="dist\libs\codemirror\theme\neo.css" />
+    <Content Include="dist\libs\codemirror\theme\night.css" />
+    <Content Include="dist\libs\codemirror\theme\paraiso-dark.css" />
+    <Content Include="dist\libs\codemirror\theme\paraiso-light.css" />
+    <Content Include="dist\libs\codemirror\theme\pastel-on-dark.css" />
+    <Content Include="dist\libs\codemirror\theme\railscasts.css" />
+    <Content Include="dist\libs\codemirror\theme\rubyblue.css" />
+    <Content Include="dist\libs\codemirror\theme\seti.css" />
+    <Content Include="dist\libs\codemirror\theme\solarized.css" />
+    <Content Include="dist\libs\codemirror\theme\the-matrix.css" />
+    <Content Include="dist\libs\codemirror\theme\tomorrow-night-bright.css" />
+    <Content Include="dist\libs\codemirror\theme\tomorrow-night-eighties.css" />
+    <Content Include="dist\libs\codemirror\theme\ttcn.css" />
+    <Content Include="dist\libs\codemirror\theme\twilight.css" />
+    <Content Include="dist\libs\codemirror\theme\vibrant-ink.css" />
+    <Content Include="dist\libs\codemirror\theme\xq-dark.css" />
+    <Content Include="dist\libs\codemirror\theme\xq-light.css" />
+    <Content Include="dist\libs\codemirror\theme\yeti.css" />
+    <Content Include="dist\libs\codemirror\theme\zenburn.css" />
+    <Content Include="dist\libs\datatables\media\css\dataTables.bootstrap.css" />
+    <Content Include="dist\libs\datatables\media\css\dataTables.bootstrap.min.css" />
+    <Content Include="dist\libs\datatables\media\css\jquery.dataTables.css" />
+    <Content Include="dist\libs\datatables\media\css\jquery.dataTables.min.css" />
+    <Content Include="dist\libs\datatables\media\images\favicon.ico" />
+    <Content Include="dist\libs\datatables\media\images\sort_asc.png" />
+    <Content Include="dist\libs\datatables\media\images\sort_asc_disabled.png" />
+    <Content Include="dist\libs\datatables\media\images\sort_both.png" />
+    <Content Include="dist\libs\datatables\media\images\sort_desc.png" />
+    <Content Include="dist\libs\datatables\media\images\sort_desc_disabled.png" />
+    <Content Include="dist\libs\datatables\media\js\buttons.bootstrap.js" />
+    <Content Include="dist\libs\datatables\media\js\dataTables.bootstrap.js" />
+    <Content Include="dist\libs\datatables\media\js\dataTables.bootstrap.min.js" />
+    <Content Include="dist\libs\datatables\media\js\dataTables.buttons.js" />
+    <Content Include="dist\libs\datatables\media\js\dataTables.responsive.js" />
+    <Content Include="dist\libs\datatables\media\js\dataTables.select.js" />
+    <Content Include="dist\libs\datatables\media\js\jquery.dataTables.js" />
+    <Content Include="dist\libs\datatables\media\js\jquery.dataTables.min.js" />
+    <Content Include="dist\libs\datatables\media\js\responsive.bootstrap.js" />
+    <Content Include="dist\libs\font-awesome\css\font-awesome.css" />
+    <Content Include="dist\libs\font-awesome\css\font-awesome.min.css" />
+    <Content Include="dist\libs\font-awesome\fonts\fontawesome-webfont.svg" />
+    <Content Include="dist\libs\inputNumber\js\inputNumber.js" />
+    <Content Include="dist\libs\ionrangeslider\css\ion.rangeSlider.css" />
+    <Content Include="dist\libs\ionrangeslider\css\ion.rangeSlider.skinFlat.css" />
+    <Content Include="dist\libs\ionrangeslider\css\ion.rangeSlider.skinHTML5.css" />
+    <Content Include="dist\libs\ionrangeslider\css\ion.rangeSlider.skinModern.css" />
+    <Content Include="dist\libs\ionrangeslider\css\ion.rangeSlider.skinNice.css" />
+    <Content Include="dist\libs\ionrangeslider\css\ion.rangeSlider.skinSimple.css" />
+    <Content Include="dist\libs\ionrangeslider\css\normalize.css" />
+    <Content Include="dist\libs\ionrangeslider\img\sprite-skin-flat.png" />
+    <Content Include="dist\libs\ionrangeslider\img\sprite-skin-modern.png" />
+    <Content Include="dist\libs\ionrangeslider\img\sprite-skin-nice.png" />
+    <Content Include="dist\libs\ionrangeslider\img\sprite-skin-simple.png" />
+    <Content Include="dist\libs\ionrangeslider\js\ion.rangeSlider.js" />
+    <Content Include="dist\libs\ionrangeslider\js\ion.rangeSlider.min.js" />
+    <Content Include="dist\libs\jquery.scrollbar\jquery.scrollbar.css" />
+    <Content Include="dist\libs\jquery.scrollbar\jquery.scrollbar.js" />
+    <Content Include="dist\libs\jquery.scrollbar\jquery.scrollbar.min.js" />
+    <Content Include="dist\libs\jquery\jquery.js" />
+    <Content Include="dist\libs\jquery\jquery.min.js" />
+    <Content Include="dist\libs\morris.js\morris.css" />
+    <Content Include="dist\libs\morris.js\morris.js" />
+    <Content Include="dist\libs\morris.js\morris.min.js" />
+    <Content Include="dist\libs\raphael\raphael-min.js" />
+    <Content Include="dist\libs\raphael\raphael.js" />
+    <Content Include="dist\libs\selectize\dist\css\selectize.bootstrap2.css" />
+    <Content Include="dist\libs\selectize\dist\css\selectize.bootstrap3.css" />
+    <Content Include="dist\libs\selectize\dist\css\selectize.css" />
+    <Content Include="dist\libs\selectize\dist\css\selectize.default.css" />
+    <Content Include="dist\libs\selectize\dist\css\selectize.legacy.css" />
+    <Content Include="dist\libs\selectize\dist\js\selectize.js" />
+    <Content Include="dist\libs\selectize\dist\js\selectize.min.js" />
+    <Content Include="dist\libs\selectize\dist\js\standalone\selectize.js" />
+    <Content Include="dist\libs\selectize\dist\js\standalone\selectize.min.js" />
+    <Content Include="dist\libs\selectize\plugins\remove_button\plugin.js" />
+    <Content Include="dist\libs\selectize\plugins\restore_on_backspace\plugin.js" />
+    <Content Include="dist\libs\sparkline\jquery.sparkline.min.js" />
+    <Content Include="dist\libs\summernote\dist\summernote-bs3.css" />
+    <Content Include="dist\libs\summernote\dist\summernote.css" />
+    <Content Include="dist\libs\summernote\dist\summernote.js" />
+    <Content Include="dist\libs\summernote\dist\summernote.min.js" />
+    <Content Include="dist\libs\tablesorter\jquery.metadata.js" />
+    <Content Include="dist\libs\tablesorter\jquery.tablesorter.min.js" />
+    <Content Include="dist\login.html" />
+    <Content Include="dist\modals.html" />
+    <Content Include="dist\orders.html" />
+    <Content Include="dist\panels.html" />
+    <Content Include="dist\products.html" />
+    <Content Include="dist\sent.html" />
+    <Content Include="dist\table_data.html" />
+    <Content Include="dist\table_sortable.html" />
+    <Content Include="dist\table_static.html" />
+    <Content Include="dist\tabs.html" />
+    <Content Include="dist\texteditor.html" />
+    <Content Include="dist\users.html" />
+    <Content Include="dist\validation.html" />
+    <Content Include="docs\css\bootstrap.min.css" />
+    <Content Include="docs\css\desert.css" />
+    <Content Include="docs\css\docs.css" />
+    <Content Include="docs\img\favicon.png" />
+    <Content Include="docs\img\rightlogo.png" />
+    <Content Include="docs\img\screens.png" />
+    <Content Include="docs\index.html" />
+    <Content Include="docs\js\bootstrap.min.js" />
+    <Content Include="docs\js\jquery.min.js" />
+    <Content Include="docs\js\prettify.js" />
+    <Content Include="favicon.ico" />
+    <Content Include="fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="Global.asax" />
+    <Content Include="Content\Site.css" />
+    <Content Include="node_modules\bower\lib\abbreviations.js" />
+    <Content Include="node_modules\bower\lib\bin\bower.js" />
+    <Content Include="node_modules\bower\lib\commands\cache\clean.js" />
+    <Content Include="node_modules\bower\lib\commands\cache\list.js" />
+    <Content Include="node_modules\bower\lib\commands\help.js" />
+    <Content Include="node_modules\bower\lib\commands\home.js" />
+    <Content Include="node_modules\bower\lib\commands\index.js" />
+    <Content Include="node_modules\bower\lib\commands\info.js" />
+    <Content Include="node_modules\bower\lib\commands\init.js" />
+    <Content Include="node_modules\bower\lib\commands\install.js" />
+    <Content Include="node_modules\bower\lib\commands\link.js" />
+    <Content Include="node_modules\bower\lib\commands\list.js" />
+    <Content Include="node_modules\bower\lib\commands\login.js" />
+    <Content Include="node_modules\bower\lib\commands\lookup.js" />
+    <Content Include="node_modules\bower\lib\commands\prune.js" />
+    <Content Include="node_modules\bower\lib\commands\register.js" />
+    <Content Include="node_modules\bower\lib\commands\search.js" />
+    <Content Include="node_modules\bower\lib\commands\uninstall.js" />
+    <Content Include="node_modules\bower\lib\commands\unregister.js" />
+    <Content Include="node_modules\bower\lib\commands\update.js" />
+    <Content Include="node_modules\bower\lib\commands\version.js" />
+    <Content Include="node_modules\bower\lib\config.js" />
+    <Content Include="node_modules\bower\lib\core\Manager.js" />
+    <Content Include="node_modules\bower\lib\core\PackageRepository.js" />
+    <Content Include="node_modules\bower\lib\core\Project.js" />
+    <Content Include="node_modules\bower\lib\core\ResolveCache.js" />
+    <Content Include="node_modules\bower\lib\core\resolverFactory.js" />
+    <Content Include="node_modules\bower\lib\core\resolvers\FsResolver.js" />
+    <Content Include="node_modules\bower\lib\core\resolvers\GitFsResolver.js" />
+    <Content Include="node_modules\bower\lib\core\resolvers\GitHubResolver.js" />
+    <Content Include="node_modules\bower\lib\core\resolvers\GitRemoteResolver.js" />
+    <Content Include="node_modules\bower\lib\core\resolvers\GitResolver.js" />
+    <Content Include="node_modules\bower\lib\core\resolvers\index.js" />
+    <Content Include="node_modules\bower\lib\core\resolvers\pluginResolverFactory.js" />
+    <Content Include="node_modules\bower\lib\core\resolvers\Resolver.js" />
+    <Content Include="node_modules\bower\lib\core\resolvers\SvnResolver.js" />
+    <Content Include="node_modules\bower\lib\core\resolvers\UrlResolver.js" />
+    <Content Include="node_modules\bower\lib\core\scripts.js" />
+    <Content Include="node_modules\bower\lib\index.js" />
+    <Content Include="node_modules\bower\lib\node_modules\amdefine\amdefine.js" />
+    <Content Include="node_modules\bower\lib\node_modules\amdefine\intercept.js" />
+    <Content Include="node_modules\bower\lib\node_modules\ansi-escapes\index.js" />
+    <Content Include="node_modules\bower\lib\node_modules\ansi-regex\index.js" />
+    <Content Include="node_modules\bower\lib\node_modules\ansi-styles\index.js" />
+    <Content Include="node_modules\bower\lib\node_modules\ansicolors\ansicolors.js" />
+    <Content Include="node_modules\bower\lib\node_modules\ansicolors\test\ansicolors.js" />
+    <Content Include="node_modules\bower\lib\node_modules\archy\examples\beep.js" />
+    <Content Include="node_modules\bower\lib\node_modules\archy\examples\multi_line.js" />
+    <Content Include="node_modules\bower\lib\node_modules\archy\index.js" />
+    <Content Include="node_modules\bower\lib\node_modules\archy\test\beep.js" />
+    <Content Include="node_modules\bower\lib\node_modules\archy\test\multi_line.js" />
+    <Content Include="node_modules\bower\lib\node_modules\archy\test\non_unicode.js" />
+    <Content Include="node_modules\bower\lib\node_modules\argparse\examples\arguments.js" />
+    <Content Include="node_modules\bower\lib\node_modules\argparse\examples\choice.js" />
+    <Content Include="node_modules\bower\lib\node_modules\argparse\examples\constants.js" />
+    <Content Include="node_modules\bower\lib\node_modules\argparse\examples\help.js" />
+    <Content Include="node_modules\bower\lib\node_modules\argparse\examples\nargs.js" />
+    <Content Include="node_modules\bower\lib\node_modules\argparse\examples\parents.js" />
+    <Content Include="node_modules\bower\lib\node_modules\argparse\examples\prefix_chars.js" />
+    <Content Include="node_modules\bower\lib\node_modules\argparse\examples\sub_commands.js" />
+    <Content Include="node_modules\bower\lib\node_modules\argparse\examples\sum.js" />
+    <Content Include="node_modules\bower\lib\node_modules\argparse\examples\testformatters.js" />
+    <Content Include="node_modules\bower\lib\node_modules\argparse\index.js" />
+    <Content Include="node_modules\bower\lib\node_modules\argparse\lib\action.js" />
+    <Content Include="node_modules\bower\lib\node_modules\argparse\lib\action\append.js" />
+    <Content Include="node_modules\bower\lib\node_modules\argparse\lib\action\append\constant.js" />
+    <Content Include="node_modules\bower\lib\node_modules\argparse\lib\action\count.js" />
+    <Content Include="node_modules\bower\lib\node_modules\argparse\lib\action\help.js" />
+    <Content Include="node_modules\bower\lib\node_modules\argparse\lib\action\store.js" />
+    <Content Include="node_modules\bower\lib\node_modules\argparse\lib\action\store\constant.js" />
+    <Content Include="node_modules\bower\lib\node_modules\argparse\lib\action\store\false.js" />
+    <Content Include="node_modules\bower\lib\node_modules\argparse\lib\action\store\true.js" />
+    <Content Include="node_modules\bower\lib\node_modules\argparse\lib\action\subparsers.js" />
+    <Content Include="node_modules\bower\lib\node_modules\argparse\lib\action\version.js" />
+    <Content Include="node_modules\bower\lib\node_modules\argparse\lib\action_container.js" />
+    <Content Include="node_modules\bower\lib\node_modules\argparse\lib\argparse.js" />
+    <Content Include="node_modules\bower\lib\node_modules\argparse\lib\argument\error.js" />
+    <Content Include="node_modules\bower\lib\node_modules\argparse\lib\argument\exclusive.js" />
+    <Content Include="node_modules\bower\lib\node_modules\argparse\lib\argument\group.js" />
+    <Content Include="node_modules\bower\lib\node_modules\argparse\lib\argument_parser.js" />
+    <Content Include="node_modules\bower\lib\node_modules\argparse\lib\const.js" />
+    <Content Include="node_modules\bower\lib\node_modules\argparse\lib\help\added_formatters.js" />
+    <Content Include="node_modules\bower\lib\node_modules\argparse\lib\help\formatter.js" />
+    <Content Include="node_modules\bower\lib\node_modules\argparse\lib\namespace.js" />
+    <Content Include="node_modules\bower\lib\node_modules\array-filter\index.js" />
+    <Content Include="node_modules\bower\lib\node_modules\array-filter\test\filter.js" />
+    <Content Include="node_modules\bower\lib\node_modules\array-filter\test\holes.js" />
+    <Content Include="node_modules\bower\lib\node_modules\array-map\example\map.js" />
+    <Content Include="node_modules\bower\lib\node_modules\array-map\index.js" />
+    <Content Include="node_modules\bower\lib\node_modules\array-map\test\map.js" />
+    <Content Include="node_modules\bower\lib\node_modules\array-reduce\example\sum.js" />
+    <Content Include="node_modules\bower\lib\node_modules\array-reduce\index.js" />
+    <Content Include="node_modules\bower\lib\node_modules\array-reduce\test\reduce.js" />
+    <Content Include="node_modules\bower\lib\node_modules\asn1\lib\ber\errors.js" />
+    <Content Include="node_modules\bower\lib\node_modules\asn1\lib\ber\index.js" />
+    <Content Include="node_modules\bower\lib\node_modules\asn1\lib\ber\reader.js" />
+    <Content Include="node_modules\bower\lib\node_modules\asn1\lib\ber\types.js" />
+    <Content Include="node_modules\bower\lib\node_modules\asn1\lib\ber\writer.js" />
+    <Content Include="node_modules\bower\lib\node_modules\asn1\lib\index.js" />
+    <Content Include="node_modules\bower\lib\node_modules\asn1\tst\ber\reader.test.js" />
+    <Content Include="node_modules\bower\lib\node_modules\asn1\tst\ber\writer.test.js" />
+    <Content Include="node_modules\bower\lib\node_modules\assert-plus\assert.js" />
+    <Content Include="node_modules\bower\lib\node_modules\async\lib\async.js" />
+    <Content Include="node_modules\bower\lib\node_modules\aws-sign2\index.js" />
+    <Content Include="node_modules\bower\lib\node_modules\balanced-match\example.js" />
+    <Content Include="node_modules\bower\lib\node_modules\balanced-match\index.js" />
+    <Content Include="node_modules\bower\lib\node_modules\balanced-match\test\balanced.js" />
+    <Content Include="node_modules\bower\lib\node_modules\binary\example\buf.js" />
+    <Content Include="node_modules\bower\lib\node_modules\binary\example\parse.js" />
+    <Content Include="node_modules\bower\lib\node_modules\binary\example\stream.js" />
+    <Content Include="node_modules\bower\lib\node_modules\binary\index.js" />
+    <Content Include="node_modules\bower\lib\node_modules\binary\lib\vars.js" />
+    <Content Include="node_modules\bower\lib\node_modules\binary\perf\loop.js" />
+    <Content Include="node_modules\bower\lib\node_modules\binary\perf\small.js" />
+    <Content Include="node_modules\bower\lib\node_modules\binary\test\bu.js" />
+    <Content Include="node_modules\bower\lib\node_modules\binary\test\deferred.js" />
+    <Content Include="node_modules\bower\lib\node_modules\binary\test\dots.js" />
+    <Content Include="node_modules\bower\lib\node_modules\binary\test\eof.js" />
+    <Content Include="node_modules\bower\lib\node_modules\binary\test\flush.js" />
+    <Content Include="node_modules\bower\lib\node_modules\binary\test\from_buffer.js" />
+    <Content Include="node_modules\bower\lib\node_modules\binary\test\get_buffer.js" />
+    <Content Include="node_modules\bower\lib\node_modules\binary\test\immediate.js" />
+    <Content Include="node_modules\bower\lib\node_modules\binary\test\interval.js" />
+    <Content Include="node_modules\bower\lib\node_modules\binary\test\into_buffer.js" />
+    <Content Include="node_modules\bower\lib\node_modules\binary\test\into_stream.js" />
+    <Content Include="node_modules\bower\lib\node_modules\binary\test\loop.js" />
+    <Content Include="node_modules\bower\lib\node_modules\binary\test\loop_scan.js" />
+    <Content Include="node_modules\bower\lib\node_modules\binary\test\lu.js" />
+    <Content Include="node_modules\bower\lib\node_modules\binary\test\negbs.js" />
+    <Content Include="node_modules\bower\lib\node_modules\binary\test\negls.js" />
+    <Content Include="node_modules\bower\lib\node_modules\binary\test\nested.js" />
+    <Content Include="node_modules\bower\lib\node_modules\binary\test\not_enough_buf.js" />
+    <Content Include="node_modules\bower\lib\node_modules\binary\test\not_enough_parse.js" />
+    <Content Include="node_modules\bower\lib\node_modules\binary\test\parse.js" />
+    <Content Include="node_modules\bower\lib\node_modules\binary\test\peek.js" />
+    <Content Include="node_modules\bower\lib\node_modules\binary\test\pipe.js" />
+    <Content Include="node_modules\bower\lib\node_modules\binary\test\posbs.js" />
+    <Content Include="node_modules\bower\lib\node_modules\binary\test\posls.js" />
+    <Content Include="node_modules\bower\lib\node_modules\binary\test\scan.js" />
+    <Content Include="node_modules\bower\lib\node_modules\binary\test\scan_buf.js" />
+    <Content Include="node_modules\bower\lib\node_modules\binary\test\scan_buf_null.js" />
+    <Content Include="node_modules\bower\lib\node_modules\binary\test\skip.js" />
+    <Content Include="node_modules\bower\lib\node_modules\binary\test\split.js" />
+    <Content Include="node_modules\bower\lib\node_modules\bl\bl.js" />
+    <Content Include="node_modules\bower\lib\node_modules\bl\test\basic-test.js" />
+    <Content Include="node_modules\bower\lib\node_modules\bl\test\sauce.js" />
+    <Content Include="node_modules\bower\lib\node_modules\bl\test\test.js" />
+    <Content Include="node_modules\bower\lib\node_modules\boom\images\boom.png" />
+    <Content Include="node_modules\bower\lib\node_modules\boom\lib\index.js" />
+    <Content Include="node_modules\bower\lib\node_modules\boom\test\index.js" />
+    <Content Include="node_modules\bower\lib\node_modules\bower-config\lib\Config.js" />
+    <Content Include="node_modules\bower\lib\node_modules\bower-config\lib\util\defaults.js" />
+    <Content Include="node_modules\bower\lib\node_modules\bower-config\lib\util\expand.js" />
+    <Content Include="node_modules\bower\lib\node_modules\bower-config\lib\util\paths.js" />
+    <Content Include="node_modules\bower\lib\node_modules\bower-config\lib\util\proxy.js" />
+    <Content Include="node_modules\bower\lib\node_modules\bower-config\lib\util\rc.js" />
+    <Content Include="node_modules\bower\lib\node_modules\bower-config\node_modules\graceful-fs\fs.js" />
+    <Content Include="node_modules\bower\lib\node_modules\bower-config\node_modules\graceful-fs\graceful-fs.js" />
+    <Content Include="node_modules\bower\lib\node_modules\bower-config\node_modules\graceful-fs\legacy-streams.js" />
+    <Content Include="node_modules\bower\lib\node_modules\bower-config\node_modules\graceful-fs\polyfills.js" />
+    <Content Include="node_modules\bower\lib\node_modules\bower-endpoint-parser\index.js" />
+    <Content Include="node_modules\bower\lib\node_modules\bower-endpoint-parser\test\test.js" />
+    <Content Include="node_modules\bower\lib\node_modules\bower-json\Gruntfile.js" />
+    <Content Include="node_modules\bower\lib\node_modules\bower-json\lib\json.js" />
+    <Content Include="node_modules\bower\lib\node_modules\bower-json\lib\util\createError.js" />
+    <Content Include="node_modules\bower\lib\node_modules\bower-json\lib\util\isComponent.js" />
+    <Content Include="node_modules\bower\lib\node_modules\bower-json\node_modules\graceful-fs\graceful-fs.js" />
+    <Content Include="node_modules\bower\lib\node_modules\bower-json\node_modules\graceful-fs\polyfills.js" />
+    <Content Include="node_modules\bower\lib\node_modules\bower-json\node_modules\graceful-fs\test\open.js" />
+    <Content Include="node_modules\bower\lib\node_modules\bower-json\node_modules\graceful-fs\test\readdir-sort.js" />
+    <Content Include="node_modules\bower\lib\node_modules\bower-json\test\test.js" />
+    <Content Include="node_modules\bower\lib\node_modules\bower-logger\lib\Logger.js" />
+    <Content Include="node_modules\bower\lib\node_modules\bower-logger\test\test.js" />
+    <Content Include="node_modules\bower\lib\node_modules\bower-registry-client\Client.js" />
+    <Content Include="node_modules\bower\lib\node_modules\bower-registry-client\lib\index.js" />
+    <Content Include="node_modules\bower\lib\node_modules\bower-registry-client\lib\list.js" />
+    <Content Include="node_modules\bower\lib\node_modules\bower-registry-client\lib\lookup.js" />
+    <Content Include="node_modules\bower\lib\node_modules\bower-registry-client\lib\register.js" />
+    <Content Include="node_modules\bower\lib\node_modules\bower-registry-client\lib\search.js" />
+    <Content Include="node_modules\bower\lib\node_modules\bower-registry-client\lib\unregister.js" />
+    <Content Include="node_modules\bower\lib\node_modules\bower-registry-client\lib\util\Cache.js" />
+    <Content Include="node_modules\bower\lib\node_modules\bower-registry-client\lib\util\createError.js" />
+    <Content Include="node_modules\bower\lib\node_modules\bower-registry-client\lib\util\md5.js" />
+    <Content Include="node_modules\bower\lib\node_modules\bower-registry-client\node_modules\graceful-fs\fs.js" />
+    <Content Include="node_modules\bower\lib\node_modules\bower-registry-client\node_modules\graceful-fs\graceful-fs.js" />
+    <Content Include="node_modules\bower\lib\node_modules\bower-registry-client\node_modules\graceful-fs\legacy-streams.js" />
+    <Content Include="node_modules\bower\lib\node_modules\bower-registry-client\node_modules\graceful-fs\polyfills.js" />
+    <Content Include="node_modules\bower\lib\node_modules\bower-registry-client\node_modules\mkdirp\examples\pow.js" />
+    <Content Include="node_modules\bower\lib\node_modules\bower-registry-client\node_modules\mkdirp\index.js" />
+    <Content Include="node_modules\bower\lib\node_modules\bower-registry-client\node_modules\mkdirp\test\chmod.js" />
+    <Content Include="node_modules\bower\lib\node_modules\bower-registry-client\node_modules\mkdirp\test\clobber.js" />
+    <Content Include="node_modules\bower\lib\node_modules\bower-registry-client\node_modules\mkdirp\test\mkdirp.js" />
+    <Content Include="node_modules\bower\lib\node_modules\bower-registry-client\node_modules\mkdirp\test\perm.js" />
+    <Content Include="node_modules\bower\lib\node_modules\bower-registry-client\node_modules\mkdirp\test\perm_sync.js" />
+    <Content Include="node_modules\bower\lib\node_modules\bower-registry-client\node_modules\mkdirp\test\race.js" />
+    <Content Include="node_modules\bower\lib\node_modules\bower-registry-client\node_modules\mkdirp\test\rel.js" />
+    <Content Include="node_modules\bower\lib\node_modules\bower-registry-client\node_modules\mkdirp\test\return.js" />
+    <Content Include="node_modules\bower\lib\node_modules\bower-registry-client\node_modules\mkdirp\test\return_sync.js" />
+    <Content Include="node_modules\bower\lib\node_modules\bower-registry-client\node_modules\mkdirp\test\root.js" />
+    <Content Include="node_modules\bower\lib\node_modules\bower-registry-client\node_modules\mkdirp\test\sync.js" />
+    <Content Include="node_modules\bower\lib\node_modules\bower-registry-client\node_modules\mkdirp\test\umask.js" />
+    <Content Include="node_modules\bower\lib\node_modules\bower-registry-client\node_modules\mkdirp\test\umask_sync.js" />
+    <Content Include="node_modules\bower\lib\node_modules\brace-expansion\example.js" />
+    <Content Include="node_modules\bower\lib\node_modules\brace-expansion\index.js" />
+    <Content Include="node_modules\bower\lib\node_modules\buffers\examples\slice.js" />
+    <Content Include="node_modules\bower\lib\node_modules\buffers\examples\splice.js" />
+    <Content Include="node_modules\bower\lib\node_modules\buffers\index.js" />
+    <Content Include="node_modules\bower\lib\node_modules\buffers\test\buffers.js" />
+    <Content Include="node_modules\bower\lib\node_modules\capture-stack-trace\index.js" />
+    <Content Include="node_modules\bower\lib\node_modules\cardinal\bin\cdl.js" />
+    <Content Include="node_modules\bower\lib\node_modules\cardinal\cardinal.js" />
+    <Content Include="node_modules\bower\lib\node_modules\cardinal\examples\highlight-json.js" />
+    <Content Include="node_modules\bower\lib\node_modules\cardinal\examples\highlight-self-hide-semicolons.js" />
+    <Content Include="node_modules\bower\lib\node_modules\cardinal\examples\highlight-self.js" />
+    <Content Include="node_modules\bower\lib\node_modules\cardinal\examples\highlight-string.js" />
+    <Content Include="node_modules\bower\lib\node_modules\cardinal\lib\highlight.js" />
+    <Content Include="node_modules\bower\lib\node_modules\cardinal\lib\highlightFile.js" />
+    <Content Include="node_modules\bower\lib\node_modules\cardinal\lib\highlightFileSync.js" />
+    <Content Include="node_modules\bower\lib\node_modules\cardinal\settings.js" />
+    <Content Include="node_modules\bower\lib\node_modules\cardinal\test\cardinal-highlight-block-comment.js" />
+    <Content Include="node_modules\bower\lib\node_modules\cardinal\test\cardinal-highlight-diff-spike.js" />
+    <Content Include="node_modules\bower\lib\node_modules\cardinal\test\cardinal-highlight-file-async.js" />
+    <Content Include="node_modules\bower\lib\node_modules\cardinal\test\cardinal-highlight-file-sync.js" />
+    <Content Include="node_modules\bower\lib\node_modules\cardinal\test\cardinal-highlight-git-diff.js" />
+    <Content Include="node_modules\bower\lib\node_modules\cardinal\test\cardinal-highlight-json-file-async.js" />
+    <Content Include="node_modules\bower\lib\node_modules\cardinal\test\cardinal-highlight-json-file-sync.js" />
+    <Content Include="node_modules\bower\lib\node_modules\cardinal\test\cardinal-highlight-json.js" />
+    <Content Include="node_modules\bower\lib\node_modules\cardinal\test\cardinal-highlight-string.js" />
+    <Content Include="node_modules\bower\lib\node_modules\cardinal\test\cardinal-smoke.js" />
+    <Content Include="node_modules\bower\lib\node_modules\cardinal\test\fixtures\block-comment.js" />
+    <Content Include="node_modules\bower\lib\node_modules\cardinal\test\fixtures\custom.js" />
+    <Content Include="node_modules\bower\lib\node_modules\cardinal\test\fixtures\foo-with-errors.js" />
+    <Content Include="node_modules\bower\lib\node_modules\cardinal\test\fixtures\foo.js" />
+    <Content Include="node_modules\bower\lib\node_modules\cardinal\test\fixtures\git-diff.txt" />
+    <Content Include="node_modules\bower\lib\node_modules\cardinal\test\fixtures\svn-diff.txt" />
+    <Content Include="node_modules\bower\lib\node_modules\cardinal\test\settings.js" />
+    <Content Include="node_modules\bower\lib\node_modules\cardinal\test\themes.js" />
+    <Content Include="node_modules\bower\lib\node_modules\cardinal\themes\default.js" />
+    <Content Include="node_modules\bower\lib\node_modules\cardinal\themes\empty.js" />
+    <Content Include="node_modules\bower\lib\node_modules\cardinal\themes\hide-semicolons.js" />
+    <Content Include="node_modules\bower\lib\node_modules\cardinal\themes\tomorrow-night.js" />
+    <Content Include="node_modules\bower\lib\node_modules\cardinal\utl.js" />
+    <Content Include="node_modules\bower\lib\node_modules\caseless\index.js" />
+    <Content Include="node_modules\bower\lib\node_modules\caseless\test.js" />
+    <Content Include="node_modules\bower\lib\node_modules\chainsaw\examples\add_do.js" />
+    <Content Include="node_modules\bower\lib\node_modules\chainsaw\examples\prompt.js" />
+    <Content Include="node_modules\bower\lib\node_modules\chainsaw\index.js" />
+    <Content Include="node_modules\bower\lib\node_modules\chainsaw\test\chainsaw.js" />
+    <Content Include="node_modules\bower\lib\node_modules\chalk\index.js" />
+    <Content Include="node_modules\bower\lib\node_modules\chmodr\chmodr.js" />
+    <Content Include="node_modules\bower\lib\node_modules\cli-cursor\index.js" />
+    <Content Include="node_modules\bower\lib\node_modules\cli-width\coverage\lcov-report\base.css" />
+    <Content Include="node_modules\bower\lib\node_modules\cli-width\coverage\lcov-report\cli-width\index.html" />
+    <Content Include="node_modules\bower\lib\node_modules\cli-width\coverage\lcov-report\cli-width\index.js.html" />
+    <Content Include="node_modules\bower\lib\node_modules\cli-width\coverage\lcov-report\index.html" />
+    <Content Include="node_modules\bower\lib\node_modules\cli-width\coverage\lcov-report\prettify.css" />
+    <Content Include="node_modules\bower\lib\node_modules\cli-width\coverage\lcov-report\prettify.js" />
+    <Content Include="node_modules\bower\lib\node_modules\cli-width\coverage\lcov-report\sort-arrow-sprite.png" />
+    <Content Include="node_modules\bower\lib\node_modules\cli-width\coverage\lcov-report\sorter.js" />
+    <Content Include="node_modules\bower\lib\node_modules\cli-width\index.js" />
+    <Content Include="node_modules\bower\lib\node_modules\code-point-at\index.js" />
+    <Content Include="node_modules\bower\lib\node_modules\combined-stream\lib\combined_stream.js" />
+    <Content Include="node_modules\bower\lib\node_modules\commander\index.js" />
+    <Content Include="node_modules\bower\lib\node_modules\concat-map\example\map.js" />
+    <Content Include="node_modules\bower\lib\node_modules\concat-map\index.js" />
+    <Content Include="node_modules\bower\lib\node_modules\concat-map\test\map.js" />
+    <Content Include="node_modules\bower\lib\node_modules\configstore\index.js" />
+    <Content Include="node_modules\bower\lib\node_modules\core-util-is\lib\util.js" />
+    <Content Include="node_modules\bower\lib\node_modules\core-util-is\test.js" />
+    <Content Include="node_modules\bower\lib\node_modules\create-error-class\index.js" />
+    <Content Include="node_modules\bower\lib\node_modules\cryptiles\lib\index.js" />
+    <Content Include="node_modules\bower\lib\node_modules\cryptiles\test\index.js" />
+    <Content Include="node_modules\bower\lib\node_modules\dashdash\lib\dashdash.js" />
+    <Content Include="node_modules\bower\lib\node_modules\decompress-zip\.gitattributes" />
+    <Content Include="node_modules\bower\lib\node_modules\decompress-zip\download-test-assets.js" />
+    <Content Include="node_modules\bower\lib\node_modules\decompress-zip\Gruntfile.js" />
+    <Content Include="node_modules\bower\lib\node_modules\decompress-zip\lib\decompress-zip.js" />
+    <Content Include="node_modules\bower\lib\node_modules\decompress-zip\lib\extractors.js" />
+    <Content Include="node_modules\bower\lib\node_modules\decompress-zip\lib\file-details.js" />
+    <Content Include="node_modules\bower\lib\node_modules\decompress-zip\lib\signatures.js" />
+    <Content Include="node_modules\bower\lib\node_modules\decompress-zip\lib\structures.js" />
+    <Content Include="node_modules\bower\lib\node_modules\decompress-zip\node_modules\readable-stream\duplex.js" />
+    <Content Include="node_modules\bower\lib\node_modules\decompress-zip\node_modules\readable-stream\lib\_stream_duplex.js" />
+    <Content Include="node_modules\bower\lib\node_modules\decompress-zip\node_modules\readable-stream\lib\_stream_passthrough.js" />
+    <Content Include="node_modules\bower\lib\node_modules\decompress-zip\node_modules\readable-stream\lib\_stream_readable.js" />
+    <Content Include="node_modules\bower\lib\node_modules\decompress-zip\node_modules\readable-stream\lib\_stream_transform.js" />
+    <Content Include="node_modules\bower\lib\node_modules\decompress-zip\node_modules\readable-stream\lib\_stream_writable.js" />
+    <Content Include="node_modules\bower\lib\node_modules\decompress-zip\node_modules\readable-stream\passthrough.js" />
+    <Content Include="node_modules\bower\lib\node_modules\decompress-zip\node_modules\readable-stream\readable.js" />
+    <Content Include="node_modules\bower\lib\node_modules\decompress-zip\node_modules\readable-stream\transform.js" />
+    <Content Include="node_modules\bower\lib\node_modules\decompress-zip\node_modules\readable-stream\writable.js" />
+    <Content Include="node_modules\bower\lib\node_modules\decompress-zip\test\test.js" />
+    <Content Include="node_modules\bower\lib\node_modules\deep-extend\index.js" />
+    <Content Include="node_modules\bower\lib\node_modules\deep-extend\test\index.spec.js" />
+    <Content Include="node_modules\bower\lib\node_modules\delayed-stream\lib\delayed_stream.js" />
+    <Content Include="node_modules\bower\lib\node_modules\destroy\index.js" />
+    <Content Include="node_modules\bower\lib\node_modules\duplexer2\index.js" />
+    <Content Include="node_modules\bower\lib\node_modules\ecc-jsbn\index.js" />
+    <Content Include="node_modules\bower\lib\node_modules\ecc-jsbn\lib\ec.js" />
+    <Content Include="node_modules\bower\lib\node_modules\ecc-jsbn\lib\sec.js" />
+    <Content Include="node_modules\bower\lib\node_modules\ecc-jsbn\test.js" />
+    <Content Include="node_modules\bower\lib\node_modules\end-of-stream\index.js" />
+    <Content Include="node_modules\bower\lib\node_modules\end-of-stream\test.js" />
+    <Content Include="node_modules\bower\lib\node_modules\error-ex\index.js" />
+    <Content Include="node_modules\bower\lib\node_modules\escape-string-regexp\index.js" />
+    <Content Include="node_modules\bower\lib\node_modules\esprima\bin\esparse.js" />
+    <Content Include="node_modules\bower\lib\node_modules\esprima\bin\esvalidate.js" />
+    <Content Include="node_modules\bower\lib\node_modules\esprima\esprima.js" />
+    <Content Include="node_modules\bower\lib\node_modules\esprima\test\compat.js" />
+    <Content Include="node_modules\bower\lib\node_modules\esprima\test\reflect.js" />
+    <Content Include="node_modules\bower\lib\node_modules\esprima\test\run.js" />
+    <Content Include="node_modules\bower\lib\node_modules\esprima\test\runner.js" />
+    <Content Include="node_modules\bower\lib\node_modules\esprima\test\test.js" />
+    <Content Include="node_modules\bower\lib\node_modules\json-schema\draft-zyp-json-schema-03.xml" />
+    <Content Include="node_modules\bower\lib\node_modules\json-schema\draft-zyp-json-schema-04.xml" />
+    <Content Include="node_modules\bower\lib\node_modules\json-schema\lib\links.js" />
+    <Content Include="node_modules\bower\lib\node_modules\json-schema\lib\validate.js" />
+    <Content Include="node_modules\bower\lib\node_modules\json-schema\test\tests.js" />
+    <Content Include="node_modules\bower\lib\renderers\index.js" />
+    <Content Include="node_modules\bower\lib\renderers\JsonRenderer.js" />
+    <Content Include="node_modules\bower\lib\renderers\StandardRenderer.js" />
+    <Content Include="node_modules\bower\lib\templates\helpers\colors.js" />
+    <Content Include="node_modules\bower\lib\templates\helpers\condense.js" />
+    <Content Include="node_modules\bower\lib\templates\helpers\indent.js" />
+    <Content Include="node_modules\bower\lib\templates\helpers\index.js" />
+    <Content Include="node_modules\bower\lib\templates\helpers\rpad.js" />
+    <Content Include="node_modules\bower\lib\templates\helpers\sum.js" />
+    <Content Include="node_modules\bower\lib\util\cli.js" />
+    <Content Include="node_modules\bower\lib\util\cmd.js" />
+    <Content Include="node_modules\bower\lib\util\copy.js" />
+    <Content Include="node_modules\bower\lib\util\createError.js" />
+    <Content Include="node_modules\bower\lib\util\createLink.js" />
+    <Content Include="node_modules\bower\lib\util\download.js" />
+    <Content Include="node_modules\bower\lib\util\extract.js" />
+    <Content Include="node_modules\bower\lib\util\fs.js" />
+    <Content Include="node_modules\bower\lib\util\isPathAbsolute.js" />
+    <Content Include="node_modules\bower\lib\util\readJson.js" />
+    <Content Include="node_modules\bower\lib\util\relativeToBaseDir.js" />
+    <Content Include="node_modules\bower\lib\util\removeIgnores.js" />
+    <Content Include="node_modules\bower\lib\util\rimraf.js" />
+    <Content Include="node_modules\bower\lib\util\rootCheck.js" />
+    <Content Include="node_modules\bower\lib\util\semver.js" />
+    <Content Include="node_modules\bower\lib\util\template.js" />
+    <Content Include="node_modules\bower\lib\util\userAgent.js" />
+    <Content Include="node_modules\bower\lib\util\validLink.js" />
+    <Content Include="node_modules\bower\lib\version.js" />
+    <Content Include="node_modules\browser-sync\bin\browser-sync.js" />
+    <Content Include="node_modules\browser-sync\index.js" />
+    <Content Include="node_modules\browser-sync\lib\args.js" />
+    <Content Include="node_modules\browser-sync\lib\async-tasks.js" />
+    <Content Include="node_modules\browser-sync\lib\async.js" />
+    <Content Include="node_modules\browser-sync\lib\browser-sync.js" />
+    <Content Include="node_modules\browser-sync\lib\cli\cli-info.js" />
+    <Content Include="node_modules\browser-sync\lib\cli\cli-options.js" />
+    <Content Include="node_modules\browser-sync\lib\cli\cli-template.js" />
+    <Content Include="node_modules\browser-sync\lib\cli\cli-utils.js" />
+    <Content Include="node_modules\browser-sync\lib\cli\command.init.js" />
+    <Content Include="node_modules\browser-sync\lib\cli\command.recipe.js" />
+    <Content Include="node_modules\browser-sync\lib\cli\command.reload.js" />
+    <Content Include="node_modules\browser-sync\lib\cli\command.start.js" />
+    <Content Include="node_modules\browser-sync\lib\cli\help.txt" />
+    <Content Include="node_modules\browser-sync\lib\config.js" />
+    <Content Include="node_modules\browser-sync\lib\connect-utils.js" />
+    <Content Include="node_modules\browser-sync\lib\default-config.js" />
+    <Content Include="node_modules\browser-sync\lib\file-utils.js" />
+    <Content Include="node_modules\browser-sync\lib\file-watcher.js" />
+    <Content Include="node_modules\browser-sync\lib\hooks.js" />
+    <Content Include="node_modules\browser-sync\lib\http-protocol.js" />
+    <Content Include="node_modules\browser-sync\lib\internal-events.js" />
+    <Content Include="node_modules\browser-sync\lib\logger.js" />
+    <Content Include="node_modules\browser-sync\lib\options.js" />
+    <Content Include="node_modules\browser-sync\lib\public\exit.js" />
+    <Content Include="node_modules\browser-sync\lib\public\init.js" />
+    <Content Include="node_modules\browser-sync\lib\public\notify.js" />
+    <Content Include="node_modules\browser-sync\lib\public\pause.js" />
+    <Content Include="node_modules\browser-sync\lib\public\public-utils.js" />
+    <Content Include="node_modules\browser-sync\lib\public\reload.js" />
+    <Content Include="node_modules\browser-sync\lib\public\resume.js" />
+    <Content Include="node_modules\browser-sync\lib\public\socket.io.js" />
+    <Content Include="node_modules\browser-sync\lib\public\stream.js" />
+    <Content Include="node_modules\browser-sync\lib\server\index.js" />
+    <Content Include="node_modules\browser-sync\lib\server\proxy-server.js" />
+    <Content Include="node_modules\browser-sync\lib\server\snippet-server.js" />
+    <Content Include="node_modules\browser-sync\lib\server\static-server.js" />
+    <Content Include="node_modules\browser-sync\lib\server\utils.js" />
+    <Content Include="node_modules\browser-sync\lib\snippet.js" />
+    <Content Include="node_modules\browser-sync\lib\sockets.js" />
+    <Content Include="node_modules\browser-sync\lib\tunnel.js" />
+    <Content Include="node_modules\browser-sync\lib\utils.js" />
+    <Content Include="Scripts\ai.0.15.0-build58334.js" />
+    <Content Include="Scripts\ai.0.15.0-build58334.min.js" />
+    <Content Include="Scripts\bootstrap.js" />
+    <Content Include="Scripts\bootstrap.min.js" />
+    <Content Include="ApplicationInsights.config">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="obj\Debug\DesignTimeResolveAssemblyReferencesInput.cache" />
+    <Content Include="node_modules\.bin\rimraf" />
+    <Content Include="node_modules\.bin\rimraf.cmd" />
+    <Content Include="node_modules\bower\bin\bower" />
+    <Content Include="node_modules\bower\CHANGELOG.md" />
+    <Content Include="node_modules\bower\lib\node_modules\amdefine\LICENSE" />
+    <Content Include="node_modules\bower\lib\node_modules\amdefine\package.json" />
+    <Content Include="node_modules\bower\lib\node_modules\amdefine\README.md" />
+    <Content Include="node_modules\bower\lib\node_modules\ansi-escapes\license" />
+    <Content Include="node_modules\bower\lib\node_modules\ansi-escapes\package.json" />
+    <Content Include="node_modules\bower\lib\node_modules\ansi-escapes\readme.md" />
+    <Content Include="node_modules\bower\lib\node_modules\ansi-regex\license" />
+    <Content Include="node_modules\bower\lib\node_modules\ansi-regex\package.json" />
+    <Content Include="node_modules\bower\lib\node_modules\ansi-regex\readme.md" />
+    <Content Include="node_modules\bower\lib\node_modules\ansi-styles\license" />
+    <Content Include="node_modules\bower\lib\node_modules\ansi-styles\package.json" />
+    <Content Include="node_modules\bower\lib\node_modules\ansi-styles\readme.md" />
+    <Content Include="node_modules\bower\lib\node_modules\ansicolors\.npmignore" />
+    <Content Include="node_modules\bower\lib\node_modules\ansicolors\.travis.yml" />
+    <Content Include="node_modules\bower\lib\node_modules\ansicolors\LICENSE" />
+    <Content Include="node_modules\bower\lib\node_modules\ansicolors\package.json" />
+    <Content Include="node_modules\bower\lib\node_modules\ansicolors\README.md" />
+    <Content Include="node_modules\bower\lib\node_modules\archy\.travis.yml" />
+    <Content Include="node_modules\bower\lib\node_modules\archy\LICENSE" />
+    <Content Include="node_modules\bower\lib\node_modules\archy\package.json" />
+    <Content Include="node_modules\bower\lib\node_modules\archy\readme.markdown" />
+    <Content Include="node_modules\bower\lib\node_modules\argparse\CHANGELOG.md" />
+    <Content Include="node_modules\bower\lib\node_modules\argparse\LICENSE" />
+    <Content Include="node_modules\bower\lib\node_modules\argparse\package.json" />
+    <Content Include="node_modules\bower\lib\node_modules\argparse\README.md" />
+    <Content Include="node_modules\bower\lib\node_modules\array-filter\.npmignore" />
+    <Content Include="node_modules\bower\lib\node_modules\array-filter\.travis.yml" />
+    <Content Include="node_modules\bower\lib\node_modules\array-filter\package.json" />
+    <Content Include="node_modules\bower\lib\node_modules\array-filter\README.md" />
+    <Content Include="node_modules\bower\lib\node_modules\array-map\.travis.yml" />
+    <Content Include="node_modules\bower\lib\node_modules\array-map\LICENSE" />
+    <Content Include="node_modules\bower\lib\node_modules\array-map\package.json" />
+    <Content Include="node_modules\bower\lib\node_modules\array-map\readme.markdown" />
+    <Content Include="node_modules\bower\lib\node_modules\array-reduce\.travis.yml" />
+    <Content Include="node_modules\bower\lib\node_modules\array-reduce\LICENSE" />
+    <Content Include="node_modules\bower\lib\node_modules\array-reduce\package.json" />
+    <Content Include="node_modules\bower\lib\node_modules\array-reduce\readme.markdown" />
+    <Content Include="node_modules\bower\lib\node_modules\asn1\.npmignore" />
+    <Content Include="node_modules\bower\lib\node_modules\asn1\.travis.yml" />
+    <Content Include="node_modules\bower\lib\node_modules\asn1\LICENSE" />
+    <Content Include="node_modules\bower\lib\node_modules\asn1\package.json" />
+    <Content Include="node_modules\bower\lib\node_modules\asn1\README.md" />
+    <Content Include="node_modules\bower\lib\node_modules\assert-plus\AUTHORS" />
+    <Content Include="node_modules\bower\lib\node_modules\assert-plus\CHANGES.md" />
+    <Content Include="node_modules\bower\lib\node_modules\assert-plus\package.json" />
+    <Content Include="node_modules\bower\lib\node_modules\assert-plus\README.md" />
+    <Content Include="node_modules\bower\lib\node_modules\async\component.json" />
+    <Content Include="node_modules\bower\lib\node_modules\async\LICENSE" />
+    <Content Include="node_modules\bower\lib\node_modules\async\package.json" />
+    <Content Include="node_modules\bower\lib\node_modules\async\README.md" />
+    <Content Include="node_modules\bower\lib\node_modules\aws-sign2\LICENSE" />
+    <Content Include="node_modules\bower\lib\node_modules\aws-sign2\package.json" />
+    <Content Include="node_modules\bower\lib\node_modules\aws-sign2\README.md" />
+    <Content Include="node_modules\bower\lib\node_modules\balanced-match\.npmignore" />
+    <Content Include="node_modules\bower\lib\node_modules\balanced-match\.travis.yml" />
+    <Content Include="node_modules\bower\lib\node_modules\balanced-match\LICENSE.md" />
+    <Content Include="node_modules\bower\lib\node_modules\balanced-match\Makefile" />
+    <Content Include="node_modules\bower\lib\node_modules\balanced-match\package.json" />
+    <Content Include="node_modules\bower\lib\node_modules\balanced-match\README.md" />
+    <Content Include="node_modules\bower\lib\node_modules\binary\.npmignore" />
+    <Content Include="node_modules\bower\lib\node_modules\binary\.travis.yml" />
+    <Content Include="node_modules\bower\lib\node_modules\binary\package.json" />
+    <Content Include="node_modules\bower\lib\node_modules\binary\README.markdown" />
+    <Content Include="node_modules\bower\lib\node_modules\bl\.jshintrc" />
+    <Content Include="node_modules\bower\lib\node_modules\bl\.npmignore" />
+    <Content Include="node_modules\bower\lib\node_modules\bl\.travis.yml" />
+    <Content Include="node_modules\bower\lib\node_modules\bl\LICENSE.md" />
+    <Content Include="node_modules\bower\lib\node_modules\bl\package.json" />
+    <Content Include="node_modules\bower\lib\node_modules\bl\README.md" />
+    <Content Include="node_modules\bower\lib\node_modules\boom\.npmignore" />
+    <Content Include="node_modules\bower\lib\node_modules\boom\.travis.yml" />
+    <Content Include="node_modules\bower\lib\node_modules\boom\CONTRIBUTING.md" />
+    <Content Include="node_modules\bower\lib\node_modules\boom\LICENSE" />
+    <Content Include="node_modules\bower\lib\node_modules\boom\package.json" />
+    <Content Include="node_modules\bower\lib\node_modules\boom\README.md" />
+    <Content Include="node_modules\bower\lib\node_modules\bower-config\CHANGELOG.md" />
+    <Content Include="node_modules\bower\lib\node_modules\bower-config\LICENSE" />
+    <Content Include="node_modules\bower\lib\node_modules\bower-config\node_modules\graceful-fs\LICENSE" />
+    <Content Include="node_modules\bower\lib\node_modules\bower-config\node_modules\graceful-fs\package.json" />
+    <Content Include="node_modules\bower\lib\node_modules\bower-config\node_modules\graceful-fs\README.md" />
+    <Content Include="node_modules\bower\lib\node_modules\bower-config\package.json" />
+    <Content Include="node_modules\bower\lib\node_modules\bower-config\README.md" />
+    <Content Include="node_modules\bower\lib\node_modules\bower-endpoint-parser\.editorconfig" />
+    <Content Include="node_modules\bower\lib\node_modules\bower-endpoint-parser\.jshintrc" />
+    <Content Include="node_modules\bower\lib\node_modules\bower-endpoint-parser\.npmignore" />
+    <Content Include="node_modules\bower\lib\node_modules\bower-endpoint-parser\.travis.yml" />
+    <Content Include="node_modules\bower\lib\node_modules\bower-endpoint-parser\LICENSE" />
+    <Content Include="node_modules\bower\lib\node_modules\bower-endpoint-parser\package.json" />
+    <Content Include="node_modules\bower\lib\node_modules\bower-endpoint-parser\README.md" />
+    <Content Include="node_modules\bower\lib\node_modules\bower-json\.editorconfig" />
+    <Content Include="node_modules\bower\lib\node_modules\bower-json\.jshintrc" />
+    <Content Include="node_modules\bower\lib\node_modules\bower-json\.npmignore" />
+    <Content Include="node_modules\bower\lib\node_modules\bower-json\.travis.yml" />
+    <Content Include="node_modules\bower\lib\node_modules\bower-json\LICENSE" />
+    <Content Include="node_modules\bower\lib\node_modules\bower-json\node_modules\graceful-fs\.npmignore" />
+    <Content Include="node_modules\bower\lib\node_modules\bower-json\node_modules\graceful-fs\LICENSE" />
+    <Content Include="node_modules\bower\lib\node_modules\bower-json\node_modules\graceful-fs\package.json" />
+    <Content Include="node_modules\bower\lib\node_modules\bower-json\node_modules\graceful-fs\README.md" />
+    <Content Include="node_modules\bower\lib\node_modules\bower-json\package.json" />
+    <Content Include="node_modules\bower\lib\node_modules\bower-json\README.md" />
+    <Content Include="node_modules\bower\lib\node_modules\bower-json\test\pkg-bower-json-invalid\bower.json" />
+    <Content Include="node_modules\bower\lib\node_modules\bower-json\test\pkg-bower-json-malformed\bower.json" />
+    <Content Include="node_modules\bower\lib\node_modules\bower-json\test\pkg-bower-json\bower.json" />
+    <Content Include="node_modules\bower\lib\node_modules\bower-json\test\pkg-component%281%29-json\component.json" />
+    <Content Include="node_modules\bower\lib\node_modules\bower-json\test\pkg-component-json\component.json" />
+    <Content Include="node_modules\bower\lib\node_modules\bower-json\test\pkg-dot-bower-json\.bower.json" />
+    <Content Include="node_modules\bower\lib\node_modules\bower-logger\.editorconfig" />
+    <Content Include="node_modules\bower\lib\node_modules\bower-logger\.jshintrc" />
+    <Content Include="node_modules\bower\lib\node_modules\bower-logger\.npmignore" />
+    <Content Include="node_modules\bower\lib\node_modules\bower-logger\.travis.yml" />
+    <Content Include="node_modules\bower\lib\node_modules\bower-logger\LICENSE" />
+    <Content Include="node_modules\bower\lib\node_modules\bower-logger\package.json" />
+    <Content Include="node_modules\bower\lib\node_modules\bower-logger\README.md" />
+    <Content Include="node_modules\bower\lib\node_modules\bower-registry-client\LICENSE" />
+    <Content Include="node_modules\bower\lib\node_modules\bower-registry-client\node_modules\graceful-fs\LICENSE" />
+    <Content Include="node_modules\bower\lib\node_modules\bower-registry-client\node_modules\graceful-fs\package.json" />
+    <Content Include="node_modules\bower\lib\node_modules\bower-registry-client\node_modules\graceful-fs\README.md" />
+    <Content Include="node_modules\bower\lib\node_modules\bower-registry-client\node_modules\mkdirp\.npmignore" />
+    <Content Include="node_modules\bower\lib\node_modules\bower-registry-client\node_modules\mkdirp\.travis.yml" />
+    <Content Include="node_modules\bower\lib\node_modules\bower-registry-client\node_modules\mkdirp\LICENSE" />
+    <Content Include="node_modules\bower\lib\node_modules\bower-registry-client\node_modules\mkdirp\package.json" />
+    <Content Include="node_modules\bower\lib\node_modules\bower-registry-client\node_modules\mkdirp\readme.markdown" />
+    <Content Include="node_modules\bower\lib\node_modules\bower-registry-client\package.json" />
+    <Content Include="node_modules\bower\lib\node_modules\bower-registry-client\README.md" />
+    <Content Include="node_modules\bower\lib\node_modules\brace-expansion\.npmignore" />
+    <Content Include="node_modules\bower\lib\node_modules\brace-expansion\package.json" />
+    <Content Include="node_modules\bower\lib\node_modules\brace-expansion\README.md" />
+    <Content Include="node_modules\bower\lib\node_modules\buffers\package.json" />
+    <Content Include="node_modules\bower\lib\node_modules\buffers\README.markdown" />
+    <Content Include="node_modules\bower\lib\node_modules\capture-stack-trace\package.json" />
+    <Content Include="node_modules\bower\lib\node_modules\capture-stack-trace\readme.md" />
+    <Content Include="node_modules\bower\lib\node_modules\cardinal\.npmignore" />
+    <Content Include="node_modules\bower\lib\node_modules\cardinal\.travis.yml" />
+    <Content Include="node_modules\bower\lib\node_modules\cardinal\examples\.cardinalrc" />
+    <Content Include="node_modules\bower\lib\node_modules\cardinal\examples\README.md" />
+    <Content Include="node_modules\bower\lib\node_modules\cardinal\LICENSE" />
+    <Content Include="node_modules\bower\lib\node_modules\cardinal\package.json" />
+    <Content Include="node_modules\bower\lib\node_modules\cardinal\README.md" />
+    <Content Include="node_modules\bower\lib\node_modules\cardinal\test\fixtures\json.json" />
+    <Content Include="node_modules\bower\lib\node_modules\cardinal\themes\README.md" />
+    <Content Include="node_modules\bower\lib\node_modules\caseless\LICENSE" />
+    <Content Include="node_modules\bower\lib\node_modules\caseless\package.json" />
+    <Content Include="node_modules\bower\lib\node_modules\caseless\README.md" />
+    <Content Include="node_modules\bower\lib\node_modules\chainsaw\.npmignore" />
+    <Content Include="node_modules\bower\lib\node_modules\chainsaw\package.json" />
+    <Content Include="node_modules\bower\lib\node_modules\chainsaw\README.markdown" />
+    <Content Include="node_modules\bower\lib\node_modules\chalk\license" />
+    <Content Include="node_modules\bower\lib\node_modules\chalk\package.json" />
+    <Content Include="node_modules\bower\lib\node_modules\chalk\readme.md" />
+    <Content Include="node_modules\bower\lib\node_modules\chmodr\LICENSE" />
+    <Content Include="node_modules\bower\lib\node_modules\chmodr\package.json" />
+    <Content Include="node_modules\bower\lib\node_modules\chmodr\README.md" />
+    <Content Include="node_modules\bower\lib\node_modules\cli-cursor\license" />
+    <Content Include="node_modules\bower\lib\node_modules\cli-cursor\package.json" />
+    <Content Include="node_modules\bower\lib\node_modules\cli-cursor\readme.md" />
+    <Content Include="node_modules\bower\lib\node_modules\cli-width\.npmignore" />
+    <Content Include="node_modules\bower\lib\node_modules\cli-width\.travis.yml" />
+    <Content Include="node_modules\bower\lib\node_modules\cli-width\coverage\coverage.json" />
+    <Content Include="node_modules\bower\lib\node_modules\cli-width\coverage\lcov.info" />
+    <Content Include="node_modules\bower\lib\node_modules\cli-width\LICENSE" />
+    <Content Include="node_modules\bower\lib\node_modules\cli-width\package.json" />
+    <Content Include="node_modules\bower\lib\node_modules\cli-width\README.md" />
+    <Content Include="node_modules\bower\lib\node_modules\code-point-at\license" />
+    <Content Include="node_modules\bower\lib\node_modules\code-point-at\package.json" />
+    <Content Include="node_modules\bower\lib\node_modules\code-point-at\readme.md" />
+    <Content Include="node_modules\bower\lib\node_modules\combined-stream\License" />
+    <Content Include="node_modules\bower\lib\node_modules\combined-stream\package.json" />
+    <Content Include="node_modules\bower\lib\node_modules\combined-stream\Readme.md" />
+    <Content Include="node_modules\bower\lib\node_modules\commander\History.md" />
+    <Content Include="node_modules\bower\lib\node_modules\commander\LICENSE" />
+    <Content Include="node_modules\bower\lib\node_modules\commander\package.json" />
+    <Content Include="node_modules\bower\lib\node_modules\commander\Readme.md" />
+    <Content Include="node_modules\bower\lib\node_modules\concat-map\.travis.yml" />
+    <Content Include="node_modules\bower\lib\node_modules\concat-map\LICENSE" />
+    <Content Include="node_modules\bower\lib\node_modules\concat-map\package.json" />
+    <Content Include="node_modules\bower\lib\node_modules\concat-map\README.markdown" />
+    <Content Include="node_modules\bower\lib\node_modules\configstore\package.json" />
+    <Content Include="node_modules\bower\lib\node_modules\configstore\readme.md" />
+    <Content Include="node_modules\bower\lib\node_modules\core-util-is\float.patch" />
+    <Content Include="node_modules\bower\lib\node_modules\core-util-is\LICENSE" />
+    <Content Include="node_modules\bower\lib\node_modules\core-util-is\package.json" />
+    <Content Include="node_modules\bower\lib\node_modules\core-util-is\README.md" />
+    <Content Include="node_modules\bower\lib\node_modules\create-error-class\package.json" />
+    <Content Include="node_modules\bower\lib\node_modules\create-error-class\readme.md" />
+    <Content Include="node_modules\bower\lib\node_modules\cryptiles\.npmignore" />
+    <Content Include="node_modules\bower\lib\node_modules\cryptiles\.travis.yml" />
+    <Content Include="node_modules\bower\lib\node_modules\cryptiles\LICENSE" />
+    <Content Include="node_modules\bower\lib\node_modules\cryptiles\package.json" />
+    <Content Include="node_modules\bower\lib\node_modules\cryptiles\README.md" />
+    <Content Include="node_modules\bower\lib\node_modules\dashdash\etc\dashdash.bash_completion.in" />
+    <Content Include="node_modules\bower\lib\node_modules\dashdash\package.json" />
+    <Content Include="node_modules\bower\lib\node_modules\dashdash\README.md" />
+    <Content Include="node_modules\bower\lib\node_modules\decompress-zip\.editorconfig" />
+    <Content Include="node_modules\bower\lib\node_modules\decompress-zip\.jshintrc" />
+    <Content Include="node_modules\bower\lib\node_modules\decompress-zip\.npmignore" />
+    <Content Include="node_modules\bower\lib\node_modules\decompress-zip\.travis.yml" />
+    <Content Include="node_modules\bower\lib\node_modules\decompress-zip\bin\decompress-zip" />
+    <Content Include="node_modules\bower\lib\node_modules\decompress-zip\node_modules\readable-stream\.npmignore" />
+    <Content Include="node_modules\bower\lib\node_modules\decompress-zip\node_modules\readable-stream\float.patch" />
+    <Content Include="node_modules\bower\lib\node_modules\decompress-zip\node_modules\readable-stream\LICENSE" />
+    <Content Include="node_modules\bower\lib\node_modules\decompress-zip\node_modules\readable-stream\package.json" />
+    <Content Include="node_modules\bower\lib\node_modules\decompress-zip\node_modules\readable-stream\README.md" />
+    <Content Include="node_modules\bower\lib\node_modules\decompress-zip\package.json" />
+    <Content Include="node_modules\bower\lib\node_modules\decompress-zip\README.md" />
+    <Content Include="node_modules\bower\lib\node_modules\deep-extend\.npmignore" />
+    <Content Include="node_modules\bower\lib\node_modules\deep-extend\LICENSE" />
+    <Content Include="node_modules\bower\lib\node_modules\deep-extend\package.json" />
+    <Content Include="node_modules\bower\lib\node_modules\deep-extend\README.md" />
+    <Content Include="node_modules\bower\lib\node_modules\deep-extend\test\mocha.opts" />
+    <Content Include="node_modules\bower\lib\node_modules\delayed-stream\.npmignore" />
+    <Content Include="node_modules\bower\lib\node_modules\delayed-stream\License" />
+    <Content Include="node_modules\bower\lib\node_modules\delayed-stream\Makefile" />
+    <Content Include="node_modules\bower\lib\node_modules\delayed-stream\package.json" />
+    <Content Include="node_modules\bower\lib\node_modules\delayed-stream\Readme.md" />
+    <Content Include="node_modules\bower\lib\node_modules\destroy\LICENSE" />
+    <Content Include="node_modules\bower\lib\node_modules\destroy\package.json" />
+    <Content Include="node_modules\bower\lib\node_modules\destroy\README.md" />
+    <Content Include="node_modules\bower\lib\node_modules\duplexer2\LICENSE.md" />
+    <Content Include="node_modules\bower\lib\node_modules\duplexer2\package.json" />
+    <Content Include="node_modules\bower\lib\node_modules\duplexer2\README.md" />
+    <Content Include="node_modules\bower\lib\node_modules\ecc-jsbn\.npmignore" />
+    <Content Include="node_modules\bower\lib\node_modules\ecc-jsbn\lib\LICENSE-jsbn" />
+    <Content Include="node_modules\bower\lib\node_modules\ecc-jsbn\LICENSE" />
+    <Content Include="node_modules\bower\lib\node_modules\ecc-jsbn\package.json" />
+    <Content Include="node_modules\bower\lib\node_modules\ecc-jsbn\README.md" />
+    <Content Include="node_modules\bower\lib\node_modules\end-of-stream\.npmignore" />
+    <Content Include="node_modules\bower\lib\node_modules\end-of-stream\LICENSE" />
+    <Content Include="node_modules\bower\lib\node_modules\end-of-stream\package.json" />
+    <Content Include="node_modules\bower\lib\node_modules\end-of-stream\README.md" />
+    <Content Include="node_modules\bower\lib\node_modules\error-ex\LICENSE" />
+    <Content Include="node_modules\bower\lib\node_modules\error-ex\package.json" />
+    <Content Include="node_modules\bower\lib\node_modules\error-ex\README.md" />
+    <Content Include="node_modules\bower\lib\node_modules\escape-string-regexp\license" />
+    <Content Include="node_modules\bower\lib\node_modules\escape-string-regexp\package.json" />
+    <Content Include="node_modules\bower\lib\node_modules\escape-string-regexp\readme.md" />
+    <Content Include="node_modules\bower\lib\node_modules\esprima\package.json" />
+    <Content Include="node_modules\bower\lib\node_modules\esprima\README.md" />
+    <Content Include="node_modules\bower\lib\node_modules\json-schema\draft-00\hyper-schema" />
+    <Content Include="node_modules\bower\lib\node_modules\json-schema\draft-00\json-ref" />
+    <Content Include="node_modules\bower\lib\node_modules\json-schema\draft-00\links" />
+    <Content Include="node_modules\bower\lib\node_modules\json-schema\draft-00\schema" />
+    <Content Include="node_modules\bower\lib\node_modules\json-schema\draft-01\hyper-schema" />
+    <Content Include="node_modules\bower\lib\node_modules\json-schema\draft-01\json-ref" />
+    <Content Include="node_modules\bower\lib\node_modules\json-schema\draft-01\links" />
+    <Content Include="node_modules\bower\lib\node_modules\json-schema\draft-01\schema" />
+    <Content Include="node_modules\bower\lib\node_modules\json-schema\draft-02\hyper-schema" />
+    <Content Include="node_modules\bower\lib\node_modules\json-schema\draft-02\json-ref" />
+    <Content Include="node_modules\bower\lib\node_modules\json-schema\draft-02\links" />
+    <Content Include="node_modules\bower\lib\node_modules\json-schema\draft-02\schema" />
+    <Content Include="node_modules\bower\lib\node_modules\json-schema\draft-03\examples\address" />
+    <Content Include="node_modules\bower\lib\node_modules\json-schema\draft-03\examples\calendar" />
+    <Content Include="node_modules\bower\lib\node_modules\json-schema\draft-03\examples\card" />
+    <Content Include="node_modules\bower\lib\node_modules\json-schema\draft-03\examples\geo" />
+    <Content Include="node_modules\bower\lib\node_modules\json-schema\draft-03\examples\interfaces" />
+    <Content Include="node_modules\bower\lib\node_modules\json-schema\draft-03\hyper-schema" />
+    <Content Include="node_modules\bower\lib\node_modules\json-schema\draft-03\json-ref" />
+    <Content Include="node_modules\bower\lib\node_modules\json-schema\draft-03\links" />
+    <Content Include="node_modules\bower\lib\node_modules\json-schema\draft-03\schema" />
+    <Content Include="node_modules\bower\lib\node_modules\json-schema\draft-04\hyper-schema" />
+    <Content Include="node_modules\bower\lib\node_modules\json-schema\draft-04\links" />
+    <Content Include="node_modules\bower\lib\node_modules\json-schema\draft-04\schema" />
+    <Content Include="node_modules\bower\lib\node_modules\json-schema\package.json" />
+    <Content Include="node_modules\bower\lib\node_modules\json-schema\README.md" />
+    <Content Include="node_modules\bower\lib\templates\json\help-cache.json" />
+    <Content Include="node_modules\bower\lib\templates\json\help-cache\clean.json" />
+    <Content Include="node_modules\bower\lib\templates\json\help-cache\list.json" />
+    <Content Include="node_modules\bower\lib\templates\json\help-home.json" />
+    <Content Include="node_modules\bower\lib\templates\json\help-info.json" />
+    <Content Include="node_modules\bower\lib\templates\json\help-init.json" />
+    <Content Include="node_modules\bower\lib\templates\json\help-install.json" />
+    <Content Include="node_modules\bower\lib\templates\json\help-link.json" />
+    <Content Include="node_modules\bower\lib\templates\json\help-list.json" />
+    <Content Include="node_modules\bower\lib\templates\json\help-login.json" />
+    <Content Include="node_modules\bower\lib\templates\json\help-lookup.json" />
+    <Content Include="node_modules\bower\lib\templates\json\help-prune.json" />
+    <Content Include="node_modules\bower\lib\templates\json\help-register.json" />
+    <Content Include="node_modules\bower\lib\templates\json\help-search.json" />
+    <Content Include="node_modules\bower\lib\templates\json\help-uninstall.json" />
+    <Content Include="node_modules\bower\lib\templates\json\help-unregister.json" />
+    <Content Include="node_modules\bower\lib\templates\json\help-update.json" />
+    <Content Include="node_modules\bower\lib\templates\json\help-version.json" />
+    <Content Include="node_modules\bower\lib\templates\json\help.json" />
+    <Content Include="node_modules\bower\lib\templates\std\conflict-resolved.std" />
+    <Content Include="node_modules\bower\lib\templates\std\conflict.std" />
+    <Content Include="node_modules\bower\lib\templates\std\help-cache.std" />
+    <Content Include="node_modules\bower\lib\templates\std\help-generic.std" />
+    <Content Include="node_modules\bower\lib\templates\std\help.std" />
+    <Content Include="node_modules\bower\lib\templates\std\info.std" />
+    <Content Include="node_modules\bower\lib\templates\std\lookup.std" />
+    <Content Include="node_modules\bower\lib\templates\std\register.std" />
+    <Content Include="node_modules\bower\lib\templates\std\search-results.std" />
+    <Content Include="node_modules\bower\LICENSE" />
+    <Content Include="node_modules\bower\package.json" />
+    <Content Include="node_modules\bower\README.md" />
+    <Content Include="node_modules\browser-sync\CHANGELOG.md" />
+    <Content Include="node_modules\browser-sync\lib\cli\opts.init.json" />
+    <Content Include="node_modules\browser-sync\lib\cli\opts.recipe.json" />
+    <Content Include="node_modules\browser-sync\lib\cli\opts.reload.json" />
+    <Content Include="node_modules\browser-sync\lib\cli\opts.start.json" />
+    <Content Include="node_modules\browser-sync\lib\server\certs\browsersync.pfx" />
+    <Content Include="node_modules\browser-sync\lib\server\certs\gen.sh" />
+    <Content Include="node_modules\browser-sync\lib\server\certs\server.crt" />
+    <Content Include="node_modules\browser-sync\lib\server\certs\server.csr" />
+    <Content Include="node_modules\browser-sync\lib\server\certs\server.key" />
+    <Content Include="node_modules\browser-sync\lib\templates\connector.tmpl" />
+    <Content Include="node_modules\browser-sync\lib\templates\script-tags.tmpl" />
+    <Content Include="node_modules\browser-sync\LICENSE" />
+    <Content Include="node_modules\browser-sync\README.md" />
+    <Content Include="dist\bootstrap-social-gh-pages\.editorconfig" />
+    <Content Include="dist\bootstrap-social-gh-pages\assets\fonts\fontawesome-webfont.eot" />
+    <Content Include="dist\bootstrap-social-gh-pages\assets\fonts\fontawesome-webfont.ttf" />
+    <Content Include="dist\bootstrap-social-gh-pages\assets\fonts\fontawesome-webfont.woff" />
+    <Content Include="dist\bootstrap-social-gh-pages\assets\fonts\fontawesome-webfont.woff2" />
+    <Content Include="dist\bootstrap-social-gh-pages\assets\fonts\FontAwesome.otf" />
+    <Content Include="dist\bootstrap-social-gh-pages\bootstrap-social.less" />
+    <Content Include="dist\bootstrap-social-gh-pages\bootstrap-social.scss" />
+    <Content Include="dist\bootstrap-social-gh-pages\bower.json" />
+    <Content Include="dist\bootstrap-social-gh-pages\LICENSE" />
+    <Content Include="dist\bootstrap-social-gh-pages\package.json" />
+    <Content Include="dist\bootstrap-social-gh-pages\README.md" />
+    <Content Include="dist\img\nophoto.psd" />
+    <Content Include="dist\libs\bootstrap-select\dist\css\bootstrap-select.css.map" />
+    <Content Include="dist\libs\bootstrap-select\dist\js\bootstrap-select.js.map" />
+    <Content Include="dist\libs\bootstrap\css\bootstrap.css.map" />
+    <Content Include="dist\libs\bootstrap\fonts\glyphicons-halflings-regular.eot" />
+    <Content Include="dist\libs\bootstrap\fonts\glyphicons-halflings-regular.ttf" />
+    <Content Include="dist\libs\bootstrap\fonts\glyphicons-halflings-regular.woff" />
+    <Content Include="dist\libs\bootstrap\fonts\glyphicons-halflings-regular.woff2" />
+    <Content Include="dist\libs\datatables\media\images\Sorting icons.psd" />
+    <Content Include="dist\libs\font-awesome\css\font-awesome.css.map" />
+    <Content Include="dist\libs\font-awesome\fonts\fontawesome-webfont.eot" />
+    <Content Include="dist\libs\font-awesome\fonts\fontawesome-webfont.ttf" />
+    <Content Include="dist\libs\font-awesome\fonts\fontawesome-webfont.woff" />
+    <Content Include="dist\libs\font-awesome\fonts\fontawesome-webfont.woff2" />
+    <Content Include="dist\libs\font-awesome\fonts\FontAwesome.otf" />
+    <Content Include="dist\libs\jquery\jquery.min.map" />
+    <Content Include="dist\libs\selectize\plugins\remove_button\plugin.less" />
+    <None Include="Scripts\jquery-1.10.2.intellisense.js" />
+    <Content Include="Scripts\jquery-1.10.2.js" />
+    <Content Include="Scripts\jquery-1.10.2.min.js" />
+    <None Include="Scripts\jquery.validate-vsdoc.js" />
+    <Content Include="Scripts\jquery.validate.js" />
+    <Content Include="Scripts\jquery.validate.min.js" />
+    <Content Include="Scripts\jquery.validate.unobtrusive.js" />
+    <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
+    <Content Include="Scripts\modernizr-2.6.2.js" />
+    <Content Include="Scripts\respond.js" />
+    <Content Include="Scripts\respond.min.js" />
+    <Content Include="Scripts\_references.js" />
+    <Content Include="Web.config" />
+    <Content Include="Web.Debug.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </Content>
+    <Content Include="Web.Release.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </Content>
+    <Content Include="Views\Web.config" />
+    <Content Include="Views\_ViewStart.cshtml" />
+    <Content Include="Views\Shared\Error.cshtml" />
+    <Content Include="Views\Shared\_Layout.cshtml" />
+    <Content Include="Views\Home\About.cshtml" />
+    <Content Include="Views\Home\Contact.cshtml" />
+    <Content Include="Views\Home\Index.cshtml" />
+    <Content Include="Views\Account\_ExternalLoginsListPartial.cshtml" />
+    <Content Include="Views\Account\ConfirmEmail.cshtml" />
+    <Content Include="Views\Account\ExternalLoginConfirmation.cshtml" />
+    <Content Include="Views\Account\ExternalLoginFailure.cshtml" />
+    <Content Include="Views\Account\ForgotPassword.cshtml" />
+    <Content Include="Views\Account\ForgotPasswordConfirmation.cshtml" />
+    <Content Include="Views\Account\Login.cshtml" />
+    <Content Include="Views\Account\Register.cshtml" />
+    <Content Include="Views\Account\ResetPassword.cshtml" />
+    <Content Include="Views\Account\ResetPasswordConfirmation.cshtml" />
+    <Content Include="Views\Account\SendCode.cshtml" />
+    <Content Include="Views\Account\VerifyCode.cshtml" />
+    <Content Include="Views\Manage\AddPhoneNumber.cshtml" />
+    <Content Include="Views\Manage\ChangePassword.cshtml" />
+    <Content Include="Views\Manage\Index.cshtml" />
+    <Content Include="Views\Manage\ManageLogins.cshtml" />
+    <Content Include="Views\Manage\SetPassword.cshtml" />
+    <Content Include="Views\Manage\VerifyPhoneNumber.cshtml" />
+    <Content Include="Views\Shared\Lockout.cshtml" />
+    <Content Include="Views\Shared\_LoginPartial.cshtml" />
+    <Content Include="Views\Households\Create.cshtml" />
+    <Content Include="Views\Households\Delete.cshtml" />
+    <Content Include="Views\Households\Details.cshtml" />
+    <Content Include="Views\Households\Edit.cshtml" />
+    <Content Include="Views\Households\Index.cshtml" />
+    <Content Include="Views\Households\Join.cshtml" />
+    <Content Include="Views\Households\Leave.cshtml" />
+    <Content Include="Views\Invitations\Create.cshtml" />
+    <Content Include="Views\Invitations\Delete.cshtml" />
+    <Content Include="Views\Invitations\Details.cshtml" />
+    <Content Include="Views\Invitations\Edit.cshtml" />
+    <Content Include="Views\Invitations\Index.cshtml" />
+    <Content Include="Views\Manage\EditProfile.cshtml" />
+    <Content Include="Views\Shared\View.cshtml" />
+    <Content Include="Views\Shared\_AccountDetailsGraphPartial.cshtml" />
+    <Content Include="Views\Shared\_AccountsListPartial.cshtml" />
+    <Content Include="Views\Shared\_BudgetItemsDisplayPartial.cshtml" />
+    <Content Include="Views\Shared\_BudgetsDisplayPartial.cshtml" />
+    <Content Include="Views\Shared\_CreateHouseholdPartial.cshtml" />
+    <Content Include="Views\Shared\_CreateTransactionPartial.cshtml" />
+    <Content Include="Views\Shared\_InviteUserPartial.cshtml" />
+    <Content Include="Views\Shared\_JoinHouseholdPartial.cshtml" />
+    <Content Include="Views\Shared\_LoginLayout.cshtml" />
+    <Content Include="Views\Shared\_PieChartPartial.cshtml" />
+    <Content Include="Views\Shared\_ProfilePagePartial.cshtml" />
+    <Content Include="Views\Shared\_TransactionsPartial.cshtml" />
+    <Content Include="Views\Transactions\Create.cshtml" />
+    <Content Include="Views\Transactions\Delete.cshtml" />
+    <Content Include="Views\Transactions\Details.cshtml" />
+    <Content Include="Views\Transactions\Edit.cshtml" />
+    <Content Include="Views\Transactions\Index.cshtml" />
+    <Content Include="Views\TransactionTypes\Create.cshtml" />
+    <Content Include="Views\TransactionTypes\Delete.cshtml" />
+    <Content Include="Views\TransactionTypes\Details.cshtml" />
+    <Content Include="Views\TransactionTypes\Edit.cshtml" />
+    <Content Include="Views\TransactionTypes\Index.cshtml" />
+    <Content Include="Views\Home\AccessDenied.cshtml" />
+    <Content Include="Views\Accounts\Create.cshtml" />
+    <Content Include="Views\Accounts\Delete.cshtml" />
+    <Content Include="Views\Accounts\Details.cshtml" />
+    <Content Include="Views\Accounts\Edit.cshtml" />
+    <Content Include="Views\Accounts\Index.cshtml" />
+    <Content Include="Views\BudgetItems\Create.cshtml" />
+    <Content Include="Views\BudgetItems\Delete.cshtml" />
+    <Content Include="Views\BudgetItems\Details.cshtml" />
+    <Content Include="Views\BudgetItems\Edit.cshtml" />
+    <Content Include="Views\BudgetItems\Index.cshtml" />
+    <Content Include="Views\Budgets\Create.cshtml" />
+    <Content Include="Views\Budgets\Delete.cshtml" />
+    <Content Include="Views\Budgets\Details.cshtml" />
+    <Content Include="Views\Budgets\Edit.cshtml" />
+    <Content Include="Views\Budgets\Index.cshtml" />
+    <Content Include="Views\Categories\Create.cshtml" />
+    <Content Include="Views\Categories\Delete.cshtml" />
+    <Content Include="Views\Categories\Details.cshtml" />
+    <Content Include="Views\Categories\Edit.cshtml" />
+    <Content Include="Views\Categories\Index.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="App_Data\" />
+    <Folder Include="node_modules\gulp-autoprefixer\node_modules\gulp-util\node_modules\dateformat\node_modules\meow\node_modules\read-pkg-up\node_modules\find-up\node_modules\" />
+    <Folder Include="node_modules\gulp-autoprefixer\node_modules\gulp-util\node_modules\dateformat\node_modules\meow\node_modules\read-pkg-up\node_modules\read-pkg\node_modules\" />
+    <Folder Include="node_modules\gulp-autoprefixer\node_modules\gulp-util\node_modules\dateformat\node_modules\meow\node_modules\redent\node_modules\indent-string\node_modules\" />
+    <Folder Include="node_modules\gulp-cssmin\node_modules\gulp-util\node_modules\lodash.template\node_modules\lodash.escape\node_modules\lodash._escapehtmlchar\node_modules\" />
+    <Folder Include="node_modules\gulp-cssmin\node_modules\gulp-util\node_modules\lodash.template\node_modules\lodash.escape\node_modules\lodash._reunescapedhtml\node_modules\" />
+    <Folder Include="node_modules\gulp-cssmin\node_modules\gulp-util\node_modules\lodash.template\node_modules\lodash.keys\node_modules\lodash.isobject\node_modules\" />
+    <Folder Include="node_modules\gulp-cssmin\node_modules\gulp-util\node_modules\lodash.template\node_modules\lodash.keys\node_modules\lodash._shimkeys\node_modules\" />
+    <Folder Include="node_modules\gulp-imagemin\node_modules\imagemin\node_modules\imagemin-gifsicle\node_modules\gifsicle\node_modules\bin-build\node_modules\decompress\node_modules\" />
+    <Folder Include="node_modules\gulp-imagemin\node_modules\imagemin\node_modules\imagemin-gifsicle\node_modules\gifsicle\node_modules\bin-build\node_modules\download\node_modules\" />
+    <Folder Include="node_modules\gulp-imagemin\node_modules\imagemin\node_modules\imagemin-gifsicle\node_modules\gifsicle\node_modules\bin-build\node_modules\exec-series\node_modules\" />
+    <Folder Include="node_modules\gulp-imagemin\node_modules\imagemin\node_modules\imagemin-gifsicle\node_modules\gifsicle\node_modules\bin-build\node_modules\tempfile\node_modules\" />
+    <Folder Include="node_modules\gulp-imagemin\node_modules\imagemin\node_modules\imagemin-gifsicle\node_modules\gifsicle\node_modules\bin-build\node_modules\url-regex\node_modules\" />
+    <Folder Include="node_modules\gulp-imagemin\node_modules\imagemin\node_modules\imagemin-gifsicle\node_modules\gifsicle\node_modules\bin-wrapper\node_modules\bin-check\node_modules\" />
+    <Folder Include="node_modules\gulp-imagemin\node_modules\imagemin\node_modules\imagemin-gifsicle\node_modules\gifsicle\node_modules\bin-wrapper\node_modules\download\node_modules\" />
+    <Folder Include="node_modules\gulp-imagemin\node_modules\imagemin\node_modules\imagemin-gifsicle\node_modules\gifsicle\node_modules\logalot\node_modules\squeak\node_modules\" />
+    <Folder Include="node_modules\gulp-imagemin\node_modules\imagemin\node_modules\imagemin-jpegtran\node_modules\jpegtran-bin\node_modules\logalot\node_modules\squeak\node_modules\" />
+    <Folder Include="node_modules\gulp-imagemin\node_modules\imagemin\node_modules\imagemin-optipng\node_modules\optipng-bin\node_modules\bin-build\node_modules\download\node_modules\" />
+    <Folder Include="node_modules\gulp-imagemin\node_modules\imagemin\node_modules\imagemin-optipng\node_modules\optipng-bin\node_modules\bin-build\node_modules\tempfile\node_modules\" />
+    <Folder Include="node_modules\gulp-imagemin\node_modules\imagemin\node_modules\imagemin-optipng\node_modules\optipng-bin\node_modules\bin-build\node_modules\url-regex\node_modules\" />
+    <Folder Include="node_modules\gulp-imagemin\node_modules\imagemin\node_modules\imagemin-optipng\node_modules\optipng-bin\node_modules\logalot\node_modules\squeak\node_modules\" />
+    <Folder Include="node_modules\gulp-imagemin\node_modules\imagemin\node_modules\vinyl-fs\node_modules\glob-stream\node_modules\glob-parent\node_modules\is-glob\node_modules\" />
+    <Folder Include="node_modules\gulp-imagemin\node_modules\imagemin\node_modules\vinyl-fs\node_modules\glob-stream\node_modules\glob\node_modules\minimatch\node_modules\" />
+    <Folder Include="node_modules\gulp-imagemin\node_modules\imagemin\node_modules\vinyl-fs\node_modules\glob-stream\node_modules\micromatch\node_modules\arr-diff\node_modules\" />
+    <Folder Include="node_modules\gulp-imagemin\node_modules\imagemin\node_modules\vinyl-fs\node_modules\glob-stream\node_modules\micromatch\node_modules\kind-of\node_modules\" />
+    <Folder Include="node_modules\gulp-imagemin\node_modules\imagemin\node_modules\vinyl-fs\node_modules\glob-stream\node_modules\micromatch\node_modules\object.omit\node_modules\" />
+    <Folder Include="node_modules\gulp-imagemin\node_modules\imagemin\node_modules\vinyl-fs\node_modules\glob-stream\node_modules\micromatch\node_modules\parse-glob\node_modules\" />
+    <Folder Include="node_modules\gulp-imagemin\node_modules\imagemin\node_modules\vinyl-fs\node_modules\glob-stream\node_modules\micromatch\node_modules\regex-cache\node_modules\" />
+    <Folder Include="node_modules\gulp-imagemin\node_modules\pretty-bytes\node_modules\meow\node_modules\normalize-package-data\node_modules\is-builtin-module\node_modules\" />
+    <Folder Include="node_modules\gulp-imagemin\node_modules\pretty-bytes\node_modules\meow\node_modules\normalize-package-data\node_modules\validate-npm-package-license\node_modules\" />
+    <Folder Include="node_modules\gulp-imagemin\node_modules\pretty-bytes\node_modules\meow\node_modules\read-pkg-up\node_modules\find-up\node_modules\pinkie-promise\node_modules\" />
+    <Folder Include="node_modules\gulp-imagemin\node_modules\pretty-bytes\node_modules\meow\node_modules\read-pkg-up\node_modules\read-pkg\node_modules\load-json-file\node_modules\" />
+    <Folder Include="node_modules\gulp-imagemin\node_modules\pretty-bytes\node_modules\meow\node_modules\redent\node_modules\indent-string\node_modules\repeating\node_modules\" />
+    <Folder Include="node_modules\gulp-jade\node_modules\through2\node_modules\readable-stream\node_modules\string_decoder\" />
+    <Folder Include="node_modules\gulp-less\node_modules\gulp-util\node_modules\dateformat\node_modules\meow\node_modules\read-pkg-up\node_modules\find-up\node_modules\path-exists\" />
+    <Folder Include="node_modules\gulp-less\node_modules\gulp-util\node_modules\dateformat\node_modules\meow\node_modules\read-pkg-up\node_modules\find-up\node_modules\pinkie-promise\" />
+    <Folder Include="node_modules\gulp-less\node_modules\gulp-util\node_modules\dateformat\node_modules\meow\node_modules\read-pkg-up\node_modules\read-pkg\node_modules\" />
+    <Folder Include="node_modules\gulp-watch\node_modules\gulp-util\node_modules\dateformat\node_modules\meow\node_modules\normalize-package-data\node_modules\hosted-git-info\test\lib\" />
+    <Folder Include="node_modules\gulp\node_modules\gulp-util\node_modules\dateformat\node_modules\meow\node_modules\normalize-package-data\node_modules\is-builtin-module\node_modules\" />
+    <Folder Include="node_modules\imagemin-pngquant\node_modules\pngquant-bin\node_modules\bin-build\node_modules\decompress\node_modules\vinyl-assign\node_modules\readable-stream\doc\" />
+    <Folder Include="node_modules\imagemin-pngquant\node_modules\pngquant-bin\node_modules\bin-build\node_modules\decompress\node_modules\vinyl-assign\node_modules\readable-stream\lib\" />
+    <Folder Include="node_modules\imagemin-pngquant\node_modules\pngquant-bin\node_modules\bin-build\node_modules\decompress\node_modules\vinyl-fs\node_modules\duplexify\node_modules\" />
+    <Folder Include="node_modules\imagemin-pngquant\node_modules\pngquant-bin\node_modules\bin-build\node_modules\decompress\node_modules\vinyl-fs\node_modules\mkdirp\node_modules\" />
+    <Folder Include="node_modules\imagemin-pngquant\node_modules\pngquant-bin\node_modules\bin-build\node_modules\decompress\node_modules\vinyl-fs\node_modules\readable-stream\doc\" />
+    <Folder Include="node_modules\imagemin-pngquant\node_modules\pngquant-bin\node_modules\bin-build\node_modules\decompress\node_modules\vinyl-fs\node_modules\readable-stream\lib\" />
+    <Folder Include="node_modules\imagemin-pngquant\node_modules\pngquant-bin\node_modules\bin-build\node_modules\decompress\node_modules\vinyl-fs\node_modules\strip-bom\node_modules\" />
+    <Folder Include="node_modules\imagemin-pngquant\node_modules\pngquant-bin\node_modules\bin-build\node_modules\decompress\node_modules\vinyl-fs\node_modules\vinyl\node_modules\" />
+    <Folder Include="node_modules\imagemin-pngquant\node_modules\pngquant-bin\node_modules\bin-build\node_modules\download\node_modules\got\node_modules\parse-json\node_modules\" />
+    <Folder Include="node_modules\imagemin-pngquant\node_modules\pngquant-bin\node_modules\bin-build\node_modules\download\node_modules\got\node_modules\pinkie-promise\node_modules\" />
+    <Folder Include="node_modules\imagemin-pngquant\node_modules\pngquant-bin\node_modules\bin-build\node_modules\download\node_modules\got\node_modules\url-parse-lax\node_modules\" />
+    <Folder Include="node_modules\imagemin-pngquant\node_modules\pngquant-bin\node_modules\bin-build\node_modules\download\node_modules\vinyl-fs\node_modules\duplexify\node_modules\" />
+    <Folder Include="node_modules\imagemin-pngquant\node_modules\pngquant-bin\node_modules\bin-build\node_modules\download\node_modules\vinyl-fs\node_modules\glob-stream\node_modules\" />
+    <Folder Include="node_modules\imagemin-pngquant\node_modules\pngquant-bin\node_modules\bin-build\node_modules\download\node_modules\vinyl-fs\node_modules\mkdirp\node_modules\" />
+    <Folder Include="node_modules\imagemin-pngquant\node_modules\pngquant-bin\node_modules\bin-build\node_modules\download\node_modules\vinyl-fs\node_modules\strip-bom\node_modules\" />
+    <Folder Include="node_modules\imagemin-pngquant\node_modules\pngquant-bin\node_modules\bin-wrapper\node_modules\bin-check\node_modules\executable\node_modules\meow\node_modules\" />
+    <Folder Include="node_modules\imagemin-pngquant\node_modules\pngquant-bin\node_modules\bin-wrapper\node_modules\bin-version-check\node_modules\bin-version\node_modules\" />
+    <Folder Include="node_modules\imagemin-pngquant\node_modules\pngquant-bin\node_modules\bin-wrapper\node_modules\download\node_modules\got\node_modules\parse-json\node_modules\" />
+    <Folder Include="node_modules\imagemin-pngquant\node_modules\pngquant-bin\node_modules\bin-wrapper\node_modules\download\node_modules\got\node_modules\pinkie-promise\node_modules\" />
+    <Folder Include="node_modules\imagemin-pngquant\node_modules\pngquant-bin\node_modules\bin-wrapper\node_modules\download\node_modules\got\node_modules\url-parse-lax\node_modules\" />
+    <Folder Include="node_modules\imagemin-pngquant\node_modules\pngquant-bin\node_modules\bin-wrapper\node_modules\download\node_modules\vinyl-fs\node_modules\duplexify\node_modules\" />
+    <Folder Include="node_modules\imagemin-pngquant\node_modules\pngquant-bin\node_modules\bin-wrapper\node_modules\download\node_modules\vinyl-fs\node_modules\mkdirp\node_modules\" />
+    <Folder Include="node_modules\imagemin-pngquant\node_modules\pngquant-bin\node_modules\bin-wrapper\node_modules\download\node_modules\vinyl-fs\node_modules\strip-bom\node_modules\" />
+    <Folder Include="node_modules\imagemin-pngquant\node_modules\pngquant-bin\node_modules\logalot\node_modules\squeak\node_modules\chalk\node_modules\strip-ansi\node_modules\" />
+    <Folder Include="obj\Debug\TempPE\" />
+    <Folder Include="source\img\background\" />
+    <Folder Include="source\jade\include\" />
+    <Folder Include="source\jade\parts\" />
+    <Folder Include="source\js\template\" />
+    <Folder Include="source\less\layout\blocks\" />
+    <Folder Include="source\less\layout\bootstrap\" />
+    <Folder Include="source\less\layout\libs\" />
+    <Folder Include="source\less\layout\themes\" />
+    <Folder Include="source\libs\awesome-bootstrap-checkbox\" />
+    <Folder Include="source\libs\bootstrap-datepicker\dist\css\" />
+    <Folder Include="source\libs\bootstrap-datepicker\dist\js\" />
+    <Folder Include="source\libs\bootstrap-select\dist\css\" />
+    <Folder Include="source\libs\bootstrap-select\dist\js\" />
+    <Folder Include="source\libs\bootstrap-switch\dist\css\bootstrap2\" />
+    <Folder Include="source\libs\bootstrap-switch\dist\css\bootstrap3\" />
+    <Folder Include="source\libs\bootstrap-switch\dist\js\" />
+    <Folder Include="source\libs\bootstrap-tabdrop\" />
+    <Folder Include="source\libs\bootstrap-timepicker\css\" />
+    <Folder Include="source\libs\bootstrap-timepicker\js\" />
+    <Folder Include="source\libs\bootstrap-validator\dist\" />
+    <Folder Include="source\libs\bootstrap\css\" />
+    <Folder Include="source\libs\bootstrap\fonts\" />
+    <Folder Include="source\libs\bootstrap\js\" />
+    <Folder Include="source\libs\chart.js\" />
+    <Folder Include="source\libs\codemirror\addon\comment\" />
+    <Folder Include="source\libs\codemirror\addon\dialog\" />
+    <Folder Include="source\libs\codemirror\addon\display\" />
+    <Folder Include="source\libs\codemirror\addon\edit\" />
+    <Folder Include="source\libs\codemirror\addon\fold\" />
+    <Folder Include="source\libs\codemirror\addon\hint\" />
+    <Folder Include="source\libs\codemirror\addon\lint\" />
+    <Folder Include="source\libs\codemirror\addon\merge\" />
+    <Folder Include="source\libs\codemirror\addon\mode\" />
+    <Folder Include="source\libs\codemirror\addon\runmode\" />
+    <Folder Include="source\libs\codemirror\addon\scroll\" />
+    <Folder Include="source\libs\codemirror\addon\search\" />
+    <Folder Include="source\libs\codemirror\addon\selection\" />
+    <Folder Include="source\libs\codemirror\addon\tern\" />
+    <Folder Include="source\libs\codemirror\addon\wrap\" />
+    <Folder Include="source\libs\codemirror\keymap\" />
+    <Folder Include="source\libs\codemirror\lib\" />
+    <Folder Include="source\libs\codemirror\mode\apl\" />
+    <Folder Include="source\libs\codemirror\mode\asciiarmor\" />
+    <Folder Include="source\libs\codemirror\mode\asn.1\" />
+    <Folder Include="source\libs\codemirror\mode\asterisk\" />
+    <Folder Include="source\libs\codemirror\mode\brainfuck\" />
+    <Folder Include="source\libs\codemirror\mode\clike\" />
+    <Folder Include="source\libs\codemirror\mode\clojure\" />
+    <Folder Include="source\libs\codemirror\mode\cmake\" />
+    <Folder Include="source\libs\codemirror\mode\cobol\" />
+    <Folder Include="source\libs\codemirror\mode\coffeescript\" />
+    <Folder Include="source\libs\codemirror\mode\commonlisp\" />
+    <Folder Include="source\libs\codemirror\mode\css\" />
+    <Folder Include="source\libs\codemirror\mode\cypher\" />
+    <Folder Include="source\libs\codemirror\mode\dart\" />
+    <Folder Include="source\libs\codemirror\mode\diff\" />
+    <Folder Include="source\libs\codemirror\mode\django\" />
+    <Folder Include="source\libs\codemirror\mode\dockerfile\" />
+    <Folder Include="source\libs\codemirror\mode\dtd\" />
+    <Folder Include="source\libs\codemirror\mode\dylan\" />
+    <Folder Include="source\libs\codemirror\mode\d\" />
+    <Folder Include="source\libs\codemirror\mode\ebnf\" />
+    <Folder Include="source\libs\codemirror\mode\ecl\" />
+    <Folder Include="source\libs\codemirror\mode\eiffel\" />
+    <Folder Include="source\libs\codemirror\mode\elm\" />
+    <Folder Include="source\libs\codemirror\mode\erlang\" />
+    <Folder Include="source\libs\codemirror\mode\factor\" />
+    <Folder Include="source\libs\codemirror\mode\forth\" />
+    <Folder Include="source\libs\codemirror\mode\fortran\" />
+    <Folder Include="source\libs\codemirror\mode\gas\" />
+    <Folder Include="source\libs\codemirror\mode\gfm\" />
+    <Folder Include="source\libs\codemirror\mode\gherkin\" />
+    <Folder Include="source\libs\codemirror\mode\go\" />
+    <Folder Include="source\libs\codemirror\mode\groovy\" />
+    <Folder Include="source\libs\codemirror\mode\haml\" />
+    <Folder Include="source\libs\codemirror\mode\handlebars\" />
+    <Folder Include="source\libs\codemirror\mode\haskell\" />
+    <Folder Include="source\libs\codemirror\mode\haxe\" />
+    <Folder Include="source\libs\codemirror\mode\htmlembedded\" />
+    <Folder Include="source\libs\codemirror\mode\htmlmixed\" />
+    <Folder Include="source\libs\codemirror\mode\http\" />
+    <Folder Include="source\libs\codemirror\mode\idl\" />
+    <Folder Include="source\libs\codemirror\mode\jade\" />
+    <Folder Include="source\libs\codemirror\mode\javascript\" />
+    <Folder Include="source\libs\codemirror\mode\jinja2\" />
+    <Folder Include="source\libs\codemirror\mode\julia\" />
+    <Folder Include="source\libs\codemirror\mode\livescript\" />
+    <Folder Include="source\libs\codemirror\mode\lua\" />
+    <Folder Include="source\libs\codemirror\mode\markdown\" />
+    <Folder Include="source\libs\codemirror\mode\mathematica\" />
+    <Folder Include="source\libs\codemirror\mode\mirc\" />
+    <Folder Include="source\libs\codemirror\mode\mllike\" />
+    <Folder Include="source\libs\codemirror\mode\modelica\" />
+    <Folder Include="source\libs\codemirror\mode\mscgen\" />
+    <Folder Include="source\libs\codemirror\mode\mumps\" />
+    <Folder Include="source\libs\codemirror\mode\nginx\" />
+    <Folder Include="source\libs\codemirror\mode\nsis\" />
+    <Folder Include="source\libs\codemirror\mode\ntriples\" />
+    <Folder Include="source\libs\codemirror\mode\octave\" />
+    <Folder Include="source\libs\codemirror\mode\oz\" />
+    <Folder Include="source\libs\codemirror\mode\pascal\" />
+    <Folder Include="source\libs\codemirror\mode\pegjs\" />
+    <Folder Include="source\libs\codemirror\mode\perl\" />
+    <Folder Include="source\libs\codemirror\mode\php\" />
+    <Folder Include="source\libs\codemirror\mode\pig\" />
+    <Folder Include="source\libs\codemirror\mode\properties\" />
+    <Folder Include="source\libs\codemirror\mode\puppet\" />
+    <Folder Include="source\libs\codemirror\mode\python\" />
+    <Folder Include="source\libs\codemirror\mode\q\" />
+    <Folder Include="source\libs\codemirror\mode\rpm\" />
+    <Folder Include="source\libs\codemirror\mode\rst\" />
+    <Folder Include="source\libs\codemirror\mode\ruby\" />
+    <Folder Include="source\libs\codemirror\mode\rust\" />
+    <Folder Include="source\libs\codemirror\mode\r\" />
+    <Folder Include="source\libs\codemirror\mode\sass\" />
+    <Folder Include="source\libs\codemirror\mode\scheme\" />
+    <Folder Include="source\libs\codemirror\mode\shell\" />
+    <Folder Include="source\libs\codemirror\mode\sieve\" />
+    <Folder Include="source\libs\codemirror\mode\slim\" />
+    <Folder Include="source\libs\codemirror\mode\smalltalk\" />
+    <Folder Include="source\libs\codemirror\mode\smarty\" />
+    <Folder Include="source\libs\codemirror\mode\solr\" />
+    <Folder Include="source\libs\codemirror\mode\soy\" />
+    <Folder Include="source\libs\codemirror\mode\sparql\" />
+    <Folder Include="source\libs\codemirror\mode\spreadsheet\" />
+    <Folder Include="source\libs\codemirror\mode\sql\" />
+    <Folder Include="source\libs\codemirror\mode\stex\" />
+    <Folder Include="source\libs\codemirror\mode\stylus\" />
+    <Folder Include="source\libs\codemirror\mode\swift\" />
+    <Folder Include="source\libs\codemirror\mode\tcl\" />
+    <Folder Include="source\libs\codemirror\mode\textile\" />
+    <Folder Include="source\libs\codemirror\mode\tiddlywiki\" />
+    <Folder Include="source\libs\codemirror\mode\tiki\" />
+    <Folder Include="source\libs\codemirror\mode\toml\" />
+    <Folder Include="source\libs\codemirror\mode\tornado\" />
+    <Folder Include="source\libs\codemirror\mode\troff\" />
+    <Folder Include="source\libs\codemirror\mode\ttcn-cfg\" />
+    <Folder Include="source\libs\codemirror\mode\ttcn\" />
+    <Folder Include="source\libs\codemirror\mode\turtle\" />
+    <Folder Include="source\libs\codemirror\mode\twig\" />
+    <Folder Include="source\libs\codemirror\mode\vbscript\" />
+    <Folder Include="source\libs\codemirror\mode\vb\" />
+    <Folder Include="source\libs\codemirror\mode\velocity\" />
+    <Folder Include="source\libs\codemirror\mode\verilog\" />
+    <Folder Include="source\libs\codemirror\mode\vhdl\" />
+    <Folder Include="source\libs\codemirror\mode\vue\" />
+    <Folder Include="source\libs\codemirror\mode\xml\" />
+    <Folder Include="source\libs\codemirror\mode\xquery\" />
+    <Folder Include="source\libs\codemirror\mode\yaml\" />
+    <Folder Include="source\libs\codemirror\mode\z80\" />
+    <Folder Include="source\libs\codemirror\theme\" />
+    <Folder Include="source\libs\datatables\media\css\" />
+    <Folder Include="source\libs\datatables\media\images\" />
+    <Folder Include="source\libs\datatables\media\js\" />
+    <Folder Include="source\libs\font-awesome\css\" />
+    <Folder Include="source\libs\font-awesome\fonts\" />
+    <Folder Include="source\libs\inputNumber\js\" />
+    <Folder Include="source\libs\ionrangeslider\css\" />
+    <Folder Include="source\libs\ionrangeslider\img\" />
+    <Folder Include="source\libs\ionrangeslider\js\" />
+    <Folder Include="source\libs\jquery.scrollbar\" />
+    <Folder Include="source\libs\jquery\" />
+    <Folder Include="source\libs\morris.js\" />
+    <Folder Include="source\libs\raphael\" />
+    <Folder Include="source\libs\selectize\dist\css\" />
+    <Folder Include="source\libs\selectize\dist\js\standalone\" />
+    <Folder Include="source\libs\selectize\plugins\remove_button\" />
+    <Folder Include="source\libs\selectize\plugins\restore_on_backspace\" />
+    <Folder Include="source\libs\sparkline\" />
+    <Folder Include="source\libs\summernote\dist\" />
+    <Folder Include="source\libs\tablesorter\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="fonts\glyphicons-halflings-regular.woff" />
+    <Content Include="fonts\glyphicons-halflings-regular.ttf" />
+    <Content Include="fonts\glyphicons-halflings-regular.eot" />
+    <Content Include="packages.config" />
+    <None Include="Project_Readme.html" />
+    <Content Include="Scripts\jquery-1.10.2.min.map" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{4A0DDDB5-7A95-4FBF-97CC-616D07737A77}" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\201602151645212_initial.resx">
+      <DependentUpon>201602151645212_initial.cs</DependentUpon>
+    </EmbeddedResource>
+  </ItemGroup>
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
+    <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+  </PropertyGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.targets" Condition="Exists('$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.targets')" />
+  <Import Project="$(VSToolsPath)\WebApplications\Microsoft.WebApplication.targets" Condition="'$(VSToolsPath)' != ''" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" Condition="false" />
+  <Target Name="MvcBuildViews" AfterTargets="AfterBuild" Condition="'$(MvcBuildViews)'=='true'">
+    <AspNetCompiler VirtualPath="temp" PhysicalPath="$(WebProjectOutputDir)" />
+  </Target>
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
+        <WebProjectProperties>
+          <UseIIS>True</UseIIS>
+          <AutoAssignPort>True</AutoAssignPort>
+          <DevelopmentServerPort>57028</DevelopmentServerPort>
+          <DevelopmentServerVPath>/</DevelopmentServerVPath>
+          <IISUrl>http://localhost:57028/</IISUrl>
+          <NTLMAuthentication>False</NTLMAuthentication>
+          <UseCustomServer>False</UseCustomServer>
+          <CustomServerUrl>
+          </CustomServerUrl>
+          <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
+        </WebProjectProperties>
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('..\packages\Microsoft.Net.Compilers.1.0.0\build\Microsoft.Net.Compilers.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.Net.Compilers.1.0.0\build\Microsoft.Net.Compilers.props'))" />
+    <Error Condition="!Exists('..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.0\build\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.0\build\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props'))" />
+  </Target>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it.
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target> -->
+</Project>

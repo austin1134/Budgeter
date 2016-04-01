@@ -1,0 +1,35 @@
+﻿@using CF_Budgeter.Models
+@model IEnumerable<CF_Budgeter.Models.Transaction>
+
+@if (Model != null)
+{
+foreach (var transaction in Model)
+ {
+     <div class="feed-widget__item feed-widget__item_user">
+         <div class="feed-widget__ico"><i class="fa fa-credit-card"></i>
+         </div>
+         <div class="feed-widget__info">
+             <div class="feed-widget__text">
+                 <b><a href='./'> @User.Identity.Name</a></b><b> @transaction.Amount</b> @transaction.Description
+             </div>
+             <div class="feed-widget__date"> @transaction.Date</div>
+             @Html.ActionLink("Edit", "Edit", "Transactions", new {id = transaction.Id}, new {@type = "button"})
+             |
+             @Html.ActionLink("Delete", "Delete", "Transactions", new {id = transaction.Id}, new {@type = "button"})
+         </div>
+     </div>
+    }
+}
+else
+{
+    <div class="feed-widget__item feed-widget__item_user">
+        <div class="feed-widget__ico">
+            <i class="fa fa-credit-card"></i>
+        </div>
+    <div class="feed-widget__info">
+        <div class="feed-widget__text">
+            <text>There are currently no transactions for this account.</text>
+        </div>
+    </div>
+    </div>
+}

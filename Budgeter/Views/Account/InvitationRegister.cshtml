@@ -1,0 +1,49 @@
+﻿@model CF_Budgeter.Models.RegisterViewModel
+@{
+    ViewBag.Title = "InvitationRegister";
+    Layout = "~/Views/Shared/_LoginLayout.cshtml";
+}
+
+<h2>InvitationRegister</h2>
+
+<!DOCTYPE html>
+
+<h7 style="font-style:italic">Register to Join Pre Existing Household</h7>
+
+@using (Html.BeginForm("InvitationRegister", "Account", new { householdId = (int)ViewBag.HouseholdId, invitationId = (int)ViewBag.InvitationId, guid = (Guid)ViewBag.JoinCode }, FormMethod.Post, new { role = "form" }))
+{
+    @Html.AntiForgeryToken()
+    @Html.HiddenFor(m => m.Email)
+    @Html.HiddenFor(m => m.Household)
+    @Html.AntiForgeryToken()
+    <hr />
+    @Html.ValidationSummary("", new { @class = "text-danger" })
+    <div class="form-group">
+        @Html.LabelFor(m => m.FirstName, new { @class = "col-md-4 control-label" })
+        @Html.TextBoxFor(m => m.FirstName, new { @class = "form-control" })
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(m => m.LastName, new { @class = "col-md-4 control-label" })
+        @Html.TextBoxFor(m => m.LastName, new { @class = "form-control" })
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(m => m.Email, new { @class = "col-md-4 control-label" })
+        @Html.TextBoxFor(m => m.Email, new { @class = "form-control" })
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(m => m.Password, new { @class = "col-md-4 control-label" })
+        @Html.PasswordFor(m => m.Password, new { @class = "form-control" })
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(m => m.ConfirmPassword, new { @class = "col-md-6 control-label" })
+        @Html.PasswordFor(m => m.ConfirmPassword, new { @class = "form-control" })
+    </div>
+
+    @Html.ActionLink("Register Using An External Login", "ExternalLoginView")
+
+    <div class="form-group">
+        <div class="col-md-offset-4 col-md-10">
+            <input type="submit" class="btn btn-default" value="Register" />
+        </div>
+    </div>
+}

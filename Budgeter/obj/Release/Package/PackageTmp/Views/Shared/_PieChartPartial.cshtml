@@ -1,0 +1,29 @@
+﻿@model CF_Budgeter.Models.AccountDetailsViewModel
+
+<table>
+       data-provide="datatable"
+    <thead>
+        <tr>
+            <th>
+                Category
+            </th>
+            <th>
+                Amount
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var budgetItem in Model.Transactions )
+        {
+            <tr>
+                <td>
+                    @budgetItem.Description
+                </td>
+                <td>
+                    $@budgetItem.Amount
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

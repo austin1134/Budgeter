@@ -1,0 +1,67 @@
+﻿@using System.Web.UI.WebControls
+@using CF_Budgeter.Models
+@model IEnumerable<CF_Budgeter.Models.Budget>
+
+
+@if (Model != null)
+{
+    foreach (var budget in Model)
+    {
+        <div class="container-fluid half-padding">
+            <div class="template template__table_sortable">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="panel panel-danger">
+                            <div class="panel-heading">
+                                <h3 class="panel-title">@budget.Name</h3>
+                                <h5>Accounts</h5>
+                                @Html.ActionLink("Edit", "Edit", "Budgets", new {id = budget.Id}, null) |
+                                @Html.ActionLink("Details", "Details", "Budgets", new {id = budget.Id}, null) |
+                                @Html.ActionLink("Delete", "Delete", "Budgets", new {id = budget.Id}, null)
+                            </div>
+                            <div class="panel-body">
+                                <div class="scrollable scrollbar-macosx">
+                                    <table id="" class="table table_sortable {sortlist: [[0,0]]}" cellspacing="0" width="100%">
+                                        <thead>
+                                        <tr>
+                                            <th>Budget Item</th>
+                                            <th>Progress To Item Limit</th>
+                                            <th>Limit</th>
+                                            <th>Spent</th>
+                                        </tr>
+                                        </thead>
+                                        <tfoot>
+                                        <tr>
+                                            <th>Budget Item</th>
+                                            <th>Progress To Item Limit</th>
+                                            <th>Limit</th>
+                                            <th>Spent</th>
+                                        </tr>
+                                        </tfoot>
+                                        <tbody>
+                                        @foreach (var budgetitem in Model)
+                                        {
+                                            <tr>
+                                                <td>@budgetitem.Name</td>
+                                                <td class="progress">
+                                                    <div role="progressbar" aria-valuenow="35" aria-valuemin="0" aria-valuemax="100" style="width: 35%" class="progress-bar progress-bar-info progress-bar-striped active"></div>
+                                                </td>
+                                                <td>@budget.TotalBudgetAmount</td>
+                                                <td></td>
+                                            </tr>
+                                        }
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+}
+else
+{
+    <p>There are currently no budgets for this household.</p>
+}
