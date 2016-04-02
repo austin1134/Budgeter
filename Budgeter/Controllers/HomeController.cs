@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
@@ -14,6 +15,9 @@ namespace CF_Budgeter.Controllers
         public ActionResult Index()
         {
             DashBoardViewModel dashboard = new DashBoardViewModel();
+            var user = db.Users.FirstOrDefault(u => u.UserName == User.Identity.Name);
+
+            db.Households.Find(user.HouseholdId);
 
             var userHouseholds = db.Users.FirstOrDefault(u => u.UserName == User.Identity.Name).Households;
             if (userHouseholds == null)
@@ -23,22 +27,57 @@ namespace CF_Budgeter.Controllers
 
             ViewBag.SelectedHousehold = new SelectList(userHouseholds, "Id", "Name", dashboard.SelectedHousehold);
 
-            //if (ViewBag.SelectedHousehold == null)
-            //{
-            //    Sele == userHouseholds.FirstOrDefault();
-            //}
+            if (dashboard.SelectedHousehold == 0)
+            {
+                dashboard.SelectedHousehold = user.HouseholdId; /*userHouseholds.First().Id;*/
+            }
 
-            //dashboard.SelectedHousehold = ViewBag.HouseholdId;
 
             dashboard.Members = db.Users.Where(x => x.HouseholdId == dashboard.SelectedHousehold);
 
-            dashboard.TotalBudget = db.Budgets.Where(x => x.HouseholdId == dashboard.SelectedHousehold).Select(b => b.TotalBudgetAmount).Sum();
-            dashboard.Transactions = db.Transactions.Where(x => x.Account.HouseholdId == dashboard.SelectedHousehold);
-            dashboard.TotalSpent = dashboard.Transactions.Where(x => x.Date.Month == DateTime.Now.Month).Select(x => x.Amount).Sum();
-            dashboard.AvailableToSpend = dashboard.TotalBudget - dashboard.TotalSpent;
+            //dashboard.TotalBudget = db.Budgets.Where(x => x.HouseholdId == dashboard.SelectedHousehold).Select(b => b.TotalBudgetAmount).Sum();
+            //dashboard.Transactions = db.Transactions.Where(x => x.Account.HouseholdId == dashboard.SelectedHousehold);
+            //dashboard.TotalSpent = dashboard.Transactions.Where(x => x.Date.Month == DateTime.Now.Month).Select(x => x.Amount).Sum();
+            //dashboard.AvailableToSpend = dashboard.TotalBudget - dashboard.TotalSpent;
 
             return View();
         }
+
+        // POST: Selected Household
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Edit(DashBoardViewModel dashboard)
+        {
+            var userHouseholds = db.Users.FirstOrDefault(u => u.UserName == User.Identity.Name).Households;
+            var user = db.Users.FirstOrDefault(u => u.UserName == User.Identity.Name);
+
+            if (ModelState.IsValid)
+            {
+                {
+
+                    db.Entry(dashboard).State = EntityState.Modified;
+                    db.SaveChanges();
+                    return RedirectToAction("Index", "Home");
+                }
+            }
+            ViewBag.SelectedHousehold = new SelectList(userHouseholds, "Id", "UserName", user.HouseholdId);
+            return RedirectToAction("Index", "Home");
+        }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
         public ActionResult About()
         {

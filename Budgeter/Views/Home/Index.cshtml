@@ -7,7 +7,8 @@
 }
 <div class="form-group">
     <div class="col-md-10">
-        @using (Html.BeginForm("Index", "Home", FormMethod.Post))
+        <h4>Currently Selected Household: @Model.SelectedHousehold</h4>
+        @using (Html.BeginForm("Edit", "Home", FormMethod.Post))
         {
             @Html.AntiForgeryToken()
             @Html.HiddenFor(x => x.Budgets)

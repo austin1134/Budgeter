@@ -46,9 +46,15 @@ namespace CF_Budgeter.Controllers
         // GET: BudgetItems/Create
         public ActionResult Create()
         {
-            ViewBag.BudgetId = new SelectList(db.Budgets, "Id", "Name");
-            ViewBag.HouseholdId = new SelectList(db.Categories, "Id", "Name");
-            ViewBag.CategoryId = new SelectList(db.Categories, "Id", "Name");
+            BudgetItem budgetItem = new BudgetItem();
+            ApplicationUser user = db.Users.FirstOrDefault(x => x.UserName == User.Identity.Name);
+            var household = db.Households.FirstOrDefault(x => x.Id == user.HouseholdId);
+            var householdcategories = household.Categories.ToList();
+            var householdbudgets = household.Budgets.ToList();
+            budgetItem.Budget.HouseholdId = user.HouseholdId;
+
+            ViewBag.BudgetId = new SelectList(householdbudgets, "Id", "Name");
+            ViewBag.CategoryId = new SelectList(householdcategories, "Id", "Name");
             return View();
         }
 
@@ -59,6 +65,14 @@ namespace CF_Budgeter.Controllers
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> Create([Bind(Include = "Id,CategoryId,Amount,BudgetId")] BudgetItem budgetItem)
         {
+            ApplicationUser user = db.Users.FirstOrDefault(x => x.UserName == User.Identity.Name);
+            Budget budget = db.Budgets.FirstOrDefault(x => x.Id == budgetItem.BudgetId);
+            Household household = db.Households.FirstOrDefault(x => x.Id == budget.HouseholdId);
+
+            if (household.Id != user.HouseholdId)
+            {
+                throw new HttpException(401, "Unauthorized access");
+            }
             if (ModelState.IsValid)
             {
                 db.BudgetItems.Add(budgetItem);

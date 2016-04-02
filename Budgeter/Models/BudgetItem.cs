@@ -14,7 +14,7 @@ namespace CF_Budgeter.Models
         public int CategoryId { get; set; }
         public double Amount { get; set; }
         public decimal AmountSpent { get; set; }
-        public string BudgetId { get; set; }
+        public int BudgetId { get; set; }
 
         public virtual Budget Budget { get; set; }
         public virtual Category Category { get; set; }

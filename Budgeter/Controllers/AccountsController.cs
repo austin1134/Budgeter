@@ -37,7 +37,7 @@ namespace CF_Budgeter.Controllers
 
             Household household = db.Households.FirstOrDefault(x => x.Id == account.HouseholdId);
 
-            if (!household.Members.Contains(user))
+            if (household.Id != user.HouseholdId)
             {
                 throw new HttpException(401, "Unauthorized access");
             }
@@ -85,11 +85,12 @@ namespace CF_Budgeter.Controllers
         // GET: Accounts/Create
         public ActionResult Create(int householdId)
         {
+            var user = db.Users.FirstOrDefault(u => u.UserName == User.Identity.Name).HouseholdId;
             Account account = new Account();
             var userHouseholds = db.Users.FirstOrDefault(u => u.UserName == User.Identity.Name).Households;
 
-            //account.HouseholdId = householdId;
-            ViewBag.HouseholdId = new SelectList(userHouseholds, "Id", "Name", account.HouseholdId);
+            account.HouseholdId = user;
+            //ViewBag.HouseholdId = new SelectList(userHouseholds, "Id", "Name", account.HouseholdId);
             return View();
         }
 
@@ -100,19 +101,15 @@ namespace CF_Budgeter.Controllers
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> Create([Bind(Include = "Id,HouseholdId,Balance,Name,ReconciledBalance")] Account account)
         {
+            var user = db.Users.FirstOrDefault(u => u.UserName == User.Identity.Name);
             if (ModelState.IsValid)
             {
-                var user = db.Users.FirstOrDefault(u => u.UserName == User.Identity.Name);
-                if (user != null)
-                {
-                    
-                    //account.HouseholdId = user.HouseholdId;
+                    account.HouseholdId = user.HouseholdId;
                     //account.HouseholdId = ViewBag.HouseholdId;
 
                     db.Accounts.Add(account);
                     await db.SaveChangesAsync();
                     return RedirectToAction("Index");
-                }
             }
             //ViewBag.HouseholdId = new SelectList(db.Households, "Id", "Name", account.HouseholdId);
             return View(account);
