@@ -19,9 +19,9 @@ namespace CF_Budgeter.Controllers
         // GET: Budgets
         public async Task<ActionResult> Index()
         {
-            var budgets = db.Budgets.Include(b => b.Household);
-            ViewBag.Accounts = new SelectList(db.Accounts, "Id", "Name");
-            ViewBag.Categories = new SelectList(db.Categories, "Id", "Name");
+            var currentUser = db.Users.FirstOrDefault(u => u.UserName == User.Identity.Name).HouseholdId;
+            var budgets = db.Budgets.Where(a => a.HouseholdId == currentUser);
+
             return View(await budgets.ToListAsync());
         }
 
@@ -43,7 +43,9 @@ namespace CF_Budgeter.Controllers
         // GET: Budgets/Create
         public ActionResult Create()
         {
-            ViewBag.HouseholdId = new SelectList(db.Households, "Id", "Name");
+            var userHouseholds = db.Users.FirstOrDefault(x => x.UserName == User.Identity.Name).Households;
+
+            ViewBag.HouseholdId = new SelectList(userHouseholds, "Id", "Name");
             return View();
         }
 
@@ -56,6 +58,7 @@ namespace CF_Budgeter.Controllers
         {
             if (ModelState.IsValid)
             {
+
                 db.Budgets.Add(budget);
                 await db.SaveChangesAsync();
                 return RedirectToAction("Index");

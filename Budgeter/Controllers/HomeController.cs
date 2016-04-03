@@ -25,12 +25,12 @@ namespace CF_Budgeter.Controllers
                 return RedirectToAction("Create", "Households");
             }
 
-            ViewBag.SelectedHousehold = new SelectList(userHouseholds, "Id", "Name", dashboard.SelectedHousehold);
+            ViewBag.SelectedHousehold = new SelectList(userHouseholds, "Id", "Name", user.HouseholdId/*dashboard.SelectedHousehold*/);
 
-            if (dashboard.SelectedHousehold == 0)
-            {
+            //if (dashboard.SelectedHousehold == 0)
+            //{
                 dashboard.SelectedHousehold = user.HouseholdId; /*userHouseholds.First().Id;*/
-            }
+            //}
 
 
             dashboard.Members = db.Users.Where(x => x.HouseholdId == dashboard.SelectedHousehold);
@@ -40,22 +40,22 @@ namespace CF_Budgeter.Controllers
             //dashboard.TotalSpent = dashboard.Transactions.Where(x => x.Date.Month == DateTime.Now.Month).Select(x => x.Amount).Sum();
             //dashboard.AvailableToSpend = dashboard.TotalBudget - dashboard.TotalSpent;
 
-            return View();
+            return View(dashboard);
         }
 
         // POST: Selected Household
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(DashBoardViewModel dashboard)
+        public ActionResult Edit(ApplicationUser user)
         {
             var userHouseholds = db.Users.FirstOrDefault(u => u.UserName == User.Identity.Name).Households;
-            var user = db.Users.FirstOrDefault(u => u.UserName == User.Identity.Name);
+            //var user = db.Users.FirstOrDefault(u => u.UserName == User.Identity.Name);
 
             if (ModelState.IsValid)
             {
                 {
 
-                    db.Entry(dashboard).State = EntityState.Modified;
+                    db.Entry(user).State = EntityState.Modified;
                     db.SaveChanges();
                     return RedirectToAction("Index", "Home");
                 }

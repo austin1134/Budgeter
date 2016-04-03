@@ -51,7 +51,7 @@ namespace CF_Budgeter.Controllers
             var household = db.Households.FirstOrDefault(x => x.Id == user.HouseholdId);
             var householdcategories = household.Categories.ToList();
             var householdbudgets = household.Budgets.ToList();
-            budgetItem.Budget.HouseholdId = user.HouseholdId;
+            //budgetItem.Budget.HouseholdId = user.HouseholdId;
 
             ViewBag.BudgetId = new SelectList(householdbudgets, "Id", "Name");
             ViewBag.CategoryId = new SelectList(householdcategories, "Id", "Name");
