@@ -10,8 +10,9 @@ namespace CF_Budgeter.Models
         public decimal TotalBudget { get; set; }
         public decimal TotalSpent { get; set; }
         public decimal AvailableToSpend { get; set; }
-        public int SelectedHousehold { get; set; }
-        public string UserHousehold { get; set; }
+        public Household SelectedHousehold { get; set; }
+        public Budget SelectedBudget { get; set; }
+        
 
         public IEnumerable<Transaction> Transactions { get; set; }
         public IEnumerable<Budget> Budgets { get; set; }

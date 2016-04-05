@@ -14,13 +14,16 @@ namespace CF_Budgeter.Models
         {
             this.Households = new HashSet<Household>();
             this.Transactions = new HashSet<Transaction>();
+            this.Budgets = new HashSet<Budget>();
         }
 
         public string FirstName { get; set; }
         public bool IsSelected { get; internal set; }
         public string LastName { get; set; }
         public int HouseholdId { get; set; }
+        public int BudgetId { get; set; }
 
+        public virtual ICollection<Budget> Budgets { get; set; }
         public virtual ICollection<Household> Households { get; set; }
         public virtual ICollection<Transaction> Transactions { get; set; } 
 

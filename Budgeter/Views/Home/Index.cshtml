@@ -2,18 +2,39 @@
 @using CF_Budgeter.Models
 @using CF_Budgeter.Controllers
 
-@{
-    ViewBag.Title = "Choose the household to display.";
-}
+@*@{
+    @ViewBag.Title = "Dashboard"; 
+}*@
 <div class="form-group">
     <div class="col-md-10">
-        <h4>Currently Selected Household: @Model.SelectedHousehold</h4>
+        @if (Model.SelectedHousehold != null && Model.SelectedBudget != null)
+        {
+            <h4>Currently Selected Household: @Model.SelectedHousehold.Name Currently Selected Budget: @Model.SelectedBudget.Name</h4>
+        }
+        else
+        {
+        <h4>PLEASE SELECT A HOUSEHOLD AND BUDGET</h4>
+        }
         @using (Html.BeginForm("Edit", "Home", FormMethod.Post))
         {
             @Html.AntiForgeryToken()
-            @Html.HiddenFor(x => x.Budgets)
+            @*@Html.HiddenFor(x => x.Budgets)*@
             @*@Html.DropDownListFor(x => x.SelectedHousehold, (SelectList) ViewBag.SelectedHousehold, new {@class = "form-control", @onchange = "this.form.submit()"})*@
             @Html.DropDownList("SelectedHousehold", null, "--Select Household--", htmlAttributes: new {@class = "form-control", @onchange = "this.form.submit()"})
+        }
+        @using (Html.BeginForm("Edit", "Home", FormMethod.Post))
+        {
+            @Html.AntiForgeryToken()
+            @*@Html.DropDownListFor(x => x.SelectedHousehold, (SelectList) ViewBag.SelectedHousehold, new {@class = "form-control", @onchange = "this.form.submit()"})*@
+
+            if (Model.SelectedHousehold == null)
+            {
+                @Html.DropDownList("SelectedBudget", null, "--Select Budget--", htmlAttributes: new {@class = "form-control", @onchange = "this.form.submit()", @disabled = "disabled"})
+            }
+            else
+            {
+                 @Html.DropDownList("SelectedBudget", null, "--Select Budget--", htmlAttributes: new {@class = "form-control", @onchange = "this.form.submit()"})
+            }
         }
     </div>
 </div>
