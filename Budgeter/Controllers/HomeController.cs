@@ -18,12 +18,11 @@ namespace CF_Budgeter.Controllers
             var user = db.Users.FirstOrDefault(u => u.UserName == User.Identity.Name);
             db.Households.Find(user.HouseholdId);
             var userHouseholds = db.Users.FirstOrDefault(u => u.UserName == User.Identity.Name).Households;
-            var userBudgets = db.Budgets.Where(x => x.HouseholdId == user.HouseholdId/*dashboard.SelectedHousehold*/).ToList();
+            var userBudgets = db.Budgets.Where(x => x.HouseholdId == user.HouseholdId).ToList();
             if (userHouseholds == null)
             {
                 return RedirectToAction("Create", "Households");
             }
-
 
             dashboard.SelectedHousehold = db.Households.FirstOrDefault(x => x.Id == user.HouseholdId);
             dashboard.SelectedBudget = db.Budgets.FirstOrDefault(x => x.Id == user.BudgetId);
@@ -32,28 +31,17 @@ namespace CF_Budgeter.Controllers
             ViewBag.SelectedBudget = new SelectList(userBudgets, "Id", "Name", dashboard.SelectedBudget);
 
             user.HouseholdId = dashboard.SelectedHousehold.Id;
-            if (dashboard.SelectedBudget != null)
-            {
-                user.BudgetId = dashboard.SelectedBudget.Id;
-            }
-            else
-            {
-                user.BudgetId = db.Budgets.FirstOrDefault(x => x.HouseholdId == user.HouseholdId).Id;
-            }
+
             dashboard.Members = db.Users.Where(x => x.HouseholdId == dashboard.SelectedHousehold.Id);
 
-            if (userBudgets == null)
-            {
-                return RedirectToAction("Create", "Budgets");
-            }
-            if (userBudgets != null)
-            {
-            dashboard.TotalBudget = db.Budgets.Where(x => x.HouseholdId == user.HouseholdId/*dashboard.SelectedHousehold*/).Select(b => b.TotalBudgetAmount).Sum();
+
+            dashboard.TotalBudget = db.Budgets.Where(x => x.HouseholdId == user.HouseholdId).Select(b => b.TotalBudgetAmount).Sum();
             dashboard.Transactions = db.Transactions.Where(x => x.Account.HouseholdId == dashboard.SelectedHousehold.Id);
             dashboard.TotalSpent = dashboard.Transactions.Where(x => x.Date.Month == DateTime.Now.Month).Select(x => x.Amount).Sum();
             dashboard.AvailableToSpend = dashboard.TotalBudget - dashboard.TotalSpent;
-            }
-            //dashboard.BudgetItems = db.BudgetItems.Where(x => x.)
+
+            dashboard.BudgetItems = db.BudgetItems.Where(x => x.BudgetId == user.BudgetId);
+
 
             return View(dashboard);
         }
@@ -61,15 +49,33 @@ namespace CF_Budgeter.Controllers
         // POST: Selected Household
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "SelectedHousehold, SelectedBudget")] DashBoardViewModel dashBoard)
+        public ActionResult Edit([Bind(Include = "SelectedHousehold")] DashBoardViewModel dashBoard)
         {
-            //var userHouseholds = db.Users.FirstOrDefault(u => u.UserName == User.Identity.Name).Households;
             var user = db.Users.FirstOrDefault(u => u.UserName == User.Identity.Name);
 
             if (ModelState.IsValid)
             {
                 {
                     user.HouseholdId = dashBoard.SelectedHousehold.Id;
+
+                    db.Entry(user).State = EntityState.Modified;
+                    db.SaveChanges();
+                    return RedirectToAction("Index", "Home");
+                }
+            }
+            return RedirectToAction("Index", "Home");
+        }
+
+        // POST: Selected Budget
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Edit2([Bind(Include = "SelectedBudget")] DashBoardViewModel dashBoard)
+        {
+            var user = db.Users.FirstOrDefault(u => u.UserName == User.Identity.Name);
+
+            if (ModelState.IsValid)
+            {
+                {
                     user.BudgetId = dashBoard.SelectedBudget.Id;
 
                     db.Entry(user).State = EntityState.Modified;
@@ -77,12 +83,8 @@ namespace CF_Budgeter.Controllers
                     return RedirectToAction("Index", "Home");
                 }
             }
-            //ViewBag.SelectedHousehold = new SelectList(userHouseholds, "Id", "UserName", dashBoard.SelectedHousehold);
-            //ViewBag.SelectedBudget = new SelectList(userBudgets, "Id", "Name", dashBoard.SelectedBudget);
             return RedirectToAction("Index", "Home");
         }
-
-
 
 
 

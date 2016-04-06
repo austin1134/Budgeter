@@ -18,23 +18,24 @@
         @using (Html.BeginForm("Edit", "Home", FormMethod.Post))
         {
             @Html.AntiForgeryToken()
-            @*@Html.HiddenFor(x => x.Budgets)*@
-            @*@Html.DropDownListFor(x => x.SelectedHousehold, (SelectList) ViewBag.SelectedHousehold, new {@class = "form-control", @onchange = "this.form.submit()"})*@
-            @Html.DropDownList("SelectedHousehold", null, "--Select Household--", htmlAttributes: new {@class = "form-control", @onchange = "this.form.submit()"})
+            @Html.DropDownListFor(x => x.SelectedHousehold.Id, (SelectList) ViewBag.SelectedHousehold,"--Select Household--", new {@class = "form-control", @onchange = "this.form.submit()"})
+            @*@Html.DropDownList("SelectedHousehold", null, "--Select Household--", htmlAttributes: new {@class = "form-control", @onchange = "this.form.submit()"})*@
         }
-        @using (Html.BeginForm("Edit", "Home", FormMethod.Post))
+        @using (Html.BeginForm("Edit2", "Home", FormMethod.Post))
         {
             @Html.AntiForgeryToken()
-            @*@Html.DropDownListFor(x => x.SelectedHousehold, (SelectList) ViewBag.SelectedHousehold, new {@class = "form-control", @onchange = "this.form.submit()"})*@
+            @Html.HiddenFor(x => x.SelectedHousehold.Id)
+            @Html.HiddenFor(x => x.Budgets)
+            @Html.DropDownListFor(x => x.SelectedBudget.Id, (SelectList) ViewBag.SelectedBudget, new {@class = "form-control", @onchange = "this.form.submit()"})
 
-            if (Model.SelectedHousehold == null)
+            @*if (Model.SelectedHousehold == null)
             {
                 @Html.DropDownList("SelectedBudget", null, "--Select Budget--", htmlAttributes: new {@class = "form-control", @onchange = "this.form.submit()", @disabled = "disabled"})
             }
             else
             {
                  @Html.DropDownList("SelectedBudget", null, "--Select Budget--", htmlAttributes: new {@class = "form-control", @onchange = "this.form.submit()"})
-            }
+            }*@
         }
     </div>
 </div>
