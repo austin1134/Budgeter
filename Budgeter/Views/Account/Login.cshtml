@@ -31,8 +31,10 @@
                     <p>
                         @Html.ActionLink("Register as a new user", "Register") | @Html.ActionLink("Forgot your password?", "ForgotPassword")
                     </p>
-                    @* Enable this once you have account confirmation enabled for password reset functionality
-                        <p>
-                            @Html.ActionLink("Forgot your password?", "ForgotPassword")
-                        </p>*@
                 }
+                <div class="form-group">
+                    <form method="post" action="@Url.Action("Guest", "Account", new { id = "12f0a3e2-df84-4e73-a27f-8602e7647c4d" })">
+                        @Html.AntiForgeryToken()
+                        <button type="submit" class="btn btn-info">Demo Account</button>
+                    </form>
+                </div>

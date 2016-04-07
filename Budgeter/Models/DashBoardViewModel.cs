@@ -10,6 +10,8 @@ namespace CF_Budgeter.Models
         public decimal TotalBudget { get; set; }
         public decimal TotalSpent { get; set; }
         public decimal AvailableToSpend { get; set; }
+        public decimal AverageTransaction { get; set; }
+        public decimal AmountSpent { get; set; }
         public Household SelectedHousehold { get; set; }
         public Budget SelectedBudget { get; set; }
         

@@ -39,12 +39,36 @@ namespace CF_Budgeter.Controllers
             dashboard.Transactions = db.Transactions.Where(x => x.Account.HouseholdId == dashboard.SelectedHousehold.Id);
             dashboard.TotalSpent = dashboard.Transactions.Where(x => x.Date.Month == DateTime.Now.Month).Select(x => x.Amount).Sum();
             dashboard.AvailableToSpend = dashboard.TotalBudget - dashboard.TotalSpent;
-
+            if (dashboard.TotalSpent != 0 && dashboard.Transactions != null)
+            {
+                dashboard.AverageTransaction = decimal.Divide(dashboard.TotalSpent, dashboard.Transactions.Count());
+            }
             dashboard.BudgetItems = db.BudgetItems.Where(x => x.BudgetId == user.BudgetId);
+
+            List<decimal> categorizedAmounts = new List<decimal>();
+            foreach (var budgetitem in dashboard.BudgetItems)
+            {
+                decimal categorySum = 0;
+                var budgetitemTransactions = from x in dashboard.Transactions
+                                           where x.Category.Name == budgetitem.Category.Name
+                                           select x;
+
+                foreach (Transaction t in budgetitemTransactions)
+                {
+                    categorySum += Math.Abs(t.Amount);
+                }
+
+                categorizedAmounts.Add(categorySum);
+            }
+
+
+
+
 
 
             return View(dashboard);
         }
+
 
         // POST: Selected Household
         [HttpPost]

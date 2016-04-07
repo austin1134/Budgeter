@@ -47,6 +47,20 @@ namespace CF_Budgeter.Migrations
             {
                 userManager.AddToRole(userId, "Admin");
             }
+
+            //add Demo user to the database
+            if (userManager.FindByEmail("DemoAccount@Budgeter.com") == null)
+            {
+                userManager.Create(new ApplicationUser
+                {
+                    UserName = "DemoAccount@Budgeter.com",
+                    Email = "DemoAccount@Budgeter.com",
+                    FirstName = "Demo",
+                    LastName = "Account"
+                }, "Password-1");
+            }
+
+
             //  This method will be called after migrating to the latest version.
 
             //  You can use the DbSet<T>.AddOrUpdate() helper extension method 

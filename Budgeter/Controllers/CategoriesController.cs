@@ -17,12 +17,12 @@ namespace CF_Budgeter.Controllers
         private ApplicationDbContext db = new ApplicationDbContext();
 
         // GET: Categories
-        public async Task<ActionResult> Index()
+        public ActionResult Index()
         {
-            //Household household = new Household();
-            //var categories = db.Categories.Where(c => c.Households.Any(h => h.Id == household.Id));
+            var user = db.Users.FirstOrDefault(x => x.UserName == User.Identity.Name);
+            Household household = db.Households.FirstOrDefault(x => x.Id == user.HouseholdId);
 
-            return View(await db.Categories.ToListAsync());
+            return View(household.Categories.ToList());
         }
 
         // GET: Categories/Details/5
@@ -55,14 +55,10 @@ namespace CF_Budgeter.Controllers
         {
             if (ModelState.IsValid)
             {
-                BudgetItem budgetitem = new BudgetItem();
-
-                //Giving properties and adding a new budgetitem that belongs with the category
-                budgetitem.Name = category.Name;
-                budgetitem.Id = category.Id;
-
-                db.BudgetItems.Add(budgetitem);
-                db.Categories.Add(category);
+                var user = db.Users.FirstOrDefault(x => x.UserName == User.Identity.Name);
+                var currentHousehold = db.Households.FirstOrDefault(x => x.Id == user.HouseholdId);
+                
+                currentHousehold.Categories.Add(category);
                 await db.SaveChangesAsync();
                 return RedirectToAction("Index");
             }

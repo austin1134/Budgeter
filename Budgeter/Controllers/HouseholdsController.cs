@@ -22,8 +22,8 @@ namespace CF_Budgeter.Controllers
         // GET: Households
         public ActionResult Index()
         {
-            var currentUser = db.Users.FirstOrDefault(u => u.UserName == User.Identity.Name);
-            return View(currentUser.Households);
+            var user = db.Users.FirstOrDefault(u => u.UserName == User.Identity.Name).Households;
+            return View(user);
         }
 
         // GET: Households/Details/5
