@@ -431,7 +431,7 @@ code {
 }
 .main-heading .main-title {
   width: 100%;
-  padding-right: 230px;
+  /*padding-right: 230px;*/
   margin-right: -215px;
   float: left;
 }

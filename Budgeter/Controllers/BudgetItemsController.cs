@@ -75,6 +75,7 @@ namespace CF_Budgeter.Controllers
             }
             if (ModelState.IsValid)
             {
+
                 db.BudgetItems.Add(budgetItem);
                 await db.SaveChangesAsync();
                 return RedirectToAction("Index");

@@ -4,8 +4,8 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Right - Bootstrap Admin Template</title>
-    <link rel="icon" type="image/png" href="~/dist/img/favicon.png">
+    <title>Budgeter - Financial Management Tool</title>
+    <link rel="icon" type="image/png" href="~/dist/img/money.png">
     <link rel="apple-touch-icon-precomposed" href="~/dist/img/apple-touch-favicon.png">
     <link href="~/dist/libs/bootstrap/css/bootstrap.min.css" rel="stylesheet">
     <link href="http://fonts.googleapis.com/css?family=Roboto:400,100,100italic,300,300italic,400italic,500,500italic,700,700italic,900,900italic" rel="stylesheet" type="text/css">
@@ -44,7 +44,7 @@
                 </div>
             </div>
             <div class="navbar-header">
-                <a href="./" class="navbar-brand">
+                <a href="@Url.Action("Index", "Home")" class="navbar-brand">
                     <div class="logo text-nowrap">
                         <div class="logo__img">
                             <img src="~/dist/img/right.png"/>
@@ -53,11 +53,11 @@
                 </a>
             </div>
             <div class="topnavbar">
-                <ul class="nav navbar-nav navbar-left">
+                @*<ul class="nav navbar-nav navbar-left">
                     <li> @Html.ActionLink("Demo Dashboard", "Index", "Home")</li>
                     <li>@Html.ActionLink("About", "About", "Home")</li>
                     <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
-                </ul>
+                </ul>*@
                 <ul class="nav navbar-nav">
                     @*@Html.Partial("_ProfilePagePartial")*@
                 </ul>
@@ -117,6 +117,14 @@
                         <i class="fa fa-fw fa-folder"></i>
                     </div>
                     <div class="nav-menu__text"><span>Categories</span></div>
+                </a>
+            </li>
+            <li>
+                <a href="@Url.Action("Index", "Budgets")">
+                    <div class="nav-menu__ico">
+                        <i class="fa fa-fw fa-folder"></i>
+                    </div>
+                    <div class="nav-menu__text"><span>Budgets</span></div>
                 </a>
             </li>
             <li>

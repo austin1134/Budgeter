@@ -45,26 +45,9 @@ namespace CF_Budgeter.Controllers
             }
             dashboard.BudgetItems = db.BudgetItems.Where(x => x.BudgetId == user.BudgetId);
 
-            List<decimal> categorizedAmounts = new List<decimal>();
-            foreach (var budgetitem in dashboard.BudgetItems)
-            {
-                decimal categorySum = 0;
-                var budgetitemTransactions = from x in dashboard.Transactions
-                                           where x.Category.Name == budgetitem.Category.Name
-                                           select x;
-
-                foreach (Transaction t in budgetitemTransactions)
-                {
-                    categorySum += Math.Abs(t.Amount);
-                }
-
-                categorizedAmounts.Add(categorySum);
-            }
-
-
-
-
-
+            dashboard.ChartData = db.BudgetItems.Where(c => c.Category.Households.Any(h => h.Id == user.HouseholdId))
+                .ToList()
+                .Select(c => CategoryToChartItem(c, user.HouseholdId, DateTime.Now));
 
             return View(dashboard);
         }
@@ -110,31 +93,23 @@ namespace CF_Budgeter.Controllers
             return RedirectToAction("Index", "Home");
         }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-        public ActionResult About()
+        private ChartItem CategoryToChartItem(BudgetItem budgetItem, int householdId, DateTimeOffset date)
         {
-            ViewBag.Message = "Your application description page.";
 
-            return View();
-        }
+            var transactions = db.Transactions.Where(t => t.Account.HouseholdId == householdId && t.Category.Id == budgetItem.CategoryId)
+                                              //.Where(t => t.Amount < 0)
+                                              .Where(t => t.Date.Month == date.Month && t.Date.Year == date.Year);
+            var budgetItems = db.BudgetItems.Where(b => b.Budget.HouseholdId == householdId && b.Category.Id == budgetItem.CategoryId);
 
-        public ActionResult Contact()
-        {
-            ViewBag.Message = "Your contact page.";
+            if ((!transactions.Any() || transactions == null) && (!budgetItems.Any() || budgetItems == null))
+                return null;
 
-            return View();
+            return new ChartItem
+            {
+                Name = budgetItem.Category.Name,
+                AmountSpent = transactions == null || !transactions.Any() ? 0 : transactions.Sum(t => t.Amount),
+                AmountBudgeted = (decimal) (budgetItems == null || !budgetItems.Any() ? 0 : budgetItems.Sum(b => b.Amount))
+            };
         }
     }
 }

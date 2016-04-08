@@ -3,43 +3,80 @@
 @using CF_Budgeter.Controllers
 
 @{
-    ViewBag.Title = "Choose the household to display.";
+    ViewBag.Title = "Your Dashboard"; 
 }
 <div class="form-group">
-    <div class="col-md-10">
-        @using (Html.BeginForm("Index", "Home", FormMethod.Post))
+    <div class="col-md-12">
+        @if (Model.SelectedHousehold != null && Model.SelectedBudget != null)
+        {
+            @*<h4 style ="color:azure">Currently Selected Household: @Model.SelectedHousehold.Name Currently Selected Budget: @Model.SelectedBudget.Name</h4>*@
+        }
+        else
+        {
+        <h4 style="color:firebrick">PLEASE SELECT A HOUSEHOLD AND BUDGET</h4>
+        }
+        @using (Html.BeginForm("Edit", "Home", FormMethod.Post))
         {
             @Html.AntiForgeryToken()
+
+            if (Model.SelectedHousehold != null)
+            {
+                @Html.DropDownListFor(x => x.SelectedHousehold.Id, (SelectList) ViewBag.SelectedHousehold, @Model.SelectedHousehold.Name, new {@class = "form-control col-md-6", @style = "width:50%", @onchange = "this.form.submit()"})
+            }
+            else
+            {
+                @Html.DropDownListFor(x => x.SelectedHousehold.Id, (SelectList)ViewBag.SelectedHousehold, "--Select Household--", new { @class = "form-control col-md-6", @style = "width:50%", @onchange = "this.form.submit()" })
+            }
+        }
+        @using (Html.BeginForm("Edit2", "Home", FormMethod.Post))
+        {
+            @Html.AntiForgeryToken()
+            @Html.HiddenFor(x => x.SelectedHousehold.Id)
             @Html.HiddenFor(x => x.Budgets)
-            @*@Html.DropDownListFor(x => x.SelectedHousehold, (SelectList) ViewBag.SelectedHousehold, new {@class = "form-control", @onchange = "this.form.submit()"})*@
-            @Html.DropDownList("SelectedHousehold", null, "--Select Household--", htmlAttributes: new {@class = "form-control", @onchange = "this.form.submit()"})
+            @*@Html.DropDownListFor(x => x.SelectedBudget.Id, (SelectList) ViewBag.SelectedBudget, @Model.SelectedBudget.Name, new {@class = "form-control", @onchange = "this.form.submit()"})*@
+
+            if (Model.SelectedHousehold == null)
+            {
+                @Html.DropDownList("SelectedBudget", null, "--Select Budget--", htmlAttributes: new { @class = "form-control col-md-6", @style = "width:50%", @onchange = "this.form.submit()", @disabled = "disabled"})
+            }
+            else if (Model.SelectedHousehold != null && Model.SelectedBudget != null)
+            {
+                @Html.DropDownListFor(x => x.SelectedBudget.Id, (SelectList)ViewBag.SelectedBudget, @Model.SelectedBudget.Name, new { @class = "form-control col-md-6", @style = "width:50%", @onchange = "this.form.submit()" })
+            }
+            else
+            {
+                @Html.DropDownListFor(x => x.SelectedBudget.Id, (SelectList)ViewBag.SelectedBudget, "--Select Budget--", new { @class = "form-control col-md-6", @style = "width:50%", @onchange = "this.form.submit()" })
+            }
         }
     </div>
 </div>
-
 <div class="container-fluid half-padding">
+@if (Model.SelectedHousehold != null && Model.SelectedBudget != null)
+{
     <div class="pages pages_dashboard">
         <div class="row">
             <div class="col-md-12">
                 <div class="panel panel-success">
                     <div class="panel-heading">
-                        <h3 class="panel-title">Household Members Of Household: @*@Model.Name*@</h3>
+                        <h3 class="panel-title">Overview For Household: @Model.SelectedHousehold.Name</h3>
                     </div>
-                <div class="panel-body">
-                        @*<p>There are @Model.Members.Count() users in this household.</p>*@
-                    <div id="datalist-filter__detail" class="collapse">
+                    <div class="panel-body">
+                        <p>There are @Model.Members.Count() users in this household.</p>
+                        <div id="datalist-filter__detail" class="collapse">
                             <div class="container-fluid datalist-filter__detail">
                                 <div class="row">
                                     <div class="col-md-4">
                                         <div class="form-group">
                                             <div class="input-group">
-                                                <div class="input-group-addon"><i class="fa fa-map-marker"></i></div>
+                                                <div class="input-group-addon"><i class="fa fa-map-marker"></i>
+                                                </div>
                                                 <input type="text" placeholder="Location" class="form-control datalist-filter__location">
                                             </div>
                                         </div>
                                         <div class="form-group">
                                             <div class="input-group selectize__group">
-                                                <div class="input-group-addon"><i class="fa fa-envelope-o"></i></div>
+                                                <div class="input-group-addon"><i class="fa fa-envelope-o"></i>
+                                                </div>
                                                 <select placeholder="Email" class="datalist-filter__email"></select>
                                             </div>
                                         </div>
@@ -47,13 +84,15 @@
                                     <div class="col-md-4 input-daterange">
                                         <div class="form-group">
                                             <div class="input-group">
-                                                <div class="input-group-addon"><i class="fa fa-calendar-minus-o"></i></div>
+                                                <div class="input-group-addon"><i class="fa fa-calendar-minus-o"></i>
+                                                </div>
                                                 <input type="text" value="" class="form-control datalist-filter__from">
                                             </div>
                                         </div>
                                         <div class="form-group">
                                             <div class="input-group">
-                                                <div class="input-group-addon"><i class="fa fa-calendar-plus-o"></i></div>
+                                                <div class="input-group-addon"><i class="fa fa-calendar-plus-o"></i>
+                                                </div>
                                                 <input type="text" value="" class="form-control datalist-filter__to">
                                             </div>
                                         </div>
@@ -72,109 +111,107 @@
                                 </div>
                             </div>
                         </div>
-                        </form>
 
-                    <div class="panel-heading">
-                        <h3 class="panel-title">Overview</h3>
-                    </div>
-                    <div class="panel-body">
-                        <div class="ov-widget">
-                            <div class="ov-widget__list">
-                                <div class="col-md-2 ov-widget__item ov-widget__item_inc">
-                                    <div class="ov-widget__value">$@*@Html.DisplayFor(model => model.Balance)*@</div>
-                                    <div class="ov-widget__info">
-                                        <div class="ov-widget__title">Balance</div>
-                                    </div>
-                                </div>
-                                <div class="col-md-2 ov-widget__item ov-widget__item_dec">
-                                    <div class="ov-widget__value">$@*@Html.DisplayFor(model => model.AvailableToSpend)*@</div>
-                                    <div class="ov-widget__info">
-                                        <div class="ov-widget__title">Amount Spent</div>
-                                    </div>
-                                </div>
-                                <div class="col-md-2 ov-widget__item ov-widget__item_warn">
-                                    <div class="ov-widget__value">$@*@Html.DisplayFor(budget => budget.TotalBudgetAmount)*@</div>
-                                    <div class="ov-widget__info">
-                                        <div class="ov-widget__title">Budget</div>
-                                    </div>
-                                </div>
-                                <div class="col-md-2 ov-widget__item ov-widget__item_tack">
-                                    <div class="ov-widget__value">@*@Html.DisplayFor(model => model.TransactionCount)*@</div>
-                                    <div class="ov-widget__info">
-                                        <div class="ov-widget__title">Transactions</div>
-                                    </div>
-                                </div>
-                                <div class="ov-widget__bar">
-                                    <span>Progress To Your Budget Spending Limit</span>
-                                    <div class="progress">
-                                        <div role="progressbar" aria-valuenow="85" aria-valuemin="0" aria-valuemax="100" style="width: @*@Model.ProgressBar*@" class="progress-bar progress-bar-info"></div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-md-12">
-                    <div class="panel panel-danger">
                         <div class="panel-heading">
-                            <h3 class="panel-title">Account Statistics</h3>
+                            @*<h3 class="panel-title">Overview</h3>*@
                         </div>
                         <div class="panel-body">
-                            <div class="ld-widget">
-                                <div class="col-md-12">
-                                    <div id="container1"></div>
-                                    @*<div class="ld-widget-main">
+                            <div class="ov-widget">
+                                <div class="ov-widget__list">
+                                    <div class="col-md-2 ov-widget__item ov-widget__item_inc">
+                                        <div class="ov-widget__value">$@Model.AvailableToSpend</div>
+                                        <div class="ov-widget__info">
+                                            <div class="ov-widget__title">Balance</div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-2 ov-widget__item ov-widget__item_dec">
+                                        <div class="ov-widget__value">$@Model.TotalSpent</div>
+                                        <div class="ov-widget__info">
+                                            <div class="ov-widget__title">Amount Spent This Month</div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-2 ov-widget__item ov-widget__item_warn">
+                                        <div class="ov-widget__value">$@Model.TotalBudget</div>
+                                        <div class="ov-widget__info">
+                                            <div class="ov-widget__title">Your Budget Limit</div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-2 ov-widget__item ov-widget__item_tack">
+                                        <div class="ov-widget__value">@Model.Transactions.Count()</div>
+                                        <div class="ov-widget__info">
+                                            <div class="ov-widget__title"># Transactions</div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-2 ov-widget__item ov-widget__item_tack">
+                                        <div class="ov-widget__value">@Model.AverageTransaction.ToString("C")</div>
+                                        <div class="ov-widget__info">
+                                            <div class="ov-widget__title">Average Transaction</div>
+                                        </div>
+                                    </div>
+                                    @*<div class="ov-widget__bar">
+                                    <span>Progress To Your Budget Spending Limit</span>
+                                    <div class="progress">
+                                        <div role="progressbar" aria-valuenow="85" aria-valuemin="0" aria-valuemax="100" style="width: @Model.ProgressBar" class="progress-bar progress-bar-info"></div>
+                                    </div>
+                                </div>*@
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="panel panel-danger">
+                            <div class="panel-heading">
+                                <h3 class="panel-title">Account Statistics</h3>
+                            </div>
+                            <div class="panel-body">
+                                <div class="ld-widget">
+                                    <div class="col-md-12">
+                                        <div id="container1"></div>
+                                        @*<div class="ld-widget-main">
                                         <div class="ld-widget-main__title">Account Activity</div>
                                         <div class="ld-widget-main__chart"></div>*@
+                                    </div>
+
                                 </div>
-                               
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
 
+        </div>
     </div>
-</div>
-<table id="datatable">
-    <thead>
-        <tr>
-            <th>@*@Model.createTransactionViewModel.*@</th>
-            <th>Jane</th>
-            <th>John</th>
-        </tr>
-    </thead>
-    <tbody>
-        <tr>
-            <th>Apples</th>
-            <td>3</td>
-            <td>4</td>
-        </tr>
-        <tr>
-            <th>Pears</th>
-            <td>2</td>
-            <td>0</td>
-        </tr>
-        <tr>
-            <th>Plums</th>
-            <td>5</td>
-            <td>11</td>
-        </tr>
-        <tr>
-            <th>Bananas</th>
-            <td>1</td>
-            <td>1</td>
-        </tr>
-        <tr>
-            <th>Oranges</th>
-            <td>2</td>
-            <td>4</td>
-        </tr>
-    </tbody>
-</table>
+}
+else
+{
+    <h1>PLEASE SELECT A HOUSEHOLD AND BUDGET TO CONTINUE</h1>
+}
+
+@if (Model.BudgetItems != null)
+{
+    <table id="datatable" hidden>
+
+            <thead>
+            <tr>
+                <th></th>
+                <th>Spent</th>
+                <th>Budgeted</th>
+            </tr>
+            </thead>
+            <tbody>
+            @foreach (ChartItem item in Model.ChartData)
+            {
+                <tr>
+                    <th>@item.Name</th>
+                    <td>@item.AmountSpent</td>
+                    <td>@item.AmountBudgeted</td>
+                </tr>
+            }
+            </tbody>
+    </table>
+}
 @section Scripts{
     <script src="https://code.highcharts.com/highcharts.js"></script>
     <script src="https://code.highcharts.com/modules/data.js"></script>
@@ -189,19 +226,19 @@
                     type: 'column'
                 },
                 title: {
-                    //text: 'Data extracted from a HTML table in the page'
+                    text: 'Spending By Category'
 
                 },
                 yAxis: {
                     allowDecimals: false,
                     title: {
-                        text: 'Units'
+                        text: '$'
                     }
                 },
                 tooltip: {
                     formatter: function() {
                         return '<b>' + this.series.name + '</b><br/>' +
-                            this.point.y + ' ' + this.point.name.toLowerCase();
+                           "$" + this.point.y + ' ' + this.point.name.toLowerCase();
                     }
                 }
             });

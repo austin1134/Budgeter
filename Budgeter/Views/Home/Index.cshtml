@@ -6,7 +6,7 @@
     ViewBag.Title = "Your Dashboard"; 
 }
 <div class="form-group">
-    <div class="col-md-10">
+    <div class="col-md-12">
         @if (Model.SelectedHousehold != null && Model.SelectedBudget != null)
         {
             @*<h4 style ="color:azure">Currently Selected Household: @Model.SelectedHousehold.Name Currently Selected Budget: @Model.SelectedBudget.Name</h4>*@
@@ -21,11 +21,12 @@
 
             if (Model.SelectedHousehold != null)
             {
-                @Html.DropDownListFor(x => x.SelectedHousehold.Id, (SelectList) ViewBag.SelectedHousehold, @Model.SelectedHousehold.Name, new {@class = "form-control", @onchange = "this.form.submit()"})
+                <button style="background-color: #20c05c; border-color: #20c05c;" class="btn"><i class="fa fa-fw fa-pagelines"></i></button>
+                @Html.DropDownListFor(x => x.SelectedHousehold.Id, (SelectList) ViewBag.SelectedHousehold, @Model.SelectedHousehold.Name, new {@class = "form-control col-md-4", @style = "width:40%", @onchange = "this.form.submit()"})
             }
             else
             {
-                @Html.DropDownListFor(x => x.SelectedHousehold.Id, (SelectList)ViewBag.SelectedHousehold, "--Select Household--", new { @class = "form-control", @onchange = "this.form.submit()" })
+                @Html.DropDownListFor(x => x.SelectedHousehold.Id, (SelectList)ViewBag.SelectedHousehold, "--Select Household--", new { @class = "form-control col-md-6", @style = "width:50%", @onchange = "this.form.submit()" })
             }
         }
         @using (Html.BeginForm("Edit2", "Home", FormMethod.Post))
@@ -37,15 +38,15 @@
 
             if (Model.SelectedHousehold == null)
             {
-                @Html.DropDownList("SelectedBudget", null, "--Select Budget--", htmlAttributes: new {@class = "form-control", @onchange = "this.form.submit()", @disabled = "disabled"})
-            }
-            else if (Model.SelectedHousehold != null && Model.SelectedBudget != null)
-            {
-                @Html.DropDownListFor(x => x.SelectedBudget.Id, (SelectList)ViewBag.SelectedBudget, @Model.SelectedBudget.Name, new { @class = "form-control", @onchange = "this.form.submit()" })
+                @Html.DropDownList("SelectedBudget", null, "--Select Budget--", htmlAttributes: new { @class = "form-control col-md-6", @style = "width:50%", @onchange = "this.form.submit()", @disabled = "disabled"})
+        }
+        else if (Model.SelectedHousehold != null && Model.SelectedBudget != null)
+        {
+            <button style="background-color: #20c05c; border-color: #20c05c;" class="btn"><i class="fa fa-fw fa-pagelines"></i></button>@Html.DropDownListFor(x => x.SelectedBudget.Id, (SelectList)ViewBag.SelectedBudget, @Model.SelectedBudget.Name, new { @class = "form-control col-md-4", @style = "width:40%", @onchange = "this.form.submit()" })
             }
             else
             {
-                @Html.DropDownListFor(x => x.SelectedBudget.Id, (SelectList)ViewBag.SelectedBudget, "--Select Budget--", new { @class = "form-control", @onchange = "this.form.submit()" })
+                @Html.DropDownListFor(x => x.SelectedBudget.Id, (SelectList)ViewBag.SelectedBudget, "--Select Budget--", new { @class = "form-control col-md-6", @style = "width:50%", @onchange = "this.form.submit()" })
             }
         }
     </div>
@@ -113,7 +114,7 @@
                         </div>
 
                         <div class="panel-heading">
-                            <h3 class="panel-title">Overview</h3>
+                            @*<h3 class="panel-title">Overview</h3>*@
                         </div>
                         <div class="panel-body">
                             <div class="ov-widget">
@@ -163,7 +164,7 @@
                     <div class="col-md-12">
                         <div class="panel panel-danger">
                             <div class="panel-heading">
-                                <h3 class="panel-title">Account Statistics</h3>
+                                <h3 class="panel-title">Breakdown Of Spending By BudgetItem</h3>
                             </div>
                             <div class="panel-body">
                                 <div class="ld-widget">
@@ -191,27 +192,25 @@ else
 
 @if (Model.BudgetItems != null)
 {
-    <table id="datatable">
-        @foreach (var budgetitem in Model.BudgetItems)
-        {
+    <table id="datatable" hidden>
+
             <thead>
             <tr>
-                @*<th>@budgetitem.Name</th>*@
+                <th></th>
                 <th>Spent</th>
                 <th>Budgeted</th>
             </tr>
             </thead>
             <tbody>
-            <tr>
-                <th>@budgetitem.Name</th>
-                <td>@budgetitem.AmountSpent = dashboard.Transactions.Where(x => x.CategoryId == budgetItem.CategoryId).Sum(x => x.Amount);</td>
-                <td>@budgetitem.Amount</td>
-            </tr>
-            <tr>
-                <td>@budgetitem.AmountSpent = dashboard.Transactions.Where(x => x.CategoryId == budgetItem.CategoryId).Sum(x => x.Amount);</td>
-            </tr>
+            @foreach (ChartItem item in Model.ChartData)
+            {
+                <tr>
+                    <th>@item.Name</th>
+                    <td>@item.AmountSpent</td>
+                    <td>@item.AmountBudgeted</td>
+                </tr>
+            }
             </tbody>
-        }
     </table>
 }
 @section Scripts{
@@ -228,19 +227,19 @@ else
                     type: 'column'
                 },
                 title: {
-                    //text: 'Data extracted from a HTML table in the page'
+                    text: 'Spending By Category'
 
                 },
                 yAxis: {
                     allowDecimals: false,
                     title: {
-                        text: 'Units'
+                        text: '$'
                     }
                 },
                 tooltip: {
                     formatter: function() {
                         return '<b>' + this.series.name + '</b><br/>' +
-                            this.point.y + ' ' + this.point.name.toLowerCase();
+                           "$" + this.point.y + ' ' + this.point.name.toLowerCase();
                     }
                 }
             });

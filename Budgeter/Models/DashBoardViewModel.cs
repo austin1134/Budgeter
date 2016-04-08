@@ -21,5 +21,13 @@ namespace CF_Budgeter.Models
         public IEnumerable<BudgetItem> BudgetItems { get; set; }
         public IEnumerable<Household> YourHouseholds { get; set; }
         public IEnumerable<ApplicationUser> Members { get; set; }
+        public IEnumerable<ChartItem> ChartData { get; set; }
+    }
+
+    public class ChartItem
+    {
+        public string Name { get; set; }
+        public decimal AmountBudgeted { get; set; }
+        public decimal AmountSpent { get; set; }
     }
 }

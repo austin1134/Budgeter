@@ -51,8 +51,10 @@ namespace CF_Budgeter.Controllers
             createTransactionViewModel.Date = DateTimeOffset.Now;
             createTransactionViewModel.AccountId = accountId;
 
-            var householdId = db.Users.FirstOrDefault(x => x.UserName == User.Identity.Name).HouseholdId;
-            createTransactionViewModel.Categories = new SelectList(db.Households.Find(householdId).Categories, "Id", "Name");
+            var user = db.Users.FirstOrDefault(x => x.UserName == User.Identity.Name);
+            Household household = db.Households.FirstOrDefault(x => x.Id == user.HouseholdId);
+
+            createTransactionViewModel.Categories = new SelectList(household.Categories.ToList(), "Id", "Name");
 
             return View(createTransactionViewModel);
         }

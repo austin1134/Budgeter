@@ -10,7 +10,7 @@ foreach (var transaction in Model)
          </div>
          <div class="feed-widget__info">
              <div class="feed-widget__text">
-                 <b><a href='./'> @User.Identity.Name</a></b><b> @transaction.Amount</b> @transaction.Description
+                 <b><a href='./'> @User.Identity.Name</a></b><b> $@transaction.Amount</b> @transaction.Description
              </div>
              <div class="feed-widget__date"> @transaction.Date</div>
              @Html.ActionLink("Edit", "Edit", "Transactions", new {id = transaction.Id}, new {@type = "button"})

@@ -19,3 +19,4 @@ C:\Users\austi\OneDrive\Documents\Visual Studio 2015\Projects\Budgeter\Budgeter\
 C:\Users\austi\OneDrive\Documents\Visual Studio 2015\Projects\Budgeter\Budgeter\bin\Budgeter.pdb
 C:\Users\austi\OneDrive\Documents\Visual Studio 2015\Projects\Budgeter\Budgeter\obj\Debug\Budgeter.dll
 C:\Users\austi\OneDrive\Documents\Visual Studio 2015\Projects\Budgeter\Budgeter\obj\Debug\Budgeter.pdb
+C:\Users\austi\OneDrive\Documents\Visual Studio 2015\Projects\Budgeter\Budgeter\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml

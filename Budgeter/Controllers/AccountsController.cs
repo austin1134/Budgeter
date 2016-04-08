@@ -73,7 +73,8 @@ namespace CF_Budgeter.Controllers
 
             accountDetailsViewModel.createTransactionViewModel = new CreateTransactionViewModel();
             accountDetailsViewModel.createTransactionViewModel.AccountId = account.Id;
-            accountDetailsViewModel.createTransactionViewModel.Categories = new SelectList(db.Categories, "Id", "Name");
+
+            accountDetailsViewModel.createTransactionViewModel.Categories = new SelectList(household.Categories.ToList(), "Id", "Name");
             if (accountDetailsViewModel == null)
             {
                 return HttpNotFound();
