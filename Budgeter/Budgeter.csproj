@@ -328,6 +328,9 @@
     <Content Include="dist\js\template\texteditor.js" />
     <Content Include="dist\js\template\users.js" />
     <Content Include="dist\js\template\validation.js" />
+    <Content Include="dist\js\toastr\toastr.css" />
+    <Content Include="dist\js\toastr\toastr.min.css" />
+    <Content Include="dist\js\toastr\toastr.min.js" />
     <Content Include="dist\libs\awesome-bootstrap-checkbox\awesome-bootstrap-checkbox.css" />
     <Content Include="dist\libs\bootstrap-datepicker\dist\css\bootstrap-datepicker.css" />
     <Content Include="dist\libs\bootstrap-datepicker\dist\css\bootstrap-datepicker.min.css" />
@@ -1420,6 +1423,7 @@
     <Content Include="dist\libs\font-awesome\fonts\FontAwesome.otf" />
     <Content Include="dist\libs\jquery\jquery.min.map" />
     <Content Include="dist\libs\selectize\plugins\remove_button\plugin.less" />
+    <Content Include="dist\js\toastr\toastr.js.map" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
